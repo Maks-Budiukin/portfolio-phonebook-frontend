@@ -8,17 +8,21 @@ const StyledFilter = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 50px;
-  margin-bottom: 20px;
+  /* margin-left: 50px;
+  margin-bottom: 20px; */
+  /* max-width: 300px; */
+  width: 49vw;
   label {
     position: absolute;
-    right: 6px;
-    top: 6px;
+    top: 8px;
+    right: 194px;
     font-weight: 500;
     margin-bottom: 8px;
   }
   input {
-    width: 300px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
     height: 26px;
     border: 1px solid silver;
     border-radius: 4px;

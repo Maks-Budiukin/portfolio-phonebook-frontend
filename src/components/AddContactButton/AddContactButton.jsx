@@ -13,7 +13,8 @@ const AddButton = styled.button`
   border-radius: 4px;
   display: flex;
   align-items: center;
-
+  margin-left: auto;
+  margin-right: auto;
   &:hover,
   &:focus {
     outline: none;

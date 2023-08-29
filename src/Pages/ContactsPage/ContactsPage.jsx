@@ -35,14 +35,23 @@ const LoadingWrapper = styled.div`
   /* padding-top: 130px; */
   background-color: #fff;
   width: 70vw;
+  height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  border: 1px solid skyblue;
+  border-radius: 8px;
+  /* justify-content: space-between; */
 `;
 
 const ContactsWrapper = styled.div`
   display: flex;
   width: 70vw;
+`;
+
+const SpinnerContainer = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
 `;
 
 export const ContactsPage = () => {
@@ -75,16 +84,18 @@ export const ContactsPage = () => {
       <AppSpace>
         <LoadingWrapper>
           <Filter />
-          <ContactsListHeader>Contacts</ContactsListHeader>
+          {/* <ContactsListHeader>Contacts</ContactsListHeader> */}
           <AddContactButton />
           {isLoading && (
-            <RotatingLines
-              strokeColor="skyblue"
-              strokeWidth="5"
-              animationDuration="0.75"
-              width="28"
-              visible={true}
-            />
+            <SpinnerContainer>
+              <RotatingLines
+                strokeColor="skyblue"
+                strokeWidth="5"
+                animationDuration="0.75"
+                width="28"
+                visible={true}
+              />
+            </SpinnerContainer>
           )}
         </LoadingWrapper>
         <ContactsWrapper>
