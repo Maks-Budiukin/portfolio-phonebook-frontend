@@ -44,7 +44,6 @@ export const editContactsThunk = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -60,7 +59,6 @@ export const deleteContactsThunk = createAsyncThunk(
       const items = contacts.items.filter(contact => contact._id !== deletedId);
       return items;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

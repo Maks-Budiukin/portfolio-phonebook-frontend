@@ -5,11 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContactsThunk } from 'redux/contacts/contacts.thunk';
 import styled from 'styled-components';
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
+import { ContactInfo } from 'components/ContactInfo/ContactInfo';
 
 const StyledList = styled.ul`
-  list-style: none;
-  width: 300px;
+  /* position: sticky; */
+  /* top: 70px; */
   padding: 0;
+  padding-top: 30px;
+  list-style: none;
+  width: 50vw;
+
   li {
     display: flex;
     gap: 4px;
@@ -42,56 +47,75 @@ const StyledList = styled.ul`
 `;
 
 const LoadingWrapper = styled.div`
+  /* position: fixed; */
+  /* top: 16;
+  left: 16; */
+  background-color: tomato;
+  width: 50vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
-export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.items);
-  const [cont, setCont] = useState(contacts);
+const Wrapper = styled.div`
+  /* position: relative; */
+  display: flex;
+  justify-content: space-between;
+  padding-top: 70px;
+  width: 70vw;
+`;
 
-  const filter = useSelector(state => state.filter);
-  const isLoading = useSelector(state => state.contacts.isLoading);
-  const dispatch = useDispatch();
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+const ContactsListHeader = styled.h2`
+  /* top: 70px; */
+`;
 
-  useEffect(() => {
-    isLoggedIn && dispatch(fetchContactsThunk());
-  }, [dispatch, isLoggedIn, cont]);
+export const ContactList = ({ filteredContacts, isLoading }) => {
+  // const contacts = useSelector(state => state.contacts.items);
+  // const [cont, setCont] = useState(contacts);
 
-  const normalizedFilter = filter.toLowerCase().trim();
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
-  );
+  // const filter = useSelector(state => state.filter);
+  // const isLoading = useSelector(state => state.contacts.isLoading);
+  // const dispatch = useDispatch();
+  // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 
+  // useEffect(() => {
+  //   isLoggedIn && dispatch(fetchContactsThunk());
+  // }, [dispatch, isLoggedIn, cont]);
+
+  // const normalizedFilter = filter.toLowerCase().trim();
+  // const filteredContacts = contacts.filter(contact =>
+  //   contact.name.toLowerCase().includes(normalizedFilter)
+  // );
+
+  const [currentContact, setCurrentContact] = useState(null);
+
+  const handleContactClick = id => {
+    const currContact = filteredContacts.find(contact => contact._id === id);
+    console.log(currContact);
+    setCurrentContact(currContact);
+  };
   return (
-    <StyledList>
-      <LoadingWrapper>
-        <h2>
-          Contact<span>s</span>
-        </h2>
-        {isLoading && (
-          <RotatingLines
-            strokeColor="skyblue"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="28"
-            visible={true}
-          />
-        )}
-      </LoadingWrapper>
-      <Filter />
-      {filteredContacts.map(item => {
-        return (
-          <ContactListItem
-            key={item._id}
-            name={item.name}
-            number={item.number}
-            id={item._id}
-          />
-        );
-      })}
-    </StyledList>
+    <Wrapper>
+      <div>
+        <StyledList>
+          {/* <Filter /> */}
+          {filteredContacts.map(item => {
+            return (
+              <ContactListItem
+                key={item._id}
+                name={item.name}
+                number={item.number}
+                id={item._id}
+                onClick={() => handleContactClick(item._id)}
+              />
+            );
+          })}
+        </StyledList>
+      </div>
+      <ContactInfo
+        currentContact={currentContact}
+        defaultContact={filteredContacts[0]}
+      />
+    </Wrapper>
   );
 };

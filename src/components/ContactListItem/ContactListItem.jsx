@@ -56,7 +56,7 @@ const StyledForm = styled.form`
   }
 `;
 
-export const ContactListItem = ({ name, number, id }) => {
+export const ContactListItem = ({ name, number, id, onClick }) => {
   const [editForm, setEditForm] = useState(null);
   const [editName, setEditName] = useState('');
   const [editNumber, setEditNumber] = useState('');
@@ -124,7 +124,7 @@ export const ContactListItem = ({ name, number, id }) => {
       </button>
     </StyledForm>
   ) : (
-    <li key={id}>
+    <li key={id} onClick={onClick}>
       {' '}
       {name} <span> {number}</span>{' '}
       <button onClick={() => editHandler(id)}>

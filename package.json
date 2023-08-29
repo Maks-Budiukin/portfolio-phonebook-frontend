@@ -1,8 +1,8 @@
 {
-  "name": "phonebook",
+  "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://portfolio-phonebook-frontend.vercel.app/",
+  "homepage": "https://goitacademy.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.3",
@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:js": "eslint src/**/*.{js,jsx}"
