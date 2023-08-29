@@ -69,7 +69,11 @@ const ContactsListHeader = styled.h2`
   /* top: 70px; */
 `;
 
-export const ContactList = ({ filteredContacts, isLoading }) => {
+export const ContactList = ({
+  filteredContacts,
+  isLoading,
+  onContactClick,
+}) => {
   // const contacts = useSelector(state => state.contacts.items);
   // const [cont, setCont] = useState(contacts);
 
@@ -87,13 +91,13 @@ export const ContactList = ({ filteredContacts, isLoading }) => {
   //   contact.name.toLowerCase().includes(normalizedFilter)
   // );
 
-  const [chosenContact, setChosenContact] = useState(null);
+  // const [chosenContact, setChosenContact] = useState(null);
 
-  const handleContactClick = (id) => {
-    const currContact = filteredContacts.find((contact) => contact._id === id);
-    console.log(currContact);
-    setChosenContact(currContact);
-  };
+  // const handleContactClick = (id) => {
+  //   const currContact = filteredContacts.find((contact) => contact._id === id);
+  //   console.log(currContact);
+  //   setChosenContact(currContact);
+  // };
 
   return (
     <Wrapper>
@@ -106,16 +110,16 @@ export const ContactList = ({ filteredContacts, isLoading }) => {
                 name={item.name}
                 number={item.number}
                 id={item._id}
-                onClick={() => handleContactClick(item._id)}
+                onClick={() => onContactClick(item._id)}
               />
             );
           })}
         </StyledList>
       </div>
-      <ContactInfo
+      {/* <ContactInfo
         chosenContact={chosenContact}
         filteredContacts={filteredContacts}
-      />
+      /> */}
     </Wrapper>
   );
 };

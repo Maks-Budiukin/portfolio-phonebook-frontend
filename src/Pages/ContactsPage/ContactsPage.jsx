@@ -11,6 +11,7 @@ import { Filter } from "components/Filter/Filter";
 import styled from "styled-components";
 import { Portal } from "components/Portal/Portal";
 import { AddContactButton } from "components/AddContactButton/AddContactButton";
+import { ContactInfo } from "components/ContactInfo/ContactInfo";
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,6 +44,8 @@ export const ContactsPage = () => {
   const contacts = useSelector((state) => state.contacts.items);
   const [cont, setCont] = useState(contacts);
 
+  const [chosenContact, setChosenContact] = useState(null);
+
   const filter = useSelector((state) => state.filter);
   const isLoading = useSelector((state) => state.contacts.isLoading);
   const dispatch = useDispatch();
@@ -57,12 +60,14 @@ export const ContactsPage = () => {
     contact.name.toLowerCase().includes(normalizedFilter)
   );
 
+  const onContactClick = (_id) => {
+    setChosenContact(_id);
+  };
+
   return (
     <Wrapper>
       <UserProfile />
       <AppSpace>
-        {/* <AppBar /> */}
-        {/* <ContactForm /> */}
         <LoadingWrapper>
           <ContactsListHeader>
             Contact<span>s</span>
@@ -82,7 +87,9 @@ export const ContactsPage = () => {
         <ContactList
           filteredContacts={filteredContacts}
           isLoading={isLoading}
+          onContactClick={onContactClick}
         />
+        <ContactInfo chosenContact={chosenContact} />
       </AppSpace>
     </Wrapper>
   );

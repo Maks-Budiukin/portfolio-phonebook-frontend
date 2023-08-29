@@ -66,13 +66,12 @@ const StyledForm = styled.form`
   }
 `;
 
-export const ContactInfo = ({
-  chosenContact,
-  defaultContact,
-  filteredContacts,
-}) => {
-  const contacts = useSelector((state) => state.contacts.items);
+export const ContactInfo = ({ chosenContact }) => {
+  const contact = useSelector((state) =>
+    state.contacts.items.find((contact) => contact._id === chosenContact)
+  );
 
+  console.log("CONTACT", contact);
   const [editForm, setEditForm] = useState(null);
   const [editName, setEditName] = useState("");
   const [editNumber, setEditNumber] = useState("");
