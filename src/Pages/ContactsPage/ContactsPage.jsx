@@ -40,11 +40,16 @@ const LoadingWrapper = styled.div`
   justify-content: space-between;
 `;
 
+const ContactsWrapper = styled.div`
+  display: flex;
+  width: 70vw;
+`;
+
 export const ContactsPage = () => {
   const contacts = useSelector((state) => state.contacts.items);
   const [cont, setCont] = useState(contacts);
 
-  const [chosenContact, setChosenContact] = useState(null);
+  const [chosenContactID, setChosenContactID] = useState(null);
 
   const filter = useSelector((state) => state.filter);
   const isLoading = useSelector((state) => state.contacts.isLoading);
@@ -60,8 +65,8 @@ export const ContactsPage = () => {
     contact.name.toLowerCase().includes(normalizedFilter)
   );
 
-  const onContactClick = (_id) => {
-    setChosenContact(_id);
+  const displayContact = (_id) => {
+    setChosenContactID(_id);
   };
 
   return (
@@ -69,10 +74,8 @@ export const ContactsPage = () => {
       <UserProfile />
       <AppSpace>
         <LoadingWrapper>
-          <ContactsListHeader>
-            Contact<span>s</span>
-          </ContactsListHeader>
           <Filter />
+          <ContactsListHeader>Contacts</ContactsListHeader>
           <AddContactButton />
           {isLoading && (
             <RotatingLines
@@ -84,12 +87,14 @@ export const ContactsPage = () => {
             />
           )}
         </LoadingWrapper>
-        <ContactList
-          filteredContacts={filteredContacts}
-          isLoading={isLoading}
-          onContactClick={onContactClick}
-        />
-        <ContactInfo chosenContact={chosenContact} />
+        <ContactsWrapper>
+          <ContactList
+            filteredContacts={filteredContacts}
+            isLoading={isLoading}
+            onContactClick={displayContact}
+          />
+          <ContactInfo chosenContactID={chosenContactID} />
+        </ContactsWrapper>
       </AppSpace>
     </Wrapper>
   );

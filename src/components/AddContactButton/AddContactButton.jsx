@@ -4,12 +4,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addContactsThunk } from "redux/contacts/contacts.thunk";
 import styled from "styled-components";
+import { GrAddCircle } from "react-icons/gr";
 
 const AddButton = styled.button`
   background-color: #fff;
   padding: 5px 10px;
   border: 1px solid silver;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
 
   &:hover,
   &:focus {
@@ -19,9 +22,9 @@ const AddButton = styled.button`
 `;
 
 export const AddContactButton = () => {
-  const [isModalOpen, setisModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleToggle = () => setisModalOpen((pS) => !pS);
+  const handleToggle = () => setIsModalOpen((pS) => !pS);
 
   return (
     <>
@@ -29,6 +32,7 @@ export const AddContactButton = () => {
         type="button"
         onClick={handleToggle}
       >
+        <GrAddCircle style={{ marginRight: "4px" }} />
         Add contact
       </AddButton>
       {isModalOpen && (

@@ -66,12 +66,22 @@ const StyledForm = styled.form`
   }
 `;
 
-export const ContactInfo = ({ chosenContact }) => {
+export const ContactInfo = ({ chosenContactID }) => {
   const contact = useSelector((state) =>
-    state.contacts.items.find((contact) => contact._id === chosenContact)
+    state.contacts.items.find((contact) => contact._id === chosenContactID)
   );
 
-  console.log("CONTACT", contact);
+  const contacts = useSelector((state) => state.contacts.items);
+  const isLoading = useSelector((state) => state.contacts.isLoading);
+
+  const [displayedContact, setDisplayedContact] = useState(null);
+
+  useEffect(() => {
+    !isLoading && contact
+      ? setDisplayedContact(contact)
+      : setDisplayedContact(contacts[0]);
+  }, [contact, isLoading]);
+
   const [editForm, setEditForm] = useState(null);
   const [editName, setEditName] = useState("");
   const [editNumber, setEditNumber] = useState("");
@@ -83,18 +93,19 @@ export const ContactInfo = ({ chosenContact }) => {
 
   const deleteHandler = (id) => {
     dispatch(deleteContactsThunk(id));
+    setDisplayedContact(contacts[0]);
   };
 
   const editHandler = () => {
-    setEditForm(chosenContact.name);
-    setEditName(chosenContact.name);
-    setEditNumber(chosenContact.number);
+    setEditForm(contact.name);
+    setEditName(contact.name);
+    setEditNumber(contact.number);
   };
 
   const handleEditSubmit = () => {
     dispatch(
       editContactsThunk({
-        id: chosenContact._id,
+        id: contact._id,
         name: editName,
         number: editNumber,
       })
@@ -122,13 +133,13 @@ export const ContactInfo = ({ chosenContact }) => {
           <h2>Contact Info</h2>
 
           <button
-            onClick={() => editHandler(chosenContact._id)}
+            onClick={() => editHandler(displayedContact._id)}
             disabled={true}
           >
             <GrEdit />
           </button>
           <button
-            onClick={() => deleteHandler(chosenContact._id)}
+            onClick={() => deleteHandler(displayedContact._id)}
             disabled={true}
           >
             <RxCross2 />
@@ -166,18 +177,18 @@ export const ContactInfo = ({ chosenContact }) => {
           </StyledForm>
         </>
       ) : (
-        chosenContact && (
+        displayedContact && (
           <>
             <h2>Contact Info</h2>
-            <button onClick={() => editHandler(chosenContact._id)}>
+            <button onClick={() => editHandler(displayedContact._id)}>
               <GrEdit />
             </button>
-            <button onClick={() => deleteHandler(chosenContact._id)}>
+            <button onClick={() => deleteHandler(displayedContact._id)}>
               <RxCross2 />
             </button>
             <UserAvatar />
-            <p>{chosenContact.name}</p>
-            <p>{chosenContact.number}</p>
+            <p>{displayedContact.name}</p>
+            <p>{displayedContact.number}</p>
           </>
         )
       )}

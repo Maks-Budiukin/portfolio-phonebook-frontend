@@ -6,8 +6,10 @@ export const fetchContactsThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/contacts");
-
-      return response.data;
+      const contacts = response.data.sort((a, b) =>
+        a.name.localeCompare(b.name)
+      );
+      return contacts;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
