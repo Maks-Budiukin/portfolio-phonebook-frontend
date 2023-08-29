@@ -33,6 +33,7 @@ const LoadingWrapper = styled.div`
   /* top: 90px; */
 
   /* padding-top: 130px; */
+  z-index: 1;
   background-color: #fff;
   width: 70vw;
   height: 70px;
