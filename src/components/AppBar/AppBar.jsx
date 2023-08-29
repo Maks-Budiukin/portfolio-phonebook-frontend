@@ -1,9 +1,9 @@
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import { Filter } from 'components/Filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
-import { logoutThunk } from 'redux/auth/auth.thunk';
-import styled from 'styled-components';
+import { ContactForm } from "components/ContactForm/ContactForm";
+import { Filter } from "components/Filter/Filter";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+import { logoutThunk } from "redux/auth/auth.thunk";
+import styled from "styled-components";
 
 const AuthButton = styled.button`
   width: 75px;
@@ -90,15 +90,15 @@ const LogoLink = styled(Link)`
 `;
 
 export const AppBar = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const name = useSelector(state => state.auth.user.name);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const name = useSelector((state) => state.auth.user.name);
   const dispatch = useDispatch();
 
   return (
     <>
       <NavWrapper>
-        <Filter />
-        <ContactForm />
+        {/* <Filter />
+        <ContactForm /> */}
       </NavWrapper>
     </>
   );

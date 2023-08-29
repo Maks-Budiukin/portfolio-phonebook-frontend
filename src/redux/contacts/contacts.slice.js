@@ -1,22 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { contactsInitState } from './contacts.init-state';
+import { createSlice } from "@reduxjs/toolkit";
+import { contactsInitState } from "./contacts.init-state";
 import {
   addContactsThunk,
   deleteContactsThunk,
   editContactsThunk,
   fetchContactsThunk,
-} from './contacts.thunk';
+} from "./contacts.thunk";
 
 const contactsSlice = createSlice({
-  name: 'contacts',
+  name: "contacts",
   initialState: contactsInitState,
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
 
       // ============== FETCH =================
 
-      .addCase(fetchContactsThunk.pending, state => {
+      .addCase(fetchContactsThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
@@ -32,12 +32,12 @@ const contactsSlice = createSlice({
 
       // ============== DELETE =================
 
-      .addCase(deleteContactsThunk.pending, state => {
+      .addCase(deleteContactsThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
-        state.items = [...payload];
+        state.items = payload;
         state.isLoading = false;
         state.error = null;
       })
@@ -48,7 +48,7 @@ const contactsSlice = createSlice({
 
       // ============== ADD =================
 
-      .addCase(addContactsThunk.pending, state => {
+      .addCase(addContactsThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
@@ -63,14 +63,12 @@ const contactsSlice = createSlice({
       })
       // ============== EDIT =================
 
-      .addCase(editContactsThunk.pending, state => {
+      .addCase(editContactsThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(editContactsThunk.fulfilled, (state, { payload }) => {
-        state.items = state.items.map(item =>
-          item.id === payload.id ? payload : item
-        );
+        state.items = payload;
 
         // array: state.array.map(n => n.id === action.newObject.id ? action.newObject : n),
 

@@ -1,9 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
-import styled from 'styled-components';
-import { nanoid } from 'nanoid';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContactsThunk } from 'redux/contacts/contacts.thunk';
+import React from "react";
+import { useState } from "react";
+import styled from "styled-components";
+import { nanoid } from "nanoid";
+import { useDispatch, useSelector } from "react-redux";
+import { addContactsThunk } from "redux/contacts/contacts.thunk";
 
 const StyledForm = styled.form`
   display: flex;
@@ -27,7 +27,6 @@ const StyledForm = styled.form`
     }
   }
   button {
-    margin-left: auto;
     background-color: #fff;
     padding: 5px 10px;
     border: 1px solid silver;
@@ -41,22 +40,22 @@ const StyledForm = styled.form`
   }
 `;
 
-export const ContactForm = () => {
-  const contacts = useSelector(state => state.contacts.items);
+export const ContactForm = ({ onSubmitClose }) => {
+  const contacts = useSelector((state) => state.contacts.items);
   const dispatch = useDispatch();
 
   const nameInpudId = nanoid();
   const numberInpudId = nanoid();
 
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
-  const onInputChange = event => {
+  const onInputChange = (event) => {
     switch (event.target.name) {
-      case 'name':
+      case "name":
         setName(event.target.value);
         break;
-      case 'number':
+      case "number":
         setNumber(event.target.value);
         break;
       default:
@@ -66,13 +65,14 @@ export const ContactForm = () => {
 
   const normalizedName = name.toLowerCase();
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    contacts.find(contact => contact.name.toLowerCase() === normalizedName)
+    contacts.find((contact) => contact.name.toLowerCase() === normalizedName)
       ? alert(`${name} is already in contacts `)
       : dispatch(addContactsThunk({ name: name, number: number }));
-    setName('');
-    setNumber('');
+    setName("");
+    setNumber("");
+    onSubmitClose();
   };
 
   return (
@@ -101,6 +101,12 @@ export const ContactForm = () => {
       />
 
       <button type="submit">Add contact</button>
+      <button
+        type="button"
+        onClick={onSubmitClose}
+      >
+        Cancel
+      </button>
     </StyledForm>
   );
 };

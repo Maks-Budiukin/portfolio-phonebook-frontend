@@ -1,11 +1,11 @@
-import { Filter } from 'components/Filter/Filter';
-import { useEffect, useState } from 'react';
-import { RotatingLines } from 'react-loader-spinner';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchContactsThunk } from 'redux/contacts/contacts.thunk';
-import styled from 'styled-components';
-import { ContactListItem } from 'components/ContactListItem/ContactListItem';
-import { ContactInfo } from 'components/ContactInfo/ContactInfo';
+import { Filter } from "components/Filter/Filter";
+import { useEffect, useState } from "react";
+import { RotatingLines } from "react-loader-spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchContactsThunk } from "redux/contacts/contacts.thunk";
+import styled from "styled-components";
+import { ContactListItem } from "components/ContactListItem/ContactListItem";
+import { ContactInfo } from "components/ContactInfo/ContactInfo";
 
 const StyledList = styled.ul`
   /* position: sticky; */
@@ -61,7 +61,7 @@ const Wrapper = styled.div`
   /* position: relative; */
   display: flex;
   justify-content: space-between;
-  padding-top: 70px;
+  padding-top: 45px;
   width: 70vw;
 `;
 
@@ -87,19 +87,19 @@ export const ContactList = ({ filteredContacts, isLoading }) => {
   //   contact.name.toLowerCase().includes(normalizedFilter)
   // );
 
-  const [currentContact, setCurrentContact] = useState(null);
+  const [chosenContact, setChosenContact] = useState(null);
 
-  const handleContactClick = id => {
-    const currContact = filteredContacts.find(contact => contact._id === id);
+  const handleContactClick = (id) => {
+    const currContact = filteredContacts.find((contact) => contact._id === id);
     console.log(currContact);
-    setCurrentContact(currContact);
+    setChosenContact(currContact);
   };
+
   return (
     <Wrapper>
       <div>
         <StyledList>
-          {/* <Filter /> */}
-          {filteredContacts.map(item => {
+          {filteredContacts.map((item) => {
             return (
               <ContactListItem
                 key={item._id}
@@ -113,8 +113,8 @@ export const ContactList = ({ filteredContacts, isLoading }) => {
         </StyledList>
       </div>
       <ContactInfo
-        currentContact={currentContact}
-        defaultContact={filteredContacts[0]}
+        chosenContact={chosenContact}
+        filteredContacts={filteredContacts}
       />
     </Wrapper>
   );

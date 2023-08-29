@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchContactsThunk = createAsyncThunk(
-  'contacts/fetchAll',
+  "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('/contacts');
+      const response = await axios.get("/contacts");
 
       return response.data;
     } catch (error) {
@@ -15,11 +15,11 @@ export const fetchContactsThunk = createAsyncThunk(
 );
 
 export const addContactsThunk = createAsyncThunk(
-  'contacts/addContact',
+  "contacts/addContact",
   async (data, thunkAPI) => {
     try {
       const response = await axios({
-        method: 'post',
+        method: "post",
         url: `/contacts`,
         data,
       });
@@ -31,18 +31,26 @@ export const addContactsThunk = createAsyncThunk(
 );
 
 export const editContactsThunk = createAsyncThunk(
-  'contacts/editContact',
+  "contacts/editContact",
   async (editData, thunkAPI) => {
     try {
       const response = await axios({
-        method: 'patch',
+        method: "patch",
         url: `/contacts/${editData.id}`,
         data: {
           name: editData.name,
           number: editData.number,
         },
       });
-      return response.data;
+
+      const editedId = response.data._id;
+      const { contacts } = thunkAPI.getState();
+
+      const items = contacts.items.map((contact) =>
+        contact._id === editedId ? response.data : contact
+      );
+
+      return items;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -50,13 +58,15 @@ export const editContactsThunk = createAsyncThunk(
 );
 
 export const deleteContactsThunk = createAsyncThunk(
-  'contacts/deleteContact',
+  "contacts/deleteContact",
   async (id, thunkAPI) => {
     try {
       const response = await axios.delete(`/contacts/${id}`);
       const deletedId = response.data._id;
       const { contacts } = thunkAPI.getState();
-      const items = contacts.items.filter(contact => contact._id !== deletedId);
+      const items = contacts.items.filter(
+        (contact) => contact._id !== deletedId
+      );
       return items;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
