@@ -23,14 +23,15 @@ const StyledFilter = styled.div`
     width: 250px;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 8px;
     height: 26px;
-    border: 1px solid silver;
+    border: 2px solid #2f313a;
     border-radius: 4px;
 
     &:hover,
     &:focus {
       outline: none;
-      border: 1px solid skyblue;
+      border: 2px solid #2f313a;
     }
   }
 `;
@@ -49,7 +50,7 @@ export const Filter = () => {
     <StyledFilter>
       <label htmlFor={filterInpudId}>
         {" "}
-        <LuFilter style={{ color: "skyblue" }} />{" "}
+        <LuFilter style={{ color: "#2f313a" }} />{" "}
       </label>
       <input
         type="text"

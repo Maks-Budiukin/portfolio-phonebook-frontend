@@ -10,8 +10,11 @@ import { ContactInfo } from "components/ContactInfo/ContactInfo";
 const StyledList = styled.ul`
   /* position: sticky; */
   /* top: 70px; */
+  /* background-color: #fff; */
   padding: 0;
+  /* padding-left: 32px; */
   padding-top: 30px;
+  margin-left: -24px;
   list-style: none;
   width: 50vw;
 

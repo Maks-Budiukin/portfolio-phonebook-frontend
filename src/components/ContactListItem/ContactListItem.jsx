@@ -1,40 +1,153 @@
 import styled from "styled-components";
-import { MdDone } from "react-icons/md";
-import { TfiEmail } from "react-icons/tfi";
-import { LiaBitbucket } from "react-icons/lia";
-import { TbBrandBitbucket } from "react-icons/tb";
 import { ContactIconsSet } from "components/ContactIconsSet/ContactIconsSet";
 
-const ListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid silver;
-  border-radius: 8px;
-  transition-property: scale;
-  transition-duration: 250ms;
-  transition-timing-function: ease;
+const ContactItem = styled.li`
+  --yellow: #ffdd40;
+  --dark: #2f313a;
+  --deg: -86deg;
+  --trans: all 0.4s ease 0s;
+
+  margin: 1.5em 0 0.5em;
+  padding: 0.73em;
+  background: linear-gradient(
+    83deg,
+    var(--yellow) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
+  position: relative;
+  list-style: none;
+
+  transform: scale(0.84);
+  transition: var(--trans);
+
+  &:nth-of-type(even) {
+    /* text-align: right; */
+    background: linear-gradient(
+      -83deg,
+      var(--yellow) 0 97%,
+      #fff0 calc(97% + 1px) 100%
+    );
+  }
+
   &:hover {
-    scale: 1.02;
+    transform: scale(0.88);
+    transition: var(--trans);
+    filter: drop-shadow(0px 5px 10px #0008);
+  }
+
+  .rotate {
+    transform: rotate(-4deg);
+  }
+
+  &:nth-of-type(even) {
+    .rotate {
+      transform: rotate(2deg);
+    }
+  }
+
+  /* &:nth-of-type(2n + 1) {
+    .test {
+      transform: rotate(6deg);
+    }
+  } */
+`;
+
+const ContactPhotoThumb = styled.div`
+  --yellow: #ffdd40;
+  --dark: #2f313a;
+  --deg: -86deg;
+  --trans: all 0.4s ease 0s;
+
+  width: 14vmin;
+  height: 13vmin;
+  float: left;
+  margin-right: 1.25em;
+  background: linear-gradient(
+    var(--deg),
+    var(--dark) 0 70%,
+    var(--yellow) 0% 100%
+  );
+  /* transform: rotate(-4deg); */
+  transition: var(--trans);
+  border-radius: 0.25em;
+  overflow: hidden;
+  margin-left: -3em;
+  padding: 0.5em;
+
+  &:nth-of-type(even) {
+    /* text-align: right; */
+    transform: rotate(14deg);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0.25em;
+    filter: grayscale(1);
+    background: var(--dark);
   }
 `;
 
-const StyledNumber = styled.p`
-  margin-left: auto;
-  margin-right: 36px;
+const ContactDescription = styled.div`
+  --yellow: #ffdd40;
+  --dark: #2f313a;
+  --deg: -86deg;
+  --trans: all 0.4s ease 0s;
+
+  padding-top: 1vmin;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  p {
+    padding: 0 2em;
+    margin-bottom: 1em;
+  }
+
+  h3 {
+    background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
+    transform: rotate(-2deg);
+    margin: 0;
+    margin-top: -2.25em;
+    left: 9vmin;
+    padding: 0.5em 0.75em;
+    color: var(--yellow);
+    border-radius: 0.25em;
+    font-size: 1.35em;
+    transform-origin: left bottom;
+  }
 `;
 
-const StyledName = styled.p`
-  margin-left: 12px;
+const ContactName = styled.p`
+  position: absolute;
+  top: -34px;
+  left: 76px;
+  font-size: 22px;
+
+  background: var(--dark);
+  color: var(--yellow);
+
+  background: linear-gradient(
+    106deg,
+    var(--dark) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
 `;
 
 export const ContactListItem = ({ name, number, id, onClick }) => {
   return (
-    <ListItem
+    <ContactItem
       key={id}
       onClick={onClick}
     >
-      <StyledName>{name}</StyledName> <StyledNumber>{number}</StyledNumber>
-      <ContactIconsSet />
-    </ListItem>
+      <ContactPhotoThumb className="rotate">
+        <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
+      </ContactPhotoThumb>
+
+      <ContactDescription>
+        <ContactName>{name}</ContactName> <p>{number}</p>
+        <ContactIconsSet />
+      </ContactDescription>
+    </ContactItem>
   );
 };

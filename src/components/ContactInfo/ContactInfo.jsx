@@ -9,20 +9,7 @@ import { MdDone } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import { GrEdit } from "react-icons/gr";
 import styled from "styled-components";
-
-const UserAvatar = styled.div`
-  width: 200px;
-  height: 200px;
-  background-color: tomato;
-`;
-
-const Wrapper = styled.div`
-  //тут работало
-  position: sticky;
-  top: 70px;
-
-  height: 100%;
-`;
+import { ContactInfoItem } from "components/ContactInfoItem/ContactInfoItem";
 
 const Tick = styled(MdDone)`
   margin-bottom: 4px;
@@ -65,6 +52,63 @@ const StyledForm = styled.form`
     }
   }
 `;
+
+const Wrapper = styled.div`
+  //тут работало
+  position: sticky;
+  top: 70px;
+  color: #fff;
+  width: 34vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  height: 100%;
+  background-color: #2f313a;
+
+  /* background: linear-gradient(
+    88deg,
+    #2f313a 0 70%,
+    #ffdd40 0% 100%
+  ); */
+
+  p {
+    height: 14px;
+    margin-right: auto;
+    margin-left: 8px;
+  }
+`;
+
+const AvatarThumb = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 220px;
+  background: linear-gradient(-93deg, #2f313a, #333 33%, #ffdd40 95%, #333 65%);
+  /* background: linear-gradient(-86deg, #2f313a 0 70%, #ffdd40 0% 100%); */
+  /* background: linear-gradient(
+    -104deg,
+    #ffdd40 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  ); */
+  background-color: #ffdd40;
+  /* transform: rotate(-2deg); */
+`;
+
+const UserAvatar = styled.div`
+  width: 200px;
+  height: 200px;
+  background-color: tomato;
+
+  /* transform: rotate(2deg); */
+  img {
+    width: 100%;
+  }
+`;
+
+const ButtonContainer = styled.div``;
 
 export const ContactInfo = ({ chosenContactID }) => {
   const contact = useSelector((state) =>
@@ -179,16 +223,43 @@ export const ContactInfo = ({ chosenContactID }) => {
       ) : (
         displayedContact && (
           <>
-            <h2>Contact Info</h2>
-            <button onClick={() => editHandler(displayedContact._id)}>
-              <GrEdit />
-            </button>
-            <button onClick={() => deleteHandler(displayedContact._id)}>
-              <RxCross2 />
-            </button>
-            <UserAvatar />
-            <p>{displayedContact.name}</p>
+            <h2>{displayedContact.name}</h2>
+            <AvatarThumb>
+              <UserAvatar>
+                <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
+              </UserAvatar>
+            </AvatarThumb>
+            <ButtonContainer>
+              <button onClick={() => editHandler(displayedContact._id)}>
+                <GrEdit />
+              </button>
+              <button onClick={() => deleteHandler(displayedContact._id)}>
+                <RxCross2 />
+              </button>
+            </ButtonContainer>
+            <ul>
+              {displayedContact.name && (
+                <ContactInfoItem data={displayedContact.name} />
+              )}
+              {displayedContact.number && (
+                <ContactInfoItem data={displayedContact.number} />
+              )}
+              {displayedContact.whatsapp && (
+                <ContactInfoItem data={displayedContact.whatsapp} />
+              )}
+              {displayedContact.viber && (
+                <ContactInfoItem data={displayedContact.viber} />
+              )}
+
+              {/* <li>{displayedContact.number}</li>
+              <li>{displayedContact.viber || null}</li>
+              <li>{displayedContact.number}</li>
+              <li>{displayedContact.number}</li> */}
+            </ul>
+            {/* <p>{displayedContact.number}</p>
             <p>{displayedContact.number}</p>
+            <p>{displayedContact.number}</p>
+            <p>{displayedContact.number}</p> */}
           </>
         )
       )}

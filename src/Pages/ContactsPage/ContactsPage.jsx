@@ -20,33 +20,44 @@ const Wrapper = styled.div`
 `;
 
 const AppSpace = styled.div`
-  padding-left: 16px;
-  padding-right: 16px;
+  position: relative;
+
+  padding-left: 17vw;
+  /* padding-right: 16px; */
 `;
 
-const ContactsListHeader = styled.h2`
-  /* top: 70px; */
+const OuterLoadingWrapper = styled.div`
+  z-index: 1;
+  position: fixed;
+  left: 16vw;
+  width: 79vw;
+  height: 70px;
+  background: linear-gradient(
+    -104deg,
+    #ffdd40 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
 `;
 
 const LoadingWrapper = styled.div`
-  position: fixed;
+  position: absolute;
+  left: 30px;
   /* top: 90px; */
 
   /* padding-top: 130px; */
-  z-index: 1;
+  z-index: 2;
   background-color: #fff;
-  width: 70vw;
+  width: 79vw;
   height: 70px;
   display: flex;
   align-items: center;
-  border: 1px solid skyblue;
-  border-radius: 8px;
-  /* justify-content: space-between; */
+  background-color: #ffdd40;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 `;
 
 const ContactsWrapper = styled.div`
   display: flex;
-  width: 70vw;
+  width: 75vw;
 `;
 
 const SpinnerContainer = styled.div`
@@ -83,22 +94,24 @@ export const ContactsPage = () => {
     <Wrapper>
       <UserProfile />
       <AppSpace>
-        <LoadingWrapper>
-          <Filter />
-          {/* <ContactsListHeader>Contacts</ContactsListHeader> */}
-          <AddContactButton />
-          {isLoading && (
-            <SpinnerContainer>
-              <RotatingLines
-                strokeColor="skyblue"
-                strokeWidth="5"
-                animationDuration="0.75"
-                width="28"
-                visible={true}
-              />
-            </SpinnerContainer>
-          )}
-        </LoadingWrapper>
+        <OuterLoadingWrapper>
+          <LoadingWrapper>
+            <Filter />
+
+            <AddContactButton />
+            {isLoading && (
+              <SpinnerContainer>
+                <RotatingLines
+                  strokeColor="skyblue"
+                  strokeWidth="5"
+                  animationDuration="0.75"
+                  width="28"
+                  visible={true}
+                />
+              </SpinnerContainer>
+            )}
+          </LoadingWrapper>
+        </OuterLoadingWrapper>
         <ContactsWrapper>
           <ContactList
             filteredContacts={filteredContacts}

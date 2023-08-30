@@ -1,17 +1,18 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
-import { logoutThunk } from 'redux/auth/auth.thunk';
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
+import { logoutThunk } from "redux/auth/auth.thunk";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const ProfileContainer = styled.div`
-  height: 100%;
+  height: 100vw;
   min-width: 20vw;
-  position: sticky;
-  z-index: 1;
+  position: fixed;
+  /* z-index: 1; */
   top: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #2f313a;
+  color: #fff;
   overflow-x: hidden;
   padding-top: 20px;
   border-right: 1px solid silver;
@@ -97,16 +98,19 @@ const LogoLink = styled(Link)`
 `;
 
 export const UserProfile = () => {
-  const userInfo = useSelector(state => state.auth.user);
+  const userInfo = useSelector((state) => state.auth.user);
   //   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  const name = useSelector(state => state.auth.user.name);
+  const name = useSelector((state) => state.auth.user.name);
   const dispatch = useDispatch();
   return (
     <>
       <ProfileContainer>
         <h1>My info</h1>
         <NavWrapper>
-          <AuthButton type="button" onClick={() => dispatch(logoutThunk())}>
+          <AuthButton
+            type="button"
+            onClick={() => dispatch(logoutThunk())}
+          >
             Log Out
           </AuthButton>
           <p>Welcome, {userInfo.name}!</p>

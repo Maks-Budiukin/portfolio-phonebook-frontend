@@ -5,20 +5,31 @@ import { useDispatch } from "react-redux";
 import { addContactsThunk } from "redux/contacts/contacts.thunk";
 import styled from "styled-components";
 import { GrAddCircle } from "react-icons/gr";
+import { BsPlusCircle } from "react-icons/bs";
 
 const AddButton = styled.button`
-  background-color: #fff;
-  padding: 5px 10px;
-  border: 1px solid silver;
-  border-radius: 4px;
+  --trans: all 0.25s ease 0s;
+  /* background-color: #2f313a; */
+  outline: none;
+  border: none;
+  background: linear-gradient(83deg, #2f313a 0 97%, #fff0 calc(97% + 1px) 100%);
+  color: #ffdd40;
+  font-weight: bold;
+  padding: 8px 16px;
+  /* border: 2px solid #2f313a; */
+  /* border-radius: 4px; */
   display: flex;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+
+  transition: var(--trans);
+
   &:hover,
   &:focus {
-    outline: none;
-    border: 1px solid skyblue;
+    /* outline: none; */
+    /* border: 1px solid skyblue; */
+    transform: scale(1.03);
   }
 `;
 
@@ -33,7 +44,7 @@ export const AddContactButton = () => {
         type="button"
         onClick={handleToggle}
       >
-        <GrAddCircle style={{ marginRight: "4px" }} />
+        <BsPlusCircle style={{ marginRight: "4px" }} />
         Add contact
       </AddButton>
       {isModalOpen && (
