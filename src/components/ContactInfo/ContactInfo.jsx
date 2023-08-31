@@ -323,9 +323,13 @@ export const ContactInfo = ({ chosenContactID }) => {
 
   const handleFacebookURL = (url) => {
     const inIndex = url.indexOf("facebook.com/");
+    const idIndex = url.indexOf("?id=");
+    if (idIndex !== -1) {
+      return "Facebook";
+    }
 
     if (inIndex !== -1) {
-      let username = `${url.substring(inIndex + 10)}`;
+      let username = `${url.substring(inIndex + 13)}`;
       const slashIndex = username.indexOf("/");
       if (slashIndex !== -1) {
         username = username.substring(0, slashIndex);
@@ -333,12 +337,13 @@ export const ContactInfo = ({ chosenContactID }) => {
       return username;
     }
 
-    return url; // Возвращаем null, если не найдено "/in/"
+    return "Facebook"; // Возвращаем null, если не найдено "/in/"
   };
+
   const handleFacebookLink = (url) => {
     const domainlIndex = url.indexOf("facebook.com/");
     if (domainlIndex === -1) {
-      let userLink = `https://www.bitbucket.org/${url}`;
+      let userLink = `https://www.facebook.com/${url}`;
       return userLink;
     }
     return url;
