@@ -16,7 +16,7 @@ const IconsSetWrapper = styled.div`
   width: 180px;
 `;
 
-export const ContactIconsSet = () => {
+export const ContactIconsSet = ({contact}) => {
   return (
     <IconContext.Provider
       value={{
@@ -27,16 +27,17 @@ export const ContactIconsSet = () => {
       }}
     >
       <IconsSetWrapper>
-        <TfiEmail />
-        <LiaTelegramPlane />
-        <FaLinkedin />
-        <SiInstagram />
-        <RxGithubLogo />
-        <BsFacebook />
-        <SlSocialTwitter />
-        <BsWhatsapp />
-        <FaViber />
-        <TbBrandBitbucket />
+        {contact.email && <TfiEmail />}
+        {contact.telegram && <LiaTelegramPlane />}
+        {contact.linkedin && <FaLinkedin />}
+        {contact.instagram && <SiInstagram />}
+        {contact.github && <RxGithubLogo />}
+        {contact.facebook && <BsFacebook />}
+        {contact.twitter && <SlSocialTwitter />}
+        {contact.whatsapp && <BsWhatsapp />}
+        {contact.viber && <FaViber />}
+        {contact.bitbucket && <TbBrandBitbucket />}
+        
       </IconsSetWrapper>
     </IconContext.Provider>
   );

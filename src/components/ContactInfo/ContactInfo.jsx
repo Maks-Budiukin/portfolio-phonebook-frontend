@@ -11,6 +11,15 @@ import { GrEdit } from "react-icons/gr";
 import styled from "styled-components";
 import { ContactInfoItem } from "components/ContactInfoItem/ContactInfoItem";
 
+import { TfiEmail } from "react-icons/tfi";
+import { LiaTelegramPlane } from "react-icons/lia";
+import { FaLinkedin, FaViber, FaPhoneSquare } from "react-icons/fa";
+import { SiInstagram } from "react-icons/si";
+import { RxGithubLogo } from "react-icons/rx";
+import { BsFacebook, BsWhatsapp } from "react-icons/bs";
+import { SlSocialTwitter } from "react-icons/sl";
+import { TbBrandBitbucket } from "react-icons/tb";
+
 const Tick = styled(MdDone)`
   margin-bottom: 4px;
 `;
@@ -110,6 +119,11 @@ const UserAvatar = styled.div`
 
 const ButtonContainer = styled.div``;
 
+const ListOfContactData = styled.li`
+  list-style: none;
+  padding: 12px;
+`;
+
 export const ContactInfo = ({ chosenContactID }) => {
   const contact = useSelector((state) =>
     state.contacts.items.find((contact) => contact._id === chosenContactID)
@@ -168,6 +182,166 @@ export const ContactInfo = ({ chosenContactID }) => {
       default:
         return;
     }
+  };
+
+  // ============ Обработка LinkedIn ссылки =============== //
+
+  const handleLinkedInURL = (url) => {
+    const inIndex = url.indexOf("/in/");
+    if (inIndex !== -1) {
+      let username = url.substring(inIndex + 4);
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+
+  // =============================================
+
+  //==================== Обработка ссылок Telegram =========================//
+
+  const handleTelegramURL = (url) => {
+    const inIndex = url.indexOf("/t.me/");
+
+    if (inIndex !== -1) {
+      let username = `@${url.substring(inIndex + 4)}`;
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+
+  const handleTelegramLink = (url) => {
+    const snailIndex = url.indexOf("@");
+    if (snailIndex !== -1) {
+      let userLink = `https://t.me/${url.substring(snailIndex + 1)}`;
+      return userLink;
+    }
+  };
+
+  const handleTwitterURL = (url) => {
+    const inIndex = url.indexOf("twitter.com/");
+
+    if (inIndex !== -1) {
+      let username = `@${url.substring(inIndex + 4)}`;
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+
+  const handleTwitterLink = (url) => {
+    const snailIndex = url.indexOf("@");
+    if (snailIndex !== -1) {
+      let userLink = `https://twitter.com/${url.substring(snailIndex + 1)}`;
+      return userLink;
+    }
+  };
+
+  const handleInstagramURL = (url) => {
+    const inIndex = url.indexOf("instagram.com/");
+
+    if (inIndex !== -1) {
+      let username = `${url.substring(inIndex + 4)}`;
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+
+  const handleInstagramLink = (url) => {
+    const domainlIndex = url.indexOf("instagram.com/");
+    if (domainlIndex === -1) {
+      let userLink = `https://www.instagram.com/${url}`;
+      return userLink;
+    }
+    return url;
+  };
+
+  const handleGithubURL = (url) => {
+    const inIndex = url.indexOf("github.com/");
+
+    if (inIndex !== -1) {
+      let username = `${url.substring(inIndex + 11)}`;
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+
+  const handleGithubLink = (url) => {
+    const domainlIndex = url.indexOf("github.com/");
+    if (domainlIndex === -1) {
+      let userLink = `https://www.github.com/${url}`;
+      return userLink;
+    }
+    return url;
+  };
+
+  const handleBitbucketURL = (url) => {
+    const inIndex = url.indexOf("bitbucket.org/");
+
+    if (inIndex !== -1) {
+      let username = `${url.substring(inIndex + 14)}`;
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+
+  const handleBitbucketLink = (url) => {
+    const domainlIndex = url.indexOf("bitbucket.org/");
+    if (domainlIndex === -1) {
+      let userLink = `https://www.bitbucket.org/${url}`;
+      return userLink;
+    }
+    return url;
+  };
+
+  const handleFacebookURL = (url) => {
+    const inIndex = url.indexOf("facebook.com/");
+
+    if (inIndex !== -1) {
+      let username = `${url.substring(inIndex + 10)}`;
+      const slashIndex = username.indexOf("/");
+      if (slashIndex !== -1) {
+        username = username.substring(0, slashIndex);
+      }
+      return username;
+    }
+
+    return url; // Возвращаем null, если не найдено "/in/"
+  };
+  const handleFacebookLink = (url) => {
+    const domainlIndex = url.indexOf("facebook.com/");
+    if (domainlIndex === -1) {
+      let userLink = `https://www.bitbucket.org/${url}`;
+      return userLink;
+    }
+    return url;
   };
 
   return (
@@ -237,25 +411,92 @@ export const ContactInfo = ({ chosenContactID }) => {
                 <RxCross2 />
               </button>
             </ButtonContainer>
-            <ul>
-              {displayedContact.name && (
-                <ContactInfoItem data={displayedContact.name} />
-              )}
+            <ListOfContactData>
               {displayedContact.number && (
-                <ContactInfoItem data={displayedContact.number} />
+                <ContactInfoItem
+                  data={`callto:${displayedContact.number}`}
+                  icon={<FaPhoneSquare />}
+                  title={displayedContact.number}
+                />
+              )}
+
+              {displayedContact.email && (
+                <ContactInfoItem
+                  data={`mailto:${displayedContact.email}`}
+                  icon={<TfiEmail />}
+                  title={displayedContact.email}
+                />
+              )}
+              {displayedContact.telegram && (
+                <ContactInfoItem
+                  data={handleTelegramLink(displayedContact.telegram)}
+                  icon={<LiaTelegramPlane />}
+                  title={handleTelegramURL(displayedContact.telegram)}
+                />
               )}
               {displayedContact.whatsapp && (
-                <ContactInfoItem data={displayedContact.whatsapp} />
+                <ContactInfoItem
+                  data={`https://wa.me/${displayedContact.whatsapp}`}
+                  icon={<BsWhatsapp />}
+                  title={displayedContact.whatsapp}
+                />
               )}
               {displayedContact.viber && (
-                <ContactInfoItem data={displayedContact.viber} />
+                <ContactInfoItem
+                  data={`viber://chat?number=%2B${displayedContact.viber}`}
+                  icon={<FaViber />}
+                  title={displayedContact.viber}
+                />
+              )}
+              {displayedContact.instagram && (
+                <ContactInfoItem
+                  data={handleInstagramLink(displayedContact.instagram)}
+                  icon={<SiInstagram />}
+                  title={handleInstagramURL(displayedContact.instagram)}
+                />
+              )}
+              {displayedContact.facebook && (
+                <ContactInfoItem
+                  data={handleFacebookLink(displayedContact.facebook)}
+                  icon={<BsFacebook />}
+                  title={handleFacebookURL(displayedContact.facebook)}
+                />
+              )}
+              {displayedContact.linkedin && (
+                <ContactInfoItem
+                  data={displayedContact.linkedin}
+                  icon={<FaLinkedin />}
+                  title={handleLinkedInURL(displayedContact.linkedin)}
+                />
+              )}
+              {displayedContact.twitter && (
+                <ContactInfoItem
+                  data={handleTwitterLink(displayedContact.twitter)}
+                  icon={<SlSocialTwitter />}
+                  title={handleTwitterURL(displayedContact.twitter)}
+                />
+              )}
+              {displayedContact.github && (
+                <ContactInfoItem
+                  data={handleGithubLink(displayedContact.github)}
+                  icon={<RxGithubLogo />}
+                  title={handleGithubURL(displayedContact.github)}
+                />
+              )}
+
+              {displayedContact.bitbucket && (
+                <ContactInfoItem
+                  data={handleBitbucketLink(displayedContact.bitbucket)}
+                  icon={<TbBrandBitbucket />}
+                  title={handleBitbucketURL(displayedContact.bitbucket)}
+                />
               )}
 
               {/* <li>{displayedContact.number}</li>
               <li>{displayedContact.viber || null}</li>
               <li>{displayedContact.number}</li>
               <li>{displayedContact.number}</li> */}
-            </ul>
+            </ListOfContactData>
             {/* <p>{displayedContact.number}</p>
             <p>{displayedContact.number}</p>
             <p>{displayedContact.number}</p>

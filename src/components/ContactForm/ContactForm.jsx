@@ -46,9 +46,29 @@ export const ContactForm = ({ onSubmitClose }) => {
 
   const nameInpudId = nanoid();
   const numberInpudId = nanoid();
+  const emailInpudId = nanoid();
+  const telegramInpudId = nanoid();
+  const linkedinInpudId = nanoid();
+  const instagramInpudId = nanoid();
+  const githubInpudId = nanoid();
+  const facebookInpudId = nanoid();
+  const twitterInpudId = nanoid();
+  const bitbucketInpudId = nanoid();
+  const whatsappInpudId = nanoid();
+  const viberInpudId = nanoid();
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [telegram, setTelegram] = useState("");
+  const [linkedin, setLinkedin] = useState("");
+  const [instagram, setInstagram] = useState("");
+  const [github, setGithub] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [twitter, setTwitter] = useState("");
+  const [bitbucket, setBitbucket] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [viber, setViber] = useState("");
 
   const onInputChange = (event) => {
     switch (event.target.name) {
@@ -57,6 +77,36 @@ export const ContactForm = ({ onSubmitClose }) => {
         break;
       case "number":
         setNumber(event.target.value);
+        break;
+      case "email":
+        setEmail(event.target.value);
+        break;
+      case "telegram":
+        setTelegram(event.target.value);
+        break;
+      case "linkedin":
+        setLinkedin(event.target.value);
+        break;
+      case "instagram":
+        setInstagram(event.target.value);
+        break;
+      case "github":
+        setGithub(event.target.value);
+        break;
+      case "facebook":
+        setFacebook(event.target.value);
+        break;
+      case "twitter":
+        setTwitter(event.target.value);
+        break;
+      case "bitbucket":
+        setBitbucket(event.target.value);
+        break;
+      case "whatsapp":
+        setWhatsapp(event.target.value);
+        break;
+      case "viber":
+        setViber(event.target.value);
         break;
       default:
         return;
@@ -69,9 +119,34 @@ export const ContactForm = ({ onSubmitClose }) => {
     event.preventDefault();
     contacts.find((contact) => contact.name.toLowerCase() === normalizedName)
       ? alert(`${name} is already in contacts `)
-      : dispatch(addContactsThunk({ name: name, number: number }));
+      : dispatch(
+          addContactsThunk({
+            name,
+            number,
+            email,
+            telegram,
+            linkedin,
+            instagram,
+            github,
+            facebook,
+            twitter,
+            bitbucket,
+            whatsapp,
+            viber,
+          })
+        );
     setName("");
     setNumber("");
+    setEmail("");
+    setTelegram("");
+    setLinkedin("");
+    setInstagram("");
+    setGithub("");
+    setFacebook("");
+    setTwitter("");
+    setBitbucket("");
+    setWhatsapp("");
+    setViber("");
     onSubmitClose();
   };
 
@@ -82,7 +157,6 @@ export const ContactForm = ({ onSubmitClose }) => {
         type="text"
         name="name"
         id={nameInpudId}
-        // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         value={name}
         onChange={onInputChange}
@@ -93,11 +167,101 @@ export const ContactForm = ({ onSubmitClose }) => {
         type="tel"
         name="number"
         id={numberInpudId}
-        // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         value={number}
         onChange={onInputChange}
         required
+      />
+
+      <label htmlFor={emailInpudId}>Email </label>
+      <input
+        type="email"
+        name="email"
+        id={emailInpudId}
+        title="Email"
+        value={email}
+        onChange={onInputChange}
+      />
+      <label htmlFor={telegramInpudId}>Telegram </label>
+      <input
+        type="text"
+        name="telegram"
+        id={telegramInpudId}
+        title="Telegram"
+        value={telegram}
+        onChange={onInputChange}
+      />
+      <label htmlFor={linkedinInpudId}>LinkedIn </label>
+      <input
+        type="text"
+        name="linkedin"
+        id={linkedinInpudId}
+        title="LinkedIn"
+        value={linkedin}
+        onChange={onInputChange}
+      />
+      <label htmlFor={instagramInpudId}>Instagram </label>
+      <input
+        type="text"
+        name="instagram"
+        id={instagramInpudId}
+        title="Instagram"
+        value={instagram}
+        onChange={onInputChange}
+      />
+      <label htmlFor={githubInpudId}>GitHub </label>
+      <input
+        type="text"
+        name="github"
+        id={githubInpudId}
+        title="Github"
+        value={github}
+        onChange={onInputChange}
+      />
+      <label htmlFor={facebookInpudId}>Facebook </label>
+      <input
+        type="text"
+        name="facebook"
+        id={facebookInpudId}
+        title="Facebook"
+        value={facebook}
+        onChange={onInputChange}
+      />
+      <label htmlFor={twitterInpudId}>Twitter </label>
+      <input
+        type="text"
+        name="twitter"
+        id={twitterInpudId}
+        title="Twitter"
+        value={twitter}
+        onChange={onInputChange}
+      />
+      <label htmlFor={bitbucketInpudId}>Bitbucket </label>
+      <input
+        type="text"
+        name="bitbucket"
+        id={bitbucketInpudId}
+        title="Bitbucket"
+        value={bitbucket}
+        onChange={onInputChange}
+      />
+      <label htmlFor={whatsappInpudId}>WhatsApp </label>
+      <input
+        type="text"
+        name="whatsapp"
+        id={whatsappInpudId}
+        title="WhatsApp"
+        value={whatsapp}
+        onChange={onInputChange}
+      />
+      <label htmlFor={viberInpudId}>Viber </label>
+      <input
+        type="text"
+        name="viber"
+        id={viberInpudId}
+        title="Viber"
+        value={viber}
+        onChange={onInputChange}
       />
 
       <button type="submit">Add contact</button>

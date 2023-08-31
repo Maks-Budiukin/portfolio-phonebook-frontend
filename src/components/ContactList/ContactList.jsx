@@ -113,6 +113,7 @@ export const ContactList = ({
                 name={item.name}
                 number={item.number}
                 id={item._id}
+                contact={item}
                 onClick={() => onContactClick(item._id)}
               />
             );

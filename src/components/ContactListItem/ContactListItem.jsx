@@ -134,7 +134,7 @@ const ContactName = styled.p`
   );
 `;
 
-export const ContactListItem = ({ name, number, id, onClick }) => {
+export const ContactListItem = ({ name, number, id, onClick, contact }) => {
   return (
     <ContactItem
       key={id}
@@ -146,7 +146,7 @@ export const ContactListItem = ({ name, number, id, onClick }) => {
 
       <ContactDescription>
         <ContactName>{name}</ContactName> <p>{number}</p>
-        <ContactIconsSet />
+        <ContactIconsSet contact={contact} />
       </ContactDescription>
     </ContactItem>
   );
