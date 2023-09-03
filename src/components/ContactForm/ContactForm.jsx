@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
-import { addContactsThunk } from "redux/contacts/contacts.thunk";
+import {
+  addContactsThunk,
+  editContactsThunk,
+} from "redux/contacts/contacts.thunk";
+import { updateUserThunk } from "redux/auth/auth.thunk";
 
 const StyledForm = styled.form`
   display: flex;
@@ -40,8 +44,13 @@ const StyledForm = styled.form`
   }
 `;
 
-export const ContactForm = ({ onSubmitClose }) => {
+export const ContactForm = ({ _id, fn, onSubmitClose }) => {
+  const selectedContact = useSelector(
+    (state) => state.contacts.selectedContact
+  );
   const contacts = useSelector((state) => state.contacts.items);
+  const user = useSelector((state) => state.auth.user);
+  console.log("USER IN FORM", user);
   const dispatch = useDispatch();
 
   const nameInpudId = nanoid();
@@ -69,6 +78,37 @@ export const ContactForm = ({ onSubmitClose }) => {
   const [bitbucket, setBitbucket] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [viber, setViber] = useState("");
+
+  useEffect(() => {
+    if (fn === "edit") {
+      setName(selectedContact.name);
+      setEmail(selectedContact.email);
+      setNumber(selectedContact.number);
+      setTelegram(selectedContact.telegram);
+      setLinkedin(selectedContact.linkedin);
+      setInstagram(selectedContact.instagram);
+      setGithub(selectedContact.github);
+      setFacebook(selectedContact.facebook);
+      setTwitter(selectedContact.twitter);
+      setBitbucket(selectedContact.bitbucket);
+      setWhatsapp(selectedContact.whatsapp);
+      setViber(selectedContact.viber);
+    }
+    if (fn === "userEdit") {
+      setName(user.name);
+      setEmail(user.email);
+      setNumber(user.number);
+      setTelegram(user.telegram);
+      setLinkedin(user.linkedin);
+      setInstagram(user.instagram);
+      setGithub(user.github);
+      setFacebook(user.facebook);
+      setTwitter(user.twitter);
+      setBitbucket(user.bitbucket);
+      setWhatsapp(user.whatsapp);
+      setViber(user.viber);
+    }
+  }, [fn]);
 
   const onInputChange = (event) => {
     switch (event.target.name) {
@@ -113,13 +153,10 @@ export const ContactForm = ({ onSubmitClose }) => {
     }
   };
 
-  const normalizedName = name.toLowerCase();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    contacts.find((contact) => contact.name.toLowerCase() === normalizedName)
-      ? alert(`${name} is already in contacts `)
-      : dispatch(
+  const action = (fn) => {
+    switch (fn) {
+      case "add":
+        dispatch(
           addContactsThunk({
             name,
             number,
@@ -135,19 +172,73 @@ export const ContactForm = ({ onSubmitClose }) => {
             viber,
           })
         );
-    setName("");
-    setNumber("");
-    setEmail("");
-    setTelegram("");
-    setLinkedin("");
-    setInstagram("");
-    setGithub("");
-    setFacebook("");
-    setTwitter("");
-    setBitbucket("");
-    setWhatsapp("");
-    setViber("");
+        break;
+      case "edit":
+        dispatch(
+          editContactsThunk({
+            _id,
+            name,
+            number,
+            email,
+            telegram,
+            linkedin,
+            instagram,
+            github,
+            facebook,
+            twitter,
+            bitbucket,
+            whatsapp,
+            viber,
+          })
+        );
+        break;
+
+      case "userEdit":
+        dispatch(
+          updateUserThunk({
+            _id: _id._id,
+            name,
+            number,
+            email,
+            telegram,
+            linkedin,
+            instagram,
+            github,
+            facebook,
+            twitter,
+            bitbucket,
+            whatsapp,
+            viber,
+          })
+        );
+        break;
+      default:
+        return;
+    }
+  };
+
+  const normalizedName = name.toLowerCase();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    action(fn);
+    // setName("");
+    // setNumber("");
+    // setEmail("");
+    // setTelegram("");
+    // setLinkedin("");
+    // setInstagram("");
+    // setGithub("");
+    // setFacebook("");
+    // setTwitter("");
+    // setBitbucket("");
+    // setWhatsapp("");
+    // setViber("");
     onSubmitClose();
+
+    // contacts.find((contact) => contact.name.toLowerCase() === normalizedName)
+    //   ? alert(`${name} is already in contacts `)
+    //   : action(fn);
   };
 
   return (

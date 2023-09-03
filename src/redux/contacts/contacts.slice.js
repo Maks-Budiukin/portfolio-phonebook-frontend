@@ -5,6 +5,7 @@ import {
   deleteContactsThunk,
   editContactsThunk,
   fetchContactsThunk,
+  setSelectedContactsThunk,
 } from "./contacts.thunk";
 
 const contactsSlice = createSlice({
@@ -22,10 +23,27 @@ const contactsSlice = createSlice({
       })
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
         state.items = [...payload];
+        state.selectedContact = payload[0];
         state.isLoading = false;
         state.error = null;
       })
       .addCase(fetchContactsThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+
+      // ============== SELECT =================
+
+      .addCase(setSelectedContactsThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(setSelectedContactsThunk.fulfilled, (state, { payload }) => {
+        state.selectedContact = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(setSelectedContactsThunk.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
       })
@@ -38,6 +56,7 @@ const contactsSlice = createSlice({
       })
       .addCase(deleteContactsThunk.fulfilled, (state, { payload }) => {
         state.items = payload;
+        state.selectedContact = payload[0];
         state.isLoading = false;
         state.error = null;
       })
@@ -54,6 +73,7 @@ const contactsSlice = createSlice({
       })
       .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
         state.items = [...state.items, payload];
+        state.selectedContact = payload;
         state.isLoading = false;
         state.error = null;
       })
@@ -68,7 +88,8 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(editContactsThunk.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.items = payload.items;
+        state.selectedContact = payload.updatedContact;
 
         // array: state.array.map(n => n.id === action.newObject.id ? action.newObject : n),
 

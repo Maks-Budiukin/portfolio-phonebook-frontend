@@ -24,10 +24,14 @@ const ModalWindow = styled.div`
   background-color: #fff;
 `;
 
-export const AddContactModal = ({ onClose }) => {
+export const ContactModal = (props) => {
   return (
     <ModalWindow className="modal">
-      <ContactForm onSubmitClose={onClose} />
+      <ContactForm
+        onSubmitClose={props.onClose}
+        fn={props.fn}
+        _id={props._id}
+      />
     </ModalWindow>
   );
 };

@@ -1,6 +1,20 @@
 export const authInitState = {
-    user: { name: "", email: "" },
-    isLoggedIn: false,
-    token: null,
-    isRefreshing: false,
-}
+  user: {
+    _id: "",
+    name: "",
+    email: "",
+    number: "",
+    telegram: "",
+    linkedin: "",
+    instagram: "",
+    github: "",
+    bitbucket: "",
+    twitter: "",
+    whatsapp: "",
+    viber: "",
+    facebook: "",
+  },
+  isLoggedIn: false,
+  token: null,
+  isRefreshing: false,
+};

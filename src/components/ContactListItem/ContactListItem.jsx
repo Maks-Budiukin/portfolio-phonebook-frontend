@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { ContactIconsSet } from "components/ContactIconsSet/ContactIconsSet";
+import { useDispatch } from "react-redux";
+import { setSelectedContactsThunk } from "redux/contacts/contacts.thunk";
 
 const ContactItem = styled.li`
   --yellow: #ffdd40;
@@ -7,6 +9,7 @@ const ContactItem = styled.li`
   --deg: -86deg;
   --trans: all 0.4s ease 0s;
 
+  z-index: 2;
   margin: 1.5em 0 0.5em;
   padding: 0.73em;
   background: linear-gradient(
@@ -44,12 +47,6 @@ const ContactItem = styled.li`
       transform: rotate(2deg);
     }
   }
-
-  /* &:nth-of-type(2n + 1) {
-    .test {
-      transform: rotate(6deg);
-    }
-  } */
 `;
 
 const ContactPhotoThumb = styled.div`
@@ -135,17 +132,20 @@ const ContactName = styled.p`
 `;
 
 export const ContactListItem = ({ name, number, id, onClick, contact }) => {
+  const dispatch = useDispatch();
+
+  const handleItemClick = (contact) => {
+    dispatch(setSelectedContactsThunk(contact));
+  };
+
   return (
-    <ContactItem
-      key={id}
-      onClick={onClick}
-    >
+    <ContactItem onClick={() => handleItemClick(contact)}>
       <ContactPhotoThumb className="rotate">
         <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
       </ContactPhotoThumb>
 
       <ContactDescription>
-        <ContactName>{name}</ContactName> <p>{number}</p>
+        <ContactName>{contact.name}</ContactName> <p>{contact.number}</p>
         <ContactIconsSet contact={contact} />
       </ContactDescription>
     </ContactItem>

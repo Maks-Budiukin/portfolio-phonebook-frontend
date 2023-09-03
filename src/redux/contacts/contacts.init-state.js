@@ -1,5 +1,6 @@
 export const contactsInitState = {
-    items: [],
-    isLoading: false,
-    error: null
-  };
+  items: [],
+  selectedContact: null,
+  isLoading: false,
+  error: null,
+};

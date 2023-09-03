@@ -18,7 +18,7 @@ const InfoDataLink = styled(Link)`
   }
 `;
 
-export const ContactInfoItem = ({ data, icon, title }) => {
+export const UserProfileItem = ({ data, icon, title }) => {
   return (
     <InfoItem>
       <InfoDataLink

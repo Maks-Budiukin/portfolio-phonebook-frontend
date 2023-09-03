@@ -1,19 +1,16 @@
 import { ContactModal } from "components/ContactModal/ContactModal";
 import { Portal } from "components/Portal/Portal";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addContactsThunk } from "redux/contacts/contacts.thunk";
 import styled from "styled-components";
-import { GrAddCircle } from "react-icons/gr";
-import { BsPlusCircle } from "react-icons/bs";
+import { GrEdit } from "react-icons/gr";
 
-const AddButton = styled.button`
+const EditButton = styled.button`
   --trans: all 0.25s ease 0s;
   /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(83deg, #2f313a 0 97%, #fff0 calc(97% + 1px) 100%);
-  color: #ffdd40;
+  background: linear-gradient(83deg, #ffdd40 0 97%, #fff0 calc(97% + 1px) 100%);
+  color: #2f313a;
   font-weight: bold;
   padding: 8px 16px;
   /* border: 2px solid #2f313a; */
@@ -33,25 +30,26 @@ const AddButton = styled.button`
   }
 `;
 
-export const AddContactButton = () => {
+export const EditContactButton = (_id) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleToggle = () => setIsModalOpen((pS) => !pS);
 
   return (
     <>
-      <AddButton
+      <EditButton
         type="button"
         onClick={handleToggle}
       >
-        <BsPlusCircle style={{ marginRight: "4px" }} />
-        Add contact
-      </AddButton>
+        <GrEdit style={_id && { marginRight: "4px" }} />
+        Edit contact
+      </EditButton>
       {isModalOpen && (
         <Portal onClose={handleToggle}>
           <ContactModal
             onClose={handleToggle}
-            fn={"add"}
+            fn={"edit"}
+            _id={_id}
           />
         </Portal>
       )}
