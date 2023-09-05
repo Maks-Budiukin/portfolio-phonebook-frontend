@@ -30,6 +30,7 @@ import {
   handleLinkedInURL,
 } from "../ContactInfo/handleContactInput";
 import { UserEditButton } from "components/UserEditButton/UserEditButton";
+import { ShareLinkButton } from "components/ShareLinkButton/ShareLinkButton";
 
 const ProfileContainer = styled.div`
   height: 100vw;
@@ -111,7 +112,7 @@ export const UserProfile = () => {
           <UserEditButton _id={userInfo._id} />
           <p>Welcome, {userInfo.name}!</p>
         </UserProfileWrapper>
-
+        <ShareLinkButton />
         <UserInfoList>
           {userInfo.number && (
             <UserProfileItem

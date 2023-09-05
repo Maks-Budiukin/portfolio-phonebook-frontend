@@ -13,6 +13,7 @@ export const authInitState = {
     whatsapp: "",
     viber: "",
     facebook: "",
+    shareLink: "",
   },
   isLoggedIn: false,
   token: null,

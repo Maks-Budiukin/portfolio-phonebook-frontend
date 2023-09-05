@@ -85,11 +85,11 @@ export const deleteContactsThunk = createAsyncThunk(
 
 export const addSharedContactThunk = createAsyncThunk(
   "contacts/addSharedContact",
-  async (id, thunkAPI) => {
+  async (data, thunkAPI) => {
     try {
       const response = await axios({
         method: "get",
-        url: `/users/share/${id}`,
+        url: `/users/share/${data.shareLink}/${data.id}`,
       });
 
       return response.data;

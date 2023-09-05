@@ -62,7 +62,7 @@ export const App = () => {
             />
           }
         />
-        <Route path="/share/">
+        <Route path="/share/:shareLink">
           <Route
             path=":id"
             element={<SharePage />}
