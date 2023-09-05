@@ -50,6 +50,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
   );
   const contacts = useSelector((state) => state.contacts.items);
   const user = useSelector((state) => state.auth.user);
+  const sharedContact = useSelector((state) => state.contacts.sharedContact);
   console.log("USER IN FORM", user);
   const dispatch = useDispatch();
 
@@ -107,6 +108,20 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
       setBitbucket(user.bitbucket);
       setWhatsapp(user.whatsapp);
       setViber(user.viber);
+    }
+    if (fn === "add" && sharedContact) {
+      setName(sharedContact.name);
+      setEmail(sharedContact.email);
+      setNumber(sharedContact.number);
+      setTelegram(sharedContact.telegram);
+      setLinkedin(sharedContact.linkedin);
+      setInstagram(sharedContact.instagram);
+      setGithub(sharedContact.github);
+      setFacebook(sharedContact.facebook);
+      setTwitter(sharedContact.twitter);
+      setBitbucket(sharedContact.bitbucket);
+      setWhatsapp(sharedContact.whatsapp);
+      setViber(sharedContact.viber);
     }
   }, [fn]);
 

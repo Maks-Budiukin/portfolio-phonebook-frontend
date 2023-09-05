@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { refreshThunk } from 'redux/auth/auth.thunk';
-import { Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { refreshThunk } from "redux/auth/auth.thunk";
+import { Routes, Route } from "react-router-dom";
 // import { SharedLayout } from './components/SharedLayout/SharedLayout';
 // import { HomeScreen } from './components/HomeScreen/HomeScreen';
 // // import { RestrictedRoute } from './components/Routes/RestrictedRoute';
 // import { PrivateRoute } from './components/Routes/PrivateRoute';
-import { HomePage } from 'Pages/HomePage/HomePage';
-import { ContactsPage } from 'Pages/ContactsPage/ContactsPage';
-import { RestrictedRoute } from 'Routes/RestrictedRoute';
-import { PrivateRoute } from 'Routes/PrivateRoute';
+import { HomePage } from "Pages/HomePage/HomePage";
+import { ContactsPage } from "Pages/ContactsPage/ContactsPage";
+import { RestrictedRoute } from "Routes/RestrictedRoute";
+import { PrivateRoute } from "Routes/PrivateRoute";
+import { SharePage } from "Pages/SharePage/SharePage";
 
 // const ContactsPage = lazy(() => import('./Pages/ContactsPage/ContactsPage'));
 
@@ -19,7 +20,7 @@ import { PrivateRoute } from 'Routes/PrivateRoute';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const token = useSelector(state => state.auth.token);
+  const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
     if (token) {
@@ -33,7 +34,10 @@ export const App = () => {
         <Route
           path="/"
           element={
-            <RestrictedRoute component={HomePage} redirectTo={'/contacts'} />
+            <RestrictedRoute
+              component={HomePage}
+              redirectTo={"/contacts"}
+            />
           }
         />
         {/* <Route index element={<HomeScreen />} /> */}
@@ -51,8 +55,19 @@ export const App = () => {
           /> */}
         <Route
           path="/contacts"
-          element={<PrivateRoute component={ContactsPage} redirectTo={'/'} />}
+          element={
+            <PrivateRoute
+              component={ContactsPage}
+              redirectTo={"/"}
+            />
+          }
         />
+        <Route path="/share/">
+          <Route
+            path=":id"
+            element={<SharePage />}
+          ></Route>
+        </Route>
       </Routes>
     </>
   );

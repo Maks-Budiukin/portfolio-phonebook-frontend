@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { ContactInfo } from "components/ContactInfo/ContactInfo";
 import { ContactsAppBar } from "components/ContactsAppBar/ContactsAppBar";
+import { Portal } from "components/Portal/Portal";
+import { ContactModal } from "components/ContactModal/ContactModal";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,7 +30,9 @@ const ContactsWrapper = styled.div`
 
 export const ContactsPage = () => {
   const contacts = useSelector((state) => state.contacts.items);
+  const sharedContact = useSelector((state) => state.contacts.sharedContact);
   const [cont, setCont] = useState(contacts);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filter = useSelector((state) => state.filter);
 
@@ -37,12 +41,15 @@ export const ContactsPage = () => {
 
   useEffect(() => {
     isLoggedIn && dispatch(fetchContactsThunk());
-  }, [dispatch, isLoggedIn, cont]);
+    sharedContact && setIsModalOpen(true);
+  }, [dispatch, isLoggedIn, cont, sharedContact]);
 
   const normalizedFilter = filter.toLowerCase().trim();
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(normalizedFilter)
   );
+
+  const handleToggle = () => setIsModalOpen((pS) => !pS);
 
   return (
     <Wrapper>
@@ -55,6 +62,14 @@ export const ContactsPage = () => {
           <ContactInfo />
         </ContactsWrapper>
       </AppSpace>
+      {isModalOpen && (
+        <Portal onClose={handleToggle}>
+          <ContactModal
+            onClose={handleToggle}
+            fn={"add"}
+          />
+        </Portal>
+      )}
     </Wrapper>
   );
 };

@@ -27,7 +27,6 @@ export const addContactsThunk = createAsyncThunk(
   "contacts/addContact",
   async (data, thunkAPI) => {
     try {
-      console.log("DATA", data);
       const response = await axios({
         method: "post",
         url: `/contacts`,
@@ -78,6 +77,22 @@ export const deleteContactsThunk = createAsyncThunk(
         (contact) => contact._id !== deletedId
       );
       return items;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addSharedContactThunk = createAsyncThunk(
+  "contacts/addSharedContact",
+  async (id, thunkAPI) => {
+    try {
+      const response = await axios({
+        method: "get",
+        url: `/users/share/${id}`,
+      });
+
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

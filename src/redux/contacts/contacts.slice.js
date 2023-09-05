@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { contactsInitState } from "./contacts.init-state";
 import {
   addContactsThunk,
+  addSharedContactThunk,
   deleteContactsThunk,
   editContactsThunk,
   fetchContactsThunk,
@@ -74,6 +75,7 @@ const contactsSlice = createSlice({
       .addCase(addContactsThunk.fulfilled, (state, { payload }) => {
         state.items = [...state.items, payload];
         state.selectedContact = payload;
+        state.sharedContact = null;
         state.isLoading = false;
         state.error = null;
       })
@@ -97,6 +99,22 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(editContactsThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+
+      // ============= ADD SHARED ==================
+
+      .addCase(addSharedContactThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addSharedContactThunk.fulfilled, (state, { payload }) => {
+        state.sharedContact = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addSharedContactThunk.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
       });
