@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Portal } from "components/Portal/Portal";
 import { BsPlusCircle } from "react-icons/bs";
 import { useSelector } from "react-redux";
+import QRCode from "react-qr-code";
 
 const ShareButton = styled.button`
   --trans: all 0.25s ease 0s;
@@ -63,8 +64,13 @@ export const ShareLinkButton = () => {
       {isModalOpen && (
         <Portal onClose={handleToggle}>
           <ModalWindow>
-            <p>
+            {/* <p>
               http://localhost:3000/share/{user.shareLink}/{user._id}
+            </p> */}
+            <p>
+              <QRCode
+                value={`https://portfolio-phonebook-backend.vercel.app/api/share/${user.shareLink}/${user._id}`}
+              />
             </p>
           </ModalWindow>
         </Portal>
