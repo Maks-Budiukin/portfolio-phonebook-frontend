@@ -16,11 +16,11 @@ const IconsSetWrapper = styled.div`
   width: 180px;
 `;
 
-export const ContactIconsSet = ({contact}) => {
+export const ContactIconsSet = ({ contact }) => {
   return (
     <IconContext.Provider
       value={{
-        color: "black",
+        color: "#2f313a",
         size: "1.5em",
         className: "global-class-name",
         style: { padding: "4px" },
@@ -37,7 +37,6 @@ export const ContactIconsSet = ({contact}) => {
         {contact.whatsapp && <BsWhatsapp />}
         {contact.viber && <FaViber />}
         {contact.bitbucket && <TbBrandBitbucket />}
-        
       </IconsSetWrapper>
     </IconContext.Provider>
   );

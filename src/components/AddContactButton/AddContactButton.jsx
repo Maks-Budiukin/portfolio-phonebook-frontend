@@ -23,8 +23,8 @@ const AddButton = styled.button`
   /* border-radius: 4px; */
   display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
 
   transition: var(--trans);
 

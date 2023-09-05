@@ -35,7 +35,11 @@ const ContactItem = styled.li`
   &:hover {
     transform: scale(0.88);
     transition: var(--trans);
-    filter: drop-shadow(0px 5px 10px #0008);
+    /* filter: drop-shadow(0px 5px 10px #0008);
+    filter: grayscale(0); */
+    img {
+      filter: grayscale(0);
+    }
   }
 
   .rotate {
@@ -64,7 +68,7 @@ const ContactPhotoThumb = styled.div`
     var(--dark) 0 70%,
     var(--yellow) 0% 100%
   );
-  /* transform: rotate(-4deg); */
+
   transition: var(--trans);
   border-radius: 0.25em;
   overflow: hidden;

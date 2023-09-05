@@ -11,16 +11,16 @@ const StyledFilter = styled.div`
   /* margin-left: 50px;
   margin-bottom: 20px; */
   /* max-width: 300px; */
-  width: 49vw;
+  width: 24vw;
   label {
     position: absolute;
     top: 8px;
-    right: 194px;
+    right: 0;
     font-weight: 500;
     margin-bottom: 8px;
   }
   input {
-    width: 250px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     padding-left: 8px;

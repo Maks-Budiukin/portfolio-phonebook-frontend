@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Portal } from "components/Portal/Portal";
-import { BsPlusCircle } from "react-icons/bs";
+import { BiSolidShare } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import QRCode from "react-qr-code";
 
@@ -10,8 +10,9 @@ const ShareButton = styled.button`
   /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(83deg, #2f313a 0 97%, #fff0 calc(97% + 1px) 100%);
-  color: #ffdd40;
+  background: linear-gradient(94deg, #ffdd40 0 97%, #fff0 calc(97% + 1px) 100%);
+
+  color: #2f313a;
   font-weight: bold;
   padding: 8px 16px;
   /* border: 2px solid #2f313a; */
@@ -27,7 +28,7 @@ const ShareButton = styled.button`
   &:focus {
     /* outline: none; */
     /* border: 1px solid skyblue; */
-    transform: scale(1.03);
+    transform: scale(1.15);
   }
 `;
 
@@ -57,8 +58,8 @@ export const ShareLinkButton = () => {
         type="button"
         onClick={handleToggle}
       >
-        <BsPlusCircle style={{ marginRight: "4px" }} />
         Share
+        <BiSolidShare style={{ marginRight: "4px", rotate: "35deg" }} />
       </ShareButton>
 
       {isModalOpen && (

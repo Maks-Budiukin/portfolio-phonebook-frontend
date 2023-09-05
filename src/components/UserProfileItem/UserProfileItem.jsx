@@ -36,7 +36,7 @@ export const UserProfileItem = ({ data, icon, title }) => {
           {icon}
         </IconContext.Provider>
 
-        {title ? title : data}
+        {/* {title ? title : data} */}
       </InfoDataLink>
     </InfoItem>
   );

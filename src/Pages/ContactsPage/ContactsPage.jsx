@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 const AppSpace = styled.div`
   position: relative;
 
-  padding-left: 17vw;
+  padding-left: 20vw;
   /* padding-right: 16px; */
 `;
 

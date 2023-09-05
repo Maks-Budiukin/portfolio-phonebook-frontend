@@ -1,11 +1,14 @@
 @import-normalize; /* bring in normalize.css styles */
 
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&display=swap');
+
 body {
   margin: 0;
   background-color: rgba(185, 185, 185, 0.146);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Exo 2', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+ letter-spacing: 22;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -9,7 +9,11 @@ const EditButton = styled.button`
   /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(83deg, #ffdd40 0 97%, #fff0 calc(97% + 1px) 100%);
+  background: linear-gradient(
+    -97deg,
+    #ffdd40 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
   color: #2f313a;
   font-weight: bold;
   padding: 8px 16px;
@@ -17,9 +21,9 @@ const EditButton = styled.button`
   /* border-radius: 4px; */
   display: flex;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin: 4px;
   transition: var(--trans);
 
   &:hover,

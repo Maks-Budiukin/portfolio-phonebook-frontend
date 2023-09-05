@@ -29,6 +29,7 @@ const LoadingWrapper = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   background-color: #ffdd40;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 `;

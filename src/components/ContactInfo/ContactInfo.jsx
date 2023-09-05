@@ -40,17 +40,25 @@ import { ContactDeleteButton } from "components/ContactDeleteButton/ContactDelet
 
 const Wrapper = styled.div`
   //тут работало
-  position: sticky;
+  position: fixed;
+  right: 4vw;
   top: 70px;
   color: #fff;
-  width: 34vw;
+  width: 26vw;
+  height: 90vh;
+
+  overflow-y: scroll;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  height: 100%;
   background-color: #2f313a;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   p {
     height: 14px;
@@ -60,11 +68,12 @@ const Wrapper = styled.div`
 `;
 
 const AvatarThumb = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 250px;
-  height: 220px;
+  min-height: 220px;
   background: linear-gradient(-93deg, #2f313a, #333 33%, #ffdd40 95%, #333 65%);
   background-color: #ffdd40;
 `;
@@ -80,6 +89,9 @@ const UserAvatar = styled.div`
 `;
 
 const ButtonContainer = styled.div`
+  position: absolute;
+  top: -14px;
+  right: -10px;
   display: flex;
 `;
 
@@ -106,11 +118,11 @@ export const ContactInfo = () => {
             <UserAvatar>
               <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
             </UserAvatar>
+            <ButtonContainer>
+              <EditContactButton _id={contact._id} />
+              <ContactDeleteButton _id={contact._id} />
+            </ButtonContainer>
           </AvatarThumb>
-          <ButtonContainer>
-            <EditContactButton _id={contact._id} />
-            <ContactDeleteButton _id={contact._id} />
-          </ButtonContainer>
           <ContactinfoList>
             {contact.number && (
               <ContactInfoItem
