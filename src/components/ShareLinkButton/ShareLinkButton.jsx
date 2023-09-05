@@ -69,7 +69,7 @@ export const ShareLinkButton = () => {
             </p> */}
             <p>
               <QRCode
-                value={`https://portfolio-phonebook-backend.vercel.app/api/share/${user.shareLink}/${user._id}`}
+                value={`https://portfolio-phonebook-frontend.vercel.app/share/${user.shareLink}/${user._id}`}
               />
             </p>
           </ModalWindow>
