@@ -10,7 +10,7 @@ const QRWrapper = styled.div`
 
   display: flex;
   justify-content: center;
-  margin-left: -24px;
+  margin-left: -14px;
 `;
 
 export const UserQR = () => {
@@ -21,8 +21,8 @@ export const UserQR = () => {
         <QRCode
           style={{
             height: "auto",
-            maxWidth: "60%",
-            width: "60%",
+            maxWidth: "57%",
+            width: "57%",
           }}
           value={`https://portfolio-phonebook-frontend.vercel.app/share/${user.shareLink}/${user._id}`}
           bgColor="#f8e8a1"

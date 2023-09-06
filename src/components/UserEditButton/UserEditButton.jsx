@@ -10,7 +10,7 @@ const EditButton = styled.button`
   outline: none;
   border: none;
   background: linear-gradient(
-    -97deg,
+    -96deg,
     #ffdd40 0 97%,
     #fff0 calc(97% + 1px) 100%
   );
@@ -46,7 +46,7 @@ export const UserEditButton = (_id) => {
         onClick={handleToggle}
       >
         <GrEdit style={_id && { marginRight: "4px" }} />
-        Edit my info
+        Edit info
       </EditButton>
       {isModalOpen && (
         <Portal onClose={handleToggle}>

@@ -61,8 +61,8 @@ const ContactPhotoThumb = styled.div`
   --deg: -58deg;
   --trans: all 0.4s ease 0s;
 
-  width: 13vmin;
-  height: 13vmin;
+  width: 15vmin;
+  height: 15vmin;
   float: left;
   /* margin-right: 1.25em; */
   background: linear-gradient(
@@ -90,13 +90,18 @@ const LogoutButton = styled.button`
   /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(95deg, #ffdd40 0 97%, #fff0 calc(97% + 1px) 100%);
+  background: linear-gradient(
+    -95deg,
+    #ffdd40 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
 
   color: #2f313a;
   font-weight: bold;
   padding: 8px 16px;
   /* border: 2px solid #2f313a; */
   /* border-radius: 4px; */
+  margin-left: auto;
   display: flex;
   align-items: center;
   /* margin-left: auto;
@@ -140,7 +145,7 @@ const UserInfoList = styled.ul`
   list-style: none;
   padding: 0;
   width: 10vw;
-  margin-top: 32px;
+  margin-top: 8px;
   margin-right: auto;
   /* margin-left: auto; */
 
@@ -149,11 +154,13 @@ const UserInfoList = styled.ul`
 `;
 
 const TopContainer = styled.div`
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  justify-content: space-between;
 
   /* padding: 12px 4px; */
 `;
+
+const ButtonContainer = styled.div``;
 
 export const UserProfile = () => {
   const userInfo = useSelector((state) => state.auth.user);
@@ -167,13 +174,15 @@ export const UserProfile = () => {
             <ContactPhotoThumb className="rotate">
               <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
             </ContactPhotoThumb>
-            <LogoutButton
-              type="button"
-              onClick={() => dispatch(logoutThunk())}
-            >
-              <BiLogOut style={{ marginRight: "4px" }} /> Log Out
-            </LogoutButton>
-            <UserEditButton _id={userInfo._id} />
+            <ButtonContainer>
+              <LogoutButton
+                type="button"
+                onClick={() => dispatch(logoutThunk())}
+              >
+                <BiLogOut style={{ marginRight: "4px" }} /> Log Out
+              </LogoutButton>
+              <UserEditButton _id={userInfo._id} />
+            </ButtonContainer>
           </TopContainer>
           {/* <p>Welcome, {userInfo.name}!</p> */}
           <UserInfoList>
