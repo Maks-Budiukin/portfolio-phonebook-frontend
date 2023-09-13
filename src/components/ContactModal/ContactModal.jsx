@@ -3,25 +3,20 @@ import { useCallback, useEffect, useRef } from "react";
 
 import styled from "styled-components";
 
-const Backdrop = styled.div`
-  position: fixed;
-  background-color: rgba(161, 21, 207, 0.5);
-  width: 100vw;
-  height: 100vw;
-  z-index: 2;
-`;
-
 const ModalWindow = styled.div`
   position: absolute;
-  border: 1px solid rgba(220, 227, 229, 0.8);
-  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
-  border-radius: 8px;
-  max-width: 95%;
-  padding: 48px 18px 40px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-70%, -60%);
+  border: 1px solid rgba(220, 227, 229, 0.8);
+  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
   background-color: #fff;
+
+  padding: 68px 48px;
+  margin: 32px;
+
+  /* clip-path: polygon(0 8%, 100% 0, 96% 100%, 10% 100%); */
+  clip-path: polygon(0 8%, 100% 0, 95% 100%, 6% 100%);
 `;
 
 export const ContactModal = (props) => {
