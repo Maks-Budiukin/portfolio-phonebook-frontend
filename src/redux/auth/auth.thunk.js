@@ -70,12 +70,29 @@ export const updateUserThunk = createAsyncThunk(
     try {
       const response = await axios({
         method: "patch",
-        url: `/users/${_id}`,
+        url: `/users/${_id._id}`,
         data: data,
       });
-
       return response.data;
     } catch (error) {}
+  }
+);
+
+export const uploadUserAvatar = createAsyncThunk(
+  "users/uploadAvatar",
+  async (editData, thunkAPI) => {
+    const { _id, avatar } = editData;
+    try {
+      const formData = new FormData();
+      formData.append("files", avatar);
+      axios.patch(`/users/${_id._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 

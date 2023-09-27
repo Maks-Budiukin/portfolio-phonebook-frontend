@@ -1,37 +1,26 @@
 import { ContactModal } from "components/ContactModal/ContactModal";
 import { Portal } from "components/Portal/Portal";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  addContactsThunk,
-  addSharedContactThunk,
-} from "redux/contacts/contacts.thunk";
 import styled from "styled-components";
-import { GrAddCircle } from "react-icons/gr";
 import { BsPlusCircle } from "react-icons/bs";
 
 const AddButton = styled.button`
-  --trans: all 0.25s ease 0s;
-  /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(83deg, #2f313a 0 97%, #fff0 calc(97% + 1px) 100%);
-  color: #ffdd40;
+  background: linear-gradient(
+    83deg,
+    var(--dark) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
+  color: var(--yellow);
   font-weight: bold;
   padding: 8px 16px;
-  /* border: 2px solid #2f313a; */
-  /* border-radius: 4px; */
   display: flex;
   align-items: center;
-  /* margin-left: auto;
-  margin-right: auto; */
-
   transition: var(--trans);
 
   &:hover,
   &:focus {
-    /* outline: none; */
-    /* border: 1px solid skyblue; */
     transform: scale(1.03);
   }
 `;
@@ -41,13 +30,11 @@ export const AddContactButton = () => {
 
   const handleToggle = () => setIsModalOpen((pS) => !pS);
 
-  const dispatch = useDispatch();
   return (
     <>
       <AddButton
         type="button"
         onClick={handleToggle}
-        // onClick={() => dispatch(addSharedContactThunk())}
       >
         <BsPlusCircle style={{ marginRight: "4px" }} />
         Add contact
@@ -57,6 +44,7 @@ export const AddContactButton = () => {
           <ContactModal
             onClose={handleToggle}
             fn={"add"}
+            label={"Add contact"}
           />
         </Portal>
       )}

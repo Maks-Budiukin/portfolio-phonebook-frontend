@@ -11,6 +11,10 @@ body {
  letter-spacing: 22;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+      --yellow: #ffdd40;
+        --dark: #2f313a;
+        --deg: -86deg;
+        --trans: all 0.4s ease 0s;
 }
 
 code {

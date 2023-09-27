@@ -2,13 +2,9 @@ import styled from "styled-components";
 import { ContactIconsSet } from "components/ContactIconsSet/ContactIconsSet";
 import { useDispatch } from "react-redux";
 import { setSelectedContactsThunk } from "redux/contacts/contacts.thunk";
+import userDummy from "images/user-dummy28.jpg";
 
 const ContactItem = styled.li`
-  --yellow: #ffdd40;
-  --dark: #2f313a;
-  --deg: -86deg;
-  --trans: all 0.4s ease 0s;
-
   z-index: 2;
   margin: 1.5em 0 0.5em;
   padding: 0.73em;
@@ -21,10 +17,10 @@ const ContactItem = styled.li`
   list-style: none;
 
   transform: scale(0.84);
-  transition: var(--trans);
+  transition-property: transform;
+  transition-duration: 400ms;
 
   &:nth-of-type(even) {
-    /* text-align: right; */
     background: linear-gradient(
       -83deg,
       var(--yellow) 0 97%,
@@ -34,9 +30,6 @@ const ContactItem = styled.li`
 
   &:hover {
     transform: scale(0.88);
-    transition: var(--trans);
-    /* filter: drop-shadow(0px 5px 10px #0008);
-    filter: grayscale(0); */
     img {
       filter: grayscale(0);
     }
@@ -54,20 +47,11 @@ const ContactItem = styled.li`
 `;
 
 const ContactPhotoThumb = styled.div`
-  --yellow: #ffdd40;
-  --dark: #2f313a;
-  --deg: -86deg;
-  --trans: all 0.4s ease 0s;
-
   width: 14vmin;
-  height: 13vmin;
+  height: 12vmin;
   float: left;
   margin-right: 1.25em;
-  background: linear-gradient(
-    var(--deg),
-    var(--dark) 0 70%,
-    var(--yellow) 0% 100%
-  );
+  background: linear-gradient(-75deg, var(--dark) 0 70%, var(--yellow) 0% 100%);
 
   transition: var(--trans);
   border-radius: 0.25em;
@@ -76,7 +60,6 @@ const ContactPhotoThumb = styled.div`
   padding: 0.5em;
 
   &:nth-of-type(even) {
-    /* text-align: right; */
     transform: rotate(14deg);
   }
 
@@ -86,15 +69,12 @@ const ContactPhotoThumb = styled.div`
     border-radius: 0.25em;
     filter: grayscale(1);
     background: var(--dark);
+    transition-property: filter;
+    transition-duration: 400ms;
   }
 `;
 
 const ContactDescription = styled.div`
-  --yellow: #ffdd40;
-  --dark: #2f313a;
-  --deg: -86deg;
-  --trans: all 0.4s ease 0s;
-
   padding-top: 1vmin;
   display: flex;
   width: 100%;
@@ -145,7 +125,10 @@ export const ContactListItem = ({ name, number, id, onClick, contact }) => {
   return (
     <ContactItem onClick={() => handleItemClick(contact)}>
       <ContactPhotoThumb className="rotate">
-        <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
+        <img
+          src={contact.avatar ? contact.avatar : userDummy}
+          alt="Contact avatar"
+        ></img>
       </ContactPhotoThumb>
 
       <ContactDescription>

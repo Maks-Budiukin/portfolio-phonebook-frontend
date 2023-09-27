@@ -1,13 +1,5 @@
-import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteContactsThunk,
-  editContactsThunk,
-} from "redux/contacts/contacts.thunk";
-import { MdDone } from "react-icons/md";
-import { RxCross2 } from "react-icons/rx";
-import { GrEdit } from "react-icons/gr";
+import { useSelector } from "react-redux";
+
 import styled from "styled-components";
 import { ContactInfoItem } from "components/ContactInfoItem/ContactInfoItem";
 
@@ -38,6 +30,8 @@ import {
 import { EditContactButton } from "components/ContactEditButton/ContactEditButton";
 import { ContactDeleteButton } from "components/ContactDeleteButton/ContactDeleteButton";
 
+import userDummy from "images/user-dummy28.jpg";
+
 const Wrapper = styled.div`
   //тут работало
   position: fixed;
@@ -53,7 +47,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
 
-  background-color: #2f313a;
+  background-color: var(--dark);
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
@@ -72,17 +66,17 @@ const AvatarThumb = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 250px;
-  min-height: 220px;
-  background: linear-gradient(-93deg, #2f313a, #333 33%, #ffdd40 95%, #333 65%);
-  background-color: #ffdd40;
+  width: 230px;
+  min-height: 230px;
+  clip-path: polygon(0 0, 100% 2%, 100% 100%, 8% 100%);
+  background-color: var(--yellow);
+  padding-left: 12px;
+  padding-top: 4px;
 `;
 
 const UserAvatar = styled.div`
   width: 200px;
   height: 200px;
-  /* background-color: tomato; */
-
   img {
     width: 100%;
   }
@@ -90,8 +84,8 @@ const UserAvatar = styled.div`
 
 const ButtonContainer = styled.div`
   position: absolute;
-  top: -14px;
-  right: -10px;
+  top: 8px;
+  right: 8px;
   display: flex;
 `;
 
@@ -101,13 +95,7 @@ const ContactinfoList = styled.ul`
 `;
 
 export const ContactInfo = () => {
-  // const contact = useSelector((state) =>
-  //   state.contacts.items.find((contact) => contact._id === chosenContactID)
-  // );
-
   const contact = useSelector((state) => state.contacts.selectedContact);
-
-  const contacts = useSelector((state) => state.contacts.items);
 
   return (
     <Wrapper>
@@ -116,7 +104,10 @@ export const ContactInfo = () => {
           <h2>{contact.name}</h2>
           <AvatarThumb>
             <UserAvatar>
-              <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
+              <img
+                src={contact.avatar ? contact.avatar : userDummy}
+                alt="User avatar"
+              ></img>
             </UserAvatar>
             <ButtonContainer>
               <EditContactButton _id={contact._id} />

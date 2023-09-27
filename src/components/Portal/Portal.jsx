@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 import styled from "styled-components";
@@ -11,10 +11,23 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  &.block {
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+  }
+
+  &.block-show {
+    opacity: 1;
+  }
 `;
 
 export const Portal = ({ children, onClose }) => {
   const rootModal = document.querySelector("#modalPortal");
+  const [isShowBox, setIsShowBox] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsShowBox(true));
+  }, []);
 
   useEffect(() => {
     const handleEscape = (e) => {
@@ -35,7 +48,12 @@ export const Portal = ({ children, onClose }) => {
   };
 
   return createPortal(
-    <Backdrop onClick={handleClose}>{children}</Backdrop>,
+    <Backdrop
+      className={`block ${isShowBox ? " block-show" : ""}`}
+      onClick={handleClose}
+    >
+      {children}
+    </Backdrop>,
     rootModal
   );
 };

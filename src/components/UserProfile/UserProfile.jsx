@@ -33,6 +33,8 @@ import { UserEditButton } from "components/UserEditButton/UserEditButton";
 import { ShareLinkButton } from "components/ShareLinkButton/ShareLinkButton";
 import { UserQR } from "components/UserQR/UserQR";
 
+import userDummy from "images/user-dummy28.jpg";
+
 const ProfileContainer = styled.div`
   height: 100vh;
   width: 20vw;
@@ -42,7 +44,7 @@ const ProfileContainer = styled.div`
   top: 0;
   left: 0;
   bottom: 45vw;
-  background-color: #2f313a;
+  background-color: var(--dark);
   color: #fff;
   overflow-x: hidden;
   padding-top: 20px;
@@ -56,56 +58,42 @@ const ProfileContainer = styled.div`
 `;
 
 const ContactPhotoThumb = styled.div`
-  --yellow: #ffdd40;
-  --dark: #2f313a;
-  --deg: -58deg;
-  --trans: all 0.4s ease 0s;
-
   width: 15vmin;
   height: 15vmin;
   float: left;
-  /* margin-right: 1.25em; */
   background: linear-gradient(
     var(--deg),
     var(--dark) 0 62%,
     var(--yellow) 0% 100%
   );
-  /* transform: rotate(-4deg); */
   transition: var(--trans);
   border-radius: 0.25em;
   overflow: hidden;
-  /* margin-left: -3em; */
   padding: 0.5em;
 
   img {
     width: 100%;
     height: 100%;
     border-radius: 0.25em;
-    /* filter: grayscale(1); */
     background: var(--dark);
   }
 `;
 
 const LogoutButton = styled.button`
-  /* background-color: #2f313a; */
   outline: none;
   border: none;
   background: linear-gradient(
     -95deg,
-    #ffdd40 0 97%,
+    var(--yellow) 0 97%,
     #fff0 calc(97% + 1px) 100%
   );
 
-  color: #2f313a;
+  color: var(--dark);
   font-weight: bold;
   padding: 8px 16px;
-  /* border: 2px solid #2f313a; */
-  /* border-radius: 4px; */
   margin-left: auto;
   display: flex;
   align-items: center;
-  /* margin-left: auto;
-  margin-right: auto; */
 
   transition-property: scale;
   transition-duration: 250;
@@ -113,19 +101,12 @@ const LogoutButton = styled.button`
 
   &:hover,
   &:focus {
-    /* outline: none; */
-    /* border: 1px solid skyblue; */
     transform: scale(1.03);
   }
 `;
 
 const UserProfileWrapper = styled.div`
-  /* display: flex;
-  justify-content: space-between; */
-  /* height: 190px; */
-  /* border-right: 2px solid #ffdd40; */
-  /* border-bottom: 2px solid #ffdd40; */
-  border-bottom: 2px solid #ffdd40;
+  border-bottom: 2px solid var(--yellow);
   border-radius: 8px;
   margin-bottom: 24px;
   margin-right: 16px;
@@ -147,7 +128,6 @@ const UserInfoList = styled.ul`
   width: 10vw;
   margin-top: 8px;
   margin-right: auto;
-  /* margin-left: auto; */
 
   display: flex;
   flex-wrap: wrap;
@@ -156,8 +136,6 @@ const UserInfoList = styled.ul`
 const TopContainer = styled.div`
   display: flex;
   justify-content: space-between;
-
-  /* padding: 12px 4px; */
 `;
 
 const ButtonContainer = styled.div``;
@@ -172,7 +150,10 @@ export const UserProfile = () => {
         <UserProfileWrapper>
           <TopContainer>
             <ContactPhotoThumb className="rotate">
-              <img src="https://images.squarespace-cdn.com/content/v1/559b2478e4b05d22b1e75b2d/1549568089409-SJ70E6DVG3XTE70232OL/Nesbit.jpg?format=1500w"></img>
+              <img
+                src={userInfo.avatar ? userInfo.avatar : userDummy}
+                alt="Contact avatar"
+              ></img>
             </ContactPhotoThumb>
             <ButtonContainer>
               <LogoutButton
@@ -184,7 +165,6 @@ export const UserProfile = () => {
               <UserEditButton _id={userInfo._id} />
             </ButtonContainer>
           </TopContainer>
-          {/* <p>Welcome, {userInfo.name}!</p> */}
           <UserInfoList>
             {userInfo.number && (
               <UserProfileItem

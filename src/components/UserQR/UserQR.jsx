@@ -3,11 +3,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const QRWrapper = styled.div`
-  /* margin-right: auto; */
-  /* margin-left: auto; */
   margin-top: 24px;
-  /* padding: 16px; */
-
   display: flex;
   justify-content: center;
   margin-left: -14px;

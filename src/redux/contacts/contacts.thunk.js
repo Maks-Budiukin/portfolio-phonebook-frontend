@@ -6,7 +6,7 @@ export const fetchContactsThunk = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/contacts");
-      const contacts = response.data.sort((a, b) =>
+      const contacts = await response.data.sort((a, b) =>
         a.name.localeCompare(b.name)
       );
       return contacts;
@@ -23,6 +23,35 @@ export const setSelectedContactsThunk = createAsyncThunk(
   }
 );
 
+export const uploadContactAvatar = createAsyncThunk(
+  "contacts/uploadAvatar",
+  async (editData, thunkAPI) => {
+    const { _id, avatar } = editData;
+    try {
+      const formData = new FormData();
+      formData.append("files", avatar);
+      const response = await axios.patch(`/contacts/${_id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      // const { contacts } = thunkAPI.getState();
+
+      // const editedId = response.data._id;
+      // const updatedContact = response.data;
+
+      // const items = contacts.items.map((contact) =>
+      //   contact._id === editedId ? updatedContact : contact
+      // );
+
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const addContactsThunk = createAsyncThunk(
   "contacts/addContact",
   async (data, thunkAPI) => {
@@ -30,9 +59,18 @@ export const addContactsThunk = createAsyncThunk(
       const response = await axios({
         method: "post",
         url: `/contacts`,
-        data,
+        data: { ...data, avatar: null },
       });
-      return response.data;
+
+      if (!data.avatar) {
+        return response.data;
+      }
+
+      const responseWithAvatar = await thunkAPI.dispatch(
+        uploadContactAvatar({ _id: response.data._id, avatar: data.avatar })
+      );
+
+      return responseWithAvatar.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -44,10 +82,9 @@ export const editContactsThunk = createAsyncThunk(
   async (editData, thunkAPI) => {
     const { _id, ...data } = editData;
     try {
-      console.log("DATA", data);
       const response = await axios({
         method: "patch",
-        url: `/contacts/${editData._id}`,
+        url: `/contacts/${_id._id}`,
         data: data,
       });
 

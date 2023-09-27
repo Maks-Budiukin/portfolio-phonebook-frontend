@@ -14,6 +14,7 @@ export const authInitState = {
     viber: "",
     facebook: "",
     shareLink: "",
+    avatar: "",
   },
   isLoggedIn: false,
   token: null,

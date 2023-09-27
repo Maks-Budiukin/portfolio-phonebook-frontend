@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addContactsThunk,
   editContactsThunk,
+  uploadContactAvatar,
 } from "redux/contacts/contacts.thunk";
-import { updateUserThunk } from "redux/auth/auth.thunk";
+import { updateUserThunk, uploadUserAvatar } from "redux/auth/auth.thunk";
+import { AvatarInput } from "components/AvatarInput/AvatarInput";
 
 const StyledForm = styled.form`
   display: flex;
@@ -44,14 +46,51 @@ const StyledForm = styled.form`
   }
 `;
 
-export const ContactForm = ({ _id, fn, onSubmitClose }) => {
+// const AvatarWrapper = styled.div`
+//   #form-file-upload {
+//     height: 16rem;
+//     width: 28rem;
+//     max-width: 100%;
+//     text-align: center;
+//     position: relative;
+//   }
+
+//   #input-file-upload {
+//     display: none;
+//   }
+
+//   #label-file-upload {
+//     height: 100%;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//     border-width: 2px;
+//     border-radius: 1rem;
+//     border-style: dashed;
+//     border-color: #cbd5e1;
+//     background-color: #f8fafc;
+//   }
+
+//   .upload-button {
+//     cursor: pointer;
+//     padding: 0.25rem;
+//     font-size: 1rem;
+//     border: none;
+//     font-family: "Oswald", sans-serif;
+//     background-color: transparent;
+//   }
+
+//   .upload-button:hover {
+//     text-decoration-line: underline;
+//   }
+// `;
+
+export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
   const selectedContact = useSelector(
     (state) => state.contacts.selectedContact
   );
-  const contacts = useSelector((state) => state.contacts.items);
   const user = useSelector((state) => state.auth.user);
   const sharedContact = useSelector((state) => state.contacts.sharedContact);
-  console.log("USER IN FORM", user);
   const dispatch = useDispatch();
 
   const nameInpudId = nanoid();
@@ -79,51 +118,69 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
   const [bitbucket, setBitbucket] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [viber, setViber] = useState("");
+  const [avatar, setAvatar] = useState(null);
+  const [avatarFile, setAvatarFile] = useState(null);
 
   useEffect(() => {
     if (fn === "edit") {
-      setName(selectedContact.name);
-      setEmail(selectedContact.email);
-      setNumber(selectedContact.number);
-      setTelegram(selectedContact.telegram);
-      setLinkedin(selectedContact.linkedin);
-      setInstagram(selectedContact.instagram);
-      setGithub(selectedContact.github);
-      setFacebook(selectedContact.facebook);
-      setTwitter(selectedContact.twitter);
-      setBitbucket(selectedContact.bitbucket);
-      setWhatsapp(selectedContact.whatsapp);
-      setViber(selectedContact.viber);
+      // selectedContact.name && setName(selectedContact.name);
+      // selectedContact.email && setEmail(selectedContact.email);
+      // selectedContact.number && setNumber(selectedContact.number);
+      // selectedContact.telegram && setTelegram(selectedContact.telegram);
+      // selectedContact.linkedin && setLinkedin(selectedContact.linkedin);
+      // selectedContact.instagram && setInstagram(selectedContact.instagram);
+      // selectedContact.github && setGithub(selectedContact.github);
+      // selectedContact.facebook && setFacebook(selectedContact.facebook);
+      // selectedContact.twitter && setTwitter(selectedContact.twitter);
+      // selectedContact.bitbucket && setBitbucket(selectedContact.bitbucket);
+      // selectedContact.whatsapp && setWhatsapp(selectedContact.whatsapp);
+      // selectedContact.viber && setViber(selectedContact.viber);
+      // selectedContact.avatar && setAvatar(selectedContact.avatar);
+      setName(selectedContact.name || "");
+      setEmail(selectedContact.email || "");
+      setNumber(selectedContact.number || "");
+      setTelegram(selectedContact.telegram || "");
+      setLinkedin(selectedContact.linkedin || "");
+      setInstagram(selectedContact.instagram || "");
+      setGithub(selectedContact.github || "");
+      setFacebook(selectedContact.facebook || "");
+      setTwitter(selectedContact.twitter || "");
+      setBitbucket(selectedContact.bitbucket || "");
+      setWhatsapp(selectedContact.whatsapp || "");
+      setViber(selectedContact.viber || "");
+      setAvatar(selectedContact.avatar || "");
     }
     if (fn === "userEdit") {
-      setName(user.name);
-      setEmail(user.email);
-      setNumber(user.number);
-      setTelegram(user.telegram);
-      setLinkedin(user.linkedin);
-      setInstagram(user.instagram);
-      setGithub(user.github);
-      setFacebook(user.facebook);
-      setTwitter(user.twitter);
-      setBitbucket(user.bitbucket);
-      setWhatsapp(user.whatsapp);
-      setViber(user.viber);
+      setName(user.name || "");
+      setEmail(user.email || "");
+      setNumber(user.number || "");
+      setTelegram(user.telegram || "");
+      setLinkedin(user.linkedin || "");
+      setInstagram(user.instagram || "");
+      setGithub(user.github || "");
+      setFacebook(user.facebook || "");
+      setTwitter(user.twitter || "");
+      setBitbucket(user.bitbucket || "");
+      setWhatsapp(user.whatsapp || "");
+      setViber(user.viber || "");
+      setAvatar(user.avatar || "");
     }
     if (fn === "add" && sharedContact) {
-      setName(sharedContact.name);
-      setEmail(sharedContact.email);
-      setNumber(sharedContact.number);
-      setTelegram(sharedContact.telegram);
-      setLinkedin(sharedContact.linkedin);
-      setInstagram(sharedContact.instagram);
-      setGithub(sharedContact.github);
-      setFacebook(sharedContact.facebook);
-      setTwitter(sharedContact.twitter);
-      setBitbucket(sharedContact.bitbucket);
-      setWhatsapp(sharedContact.whatsapp);
-      setViber(sharedContact.viber);
+      setName(sharedContact.name || "");
+      setEmail(sharedContact.email || "");
+      setNumber(sharedContact.number || "");
+      setTelegram(sharedContact.telegram || "");
+      setLinkedin(sharedContact.linkedin || "");
+      setInstagram(sharedContact.instagram || "");
+      setGithub(sharedContact.github || "");
+      setFacebook(sharedContact.facebook || "");
+      setTwitter(sharedContact.twitter || "");
+      setBitbucket(sharedContact.bitbucket || "");
+      setWhatsapp(sharedContact.whatsapp || "");
+      setViber(sharedContact.viber || "");
+      setAvatar(sharedContact.avatar || "");
     }
-  }, [fn]);
+  }, [fn, sharedContact, selectedContact, user]);
 
   const onInputChange = (event) => {
     switch (event.target.name) {
@@ -168,7 +225,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
     }
   };
 
-  const action = (fn) => {
+  const action = async (fn) => {
     switch (fn) {
       case "add":
         dispatch(
@@ -185,6 +242,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
             bitbucket,
             whatsapp,
             viber,
+            avatar: avatarFile,
           })
         );
         break;
@@ -204,14 +262,17 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
             bitbucket,
             whatsapp,
             viber,
+            avatar,
           })
         );
+        dispatch(uploadContactAvatar({ _id: _id._id, avatar: avatarFile }));
+
         break;
 
       case "userEdit":
         dispatch(
           updateUserThunk({
-            _id: _id._id,
+            _id,
             name,
             number,
             email,
@@ -226,29 +287,19 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
             viber,
           })
         );
+        dispatch(uploadUserAvatar({ _id, avatar: avatarFile }));
+
         break;
       default:
         return;
     }
   };
 
-  const normalizedName = name.toLowerCase();
+  // const normalizedName = name.toLowerCase();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     action(fn);
-    // setName("");
-    // setNumber("");
-    // setEmail("");
-    // setTelegram("");
-    // setLinkedin("");
-    // setInstagram("");
-    // setGithub("");
-    // setFacebook("");
-    // setTwitter("");
-    // setBitbucket("");
-    // setWhatsapp("");
-    // setViber("");
     onSubmitClose();
 
     // contacts.find((contact) => contact.name.toLowerCase() === normalizedName)
@@ -256,8 +307,13 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
     //   : action(fn);
   };
 
+  const getAvatar = (file) => {
+    setAvatarFile(file);
+  };
+
   return (
     <StyledForm onSubmit={handleSubmit}>
+      <AvatarInput getAvatar={getAvatar} />
       <label htmlFor={nameInpudId}>Name </label>
       <input
         type="text"
@@ -370,7 +426,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose }) => {
         onChange={onInputChange}
       />
 
-      <button type="submit">Add contact</button>
+      <button type="submit">{label}</button>
       <button
         type="button"
         onClick={onSubmitClose}

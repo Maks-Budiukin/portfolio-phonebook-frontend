@@ -6,17 +6,17 @@ import { useSelector } from "react-redux";
 import QRCode from "react-qr-code";
 
 const ShareButton = styled.button`
-  --trans: all 0.25s ease 0s;
-  /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(94deg, #ffdd40 0 97%, #fff0 calc(97% + 1px) 100%);
+  background: linear-gradient(
+    94deg,
+    var(--yellow) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
 
-  color: #2f313a;
+  color: var(--dark);
   font-weight: bold;
   padding: 8px 16px;
-  /* border: 2px solid #2f313a; */
-  /* border-radius: 4px; */
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -26,8 +26,6 @@ const ShareButton = styled.button`
 
   &:hover,
   &:focus {
-    /* outline: none; */
-    /* border: 1px solid skyblue; */
     transform: scale(1.15);
   }
 `;
@@ -65,9 +63,6 @@ export const ShareLinkButton = () => {
       {isModalOpen && (
         <Portal onClose={handleToggle}>
           <ModalWindow>
-            {/* <p>
-              http://localhost:3000/share/{user.shareLink}/{user._id}
-            </p> */}
             <p>
               <QRCode
                 value={`https://portfolio-phonebook-frontend.vercel.app/share/${user.shareLink}/${user._id}`}

@@ -7,6 +7,7 @@ import {
   editContactsThunk,
   fetchContactsThunk,
   setSelectedContactsThunk,
+  uploadContactAvatar,
 } from "./contacts.thunk";
 
 const contactsSlice = createSlice({
@@ -65,6 +66,22 @@ const contactsSlice = createSlice({
         state.error = payload;
         state.isLoading = false;
       })
+
+      // ============== UPLOAD AVATAR =================
+
+      // .addCase(uploadContactAvatar.pending, (state) => {
+      //   state.isLoading = true;
+      //   state.error = null;
+      // })
+      // .addCase(uploadContactAvatar.fulfilled, (state, { payload }) => {
+      //   state.items = payload;
+      //   state.isLoading = false;
+      //   state.error = null;
+      // })
+      // .addCase(uploadContactAvatar.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      //   state.isLoading = false;
+      // })
 
       // ============== ADD =================
 

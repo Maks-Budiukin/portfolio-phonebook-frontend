@@ -12,7 +12,7 @@ const OuterLoadingWrapper = styled.div`
   height: 70px;
   background: linear-gradient(
     -104deg,
-    #ffdd40 0 97%,
+    var(--yellow) 0 97%,
     #fff0 calc(97% + 1px) 100%
   );
 `;
@@ -20,9 +20,6 @@ const OuterLoadingWrapper = styled.div`
 const LoadingWrapper = styled.div`
   position: absolute;
   left: 30px;
-  /* top: 90px; */
-
-  /* padding-top: 130px; */
   z-index: 2;
   background-color: #fff;
   width: 79vw;
@@ -30,7 +27,7 @@ const LoadingWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #ffdd40;
+  background-color: var(--yellow);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 `;
 

@@ -4,28 +4,25 @@ import { useDispatch } from "react-redux";
 import { deleteContactsThunk } from "redux/contacts/contacts.thunk";
 
 const DeleteButton = styled.button`
-  --trans: all 0.25s ease 0s;
-  /* background-color: #2f313a; */
   outline: none;
   border: none;
-  background: linear-gradient(91deg, #ffdd40 0 97%, #fff0 calc(97% + 1px) 100%);
-  color: #2f313a;
+  background: linear-gradient(
+    91deg,
+    var(--yellow) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
+  color: var(--dark);
+
   font-weight: bold;
   padding: 4px 12px;
-  /* border: 2px solid #2f313a; */
-  /* border-radius: 4px; */
   display: flex;
   align-items: center;
-  /* margin-left: auto;
-  margin-right: auto; */
-  border: 4px solid #2f313a;
+  border: 4px solid var(--dark);
   transition: var(--trans);
   margin-left: -4px;
 
   &:hover,
   &:focus {
-    /* outline: none; */
-    /* border: 1px solid skyblue; */
     transform: scale(1.13);
   }
 `;

@@ -2,11 +2,7 @@ import styled from "styled-components";
 import { ContactListItem } from "components/ContactListItem/ContactListItem";
 
 const StyledList = styled.ul`
-  /* position: sticky; */
-  /* top: 70px; */
-  /* background-color: #fff; */
   padding: 0;
-  /* padding-left: 32px; */
   padding-top: 30px;
   margin-left: -24px;
   list-style: none;
@@ -44,7 +40,6 @@ const StyledList = styled.ul`
 `;
 
 const Wrapper = styled.div`
-  /* position: relative; */
   display: flex;
   justify-content: space-between;
   padding-top: 45px;

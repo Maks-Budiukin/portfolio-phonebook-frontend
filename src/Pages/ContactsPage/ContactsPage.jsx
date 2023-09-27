@@ -18,9 +18,7 @@ const Wrapper = styled.div`
 
 const AppSpace = styled.div`
   position: relative;
-
   padding-left: 20vw;
-  /* padding-right: 16px; */
 `;
 
 const ContactsWrapper = styled.div`
@@ -31,7 +29,7 @@ const ContactsWrapper = styled.div`
 export const ContactsPage = () => {
   const contacts = useSelector((state) => state.contacts.items);
   const sharedContact = useSelector((state) => state.contacts.sharedContact);
-  const [cont, setCont] = useState(contacts);
+  // const [cont, setCont] = useState(contacts);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filter = useSelector((state) => state.filter);
@@ -42,7 +40,7 @@ export const ContactsPage = () => {
   useEffect(() => {
     isLoggedIn && dispatch(fetchContactsThunk());
     sharedContact && setIsModalOpen(true);
-  }, [dispatch, isLoggedIn, cont, sharedContact]);
+  }, [dispatch, isLoggedIn, sharedContact]);
 
   const normalizedFilter = filter.toLowerCase().trim();
   const filteredContacts = contacts.filter((contact) =>

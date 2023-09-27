@@ -20,7 +20,7 @@ export const ContactIconsSet = ({ contact }) => {
   return (
     <IconContext.Provider
       value={{
-        color: "#2f313a",
+        color: "var(--dark)",
         size: "1.5em",
         className: "global-class-name",
         style: { padding: "4px" },
