@@ -115,7 +115,13 @@ const ContactName = styled.p`
   );
 `;
 
-export const ContactListItem = ({ name, number, id, onClick, contact }) => {
+export const ContactListItemMobile = ({
+  name,
+  number,
+  id,
+  onClick,
+  contact,
+}) => {
   const dispatch = useDispatch();
 
   const handleItemClick = (contact) => {

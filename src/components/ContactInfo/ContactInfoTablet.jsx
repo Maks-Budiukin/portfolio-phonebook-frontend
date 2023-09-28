@@ -38,7 +38,9 @@ const Wrapper = styled.div`
   right: 4vw;
   top: 70px;
   color: #fff;
-  width: 26vw;
+
+  width: 32vw;
+  min-width: 220px;
   height: 90vh;
 
   overflow-y: scroll;
@@ -66,8 +68,10 @@ const AvatarThumb = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20vw;
-  min-height: 38vh;
+  width: 26vw;
+  min-width: 190px;
+
+  /* min-height: 38vh; */
   clip-path: polygon(0 0, 100% 2%, 100% 100%, 8% 100%);
   background-color: var(--yellow);
   padding-left: 12px;
@@ -75,8 +79,15 @@ const AvatarThumb = styled.div`
 `;
 
 const UserAvatar = styled.div`
-  width: 200px;
+  width: 23vw;
+  min-width: 170px;
+  max-width: 200px;
+
   height: 200px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
     width: 100%;
   }
@@ -94,7 +105,7 @@ const ContactinfoList = styled.ul`
   padding: 12px;
 `;
 
-export const ContactInfo = () => {
+export const ContactInfoTablet = () => {
   const contact = useSelector((state) => state.contacts.selectedContact);
 
   return (

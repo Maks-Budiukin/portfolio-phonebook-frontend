@@ -12,7 +12,7 @@ export const SharePage = () => {
   useEffect(() => {
     dispatch(addSharedContactThunk(data));
     navigate("/");
-  }, []);
+  }, [navigate, dispatch, data]);
 
   return <></>;
 };

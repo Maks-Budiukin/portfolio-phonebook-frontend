@@ -10,6 +10,13 @@ import { ContactsAppBar } from "components/ContactsAppBar/ContactsAppBar";
 import { Portal } from "components/Portal/Portal";
 import { ContactModal } from "components/ContactModal/ContactModal";
 
+import { useMediaQuery } from "react-responsive";
+import { ContactsAppBarTablet } from "components/ContactsAppBar/ContactsAppBarTablet";
+import { UserProfileBarTablet } from "components/UserProfile/UserProfileBarTablet";
+import { ContactListTablet } from "components/ContactList/ContactListTablet";
+import { ContactInfoTablet } from "components/ContactInfo/ContactInfoTablet";
+import { ContactListMobile } from "components/ContactList/ContactListMobile";
+
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -18,7 +25,7 @@ const Wrapper = styled.div`
 
 const AppSpace = styled.div`
   position: relative;
-  padding-left: 20vw;
+  padding-left: 5vw;
 `;
 
 const ContactsWrapper = styled.div`
@@ -29,13 +36,16 @@ const ContactsWrapper = styled.div`
 export const ContactsPage = () => {
   const contacts = useSelector((state) => state.contacts.items);
   const sharedContact = useSelector((state) => state.contacts.sharedContact);
-  // const [cont, setCont] = useState(contacts);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const filter = useSelector((state) => state.filter);
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isTablet = useMediaQuery({ minWidth: 690, maxWidth: 1279 });
+  const isMobile = useMediaQuery({ maxWidth: 689 });
 
   useEffect(() => {
     isLoggedIn && dispatch(fetchContactsThunk());
@@ -51,13 +61,22 @@ export const ContactsPage = () => {
 
   return (
     <Wrapper>
-      <UserProfile />
+      {isDesktop && <UserProfile />}
+      {!isDesktop && <UserProfileBarTablet />}
       <AppSpace>
-        <ContactsAppBar />
+        {/* <ContactsAppBar /> */}
+        <ContactsAppBarTablet />
 
         <ContactsWrapper>
-          <ContactList filteredContacts={filteredContacts} />
-          <ContactInfo />
+          {isDesktop && <ContactList filteredContacts={filteredContacts} />}
+          {isTablet && (
+            <ContactListTablet filteredContacts={filteredContacts} />
+          )}
+          {isMobile && (
+            <ContactListMobile filteredContacts={filteredContacts} />
+          )}
+          {isDesktop && <ContactInfo />}
+          {isTablet && <ContactInfoTablet />}
         </ContactsWrapper>
       </AppSpace>
       {isModalOpen && (

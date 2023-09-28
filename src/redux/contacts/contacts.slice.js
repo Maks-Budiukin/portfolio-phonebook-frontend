@@ -7,7 +7,6 @@ import {
   editContactsThunk,
   fetchContactsThunk,
   setSelectedContactsThunk,
-  uploadContactAvatar,
 } from "./contacts.thunk";
 
 const contactsSlice = createSlice({
