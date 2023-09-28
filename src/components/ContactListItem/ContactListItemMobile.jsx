@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import { ContactIconsSet } from "components/ContactIconsSet/ContactIconsSet";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedContactsThunk } from "redux/contacts/contacts.thunk";
 import userDummy from "images/user-dummy28.jpg";
+import { ContactInfoItem } from "components/ContactInfoItem/ContactInfoItem";
+import { ContactInfoList } from "components/ContactInfoList/ContactInfoList";
+import { useEffect, useRef, useState } from "react";
+import { ContactInfoListMobile } from "components/ContactInfoList/ContactInfoListMobile";
 
 const ContactItem = styled.li`
   z-index: 2;
@@ -16,9 +20,29 @@ const ContactItem = styled.li`
   position: relative;
   list-style: none;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   transform: scale(0.84);
-  transition-property: transform;
+  transition-property: transform height;
   transition-duration: 400ms;
+
+  &.block2 {
+    max-height: 300px;
+
+    /* max-height: 160px; */
+    transition: max-height 1s ease-out;
+    /* transition-property: max-height;
+    transition-duration: 1400ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
+  }
+
+  &.block2-show {
+    max-height: 1000px;
+    transition: max-height 1s ease-in;
+    /* max-height: 1000px; */
+  }
 
   &:nth-of-type(even) {
     background: linear-gradient(
@@ -99,11 +123,12 @@ const ContactDescription = styled.div`
   }
 `;
 
-const ContactName = styled.p`
+const ContactName = styled.div`
   position: absolute;
-  top: -34px;
-  left: 76px;
+  top: -13px;
+  left: 60px;
   font-size: 22px;
+  padding: 4px;
 
   background: var(--dark);
   color: var(--yellow);
@@ -123,24 +148,37 @@ export const ContactListItemMobile = ({
   contact,
 }) => {
   const dispatch = useDispatch();
+  const [showContact, setShowContact] = useState(false);
+  const selectedContact = useSelector(
+    (state) => state.contacts.selectedContact
+  );
 
   const handleItemClick = (contact) => {
     dispatch(setSelectedContactsThunk(contact));
+    setShowContact(true);
   };
 
   return (
-    <ContactItem onClick={() => handleItemClick(contact)}>
+    <ContactItem
+      onClick={() => handleItemClick(contact)}
+      className={`block2 ${showContact ? " block2-show" : ""}`}
+    >
       <ContactPhotoThumb className="rotate">
         <img
           src={contact.avatar ? contact.avatar : userDummy}
           alt="Contact avatar"
         ></img>
       </ContactPhotoThumb>
-
-      <ContactDescription>
-        <ContactName>{contact.name}</ContactName> <p>{contact.number}</p>
-        <ContactIconsSet contact={contact} />
-      </ContactDescription>
+      <ContactName>{contact.name}</ContactName>
+      {selectedContact._id !== contact._id && (
+        <>
+          <p>{contact.number}</p>
+          <ContactIconsSet contact={contact} />
+        </>
+      )}
+      {selectedContact._id === contact._id && showContact && (
+        <ContactInfoListMobile contact={contact} />
+      )}
     </ContactItem>
   );
 };

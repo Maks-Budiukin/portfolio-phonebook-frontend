@@ -12,25 +12,11 @@ import { BsFacebook, BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { TbBrandBitbucket } from "react-icons/tb";
 
-import {
-  handleTelegramURL,
-  handleTelegramLink,
-  handleTwitterURL,
-  handleTwitterLink,
-  handleInstagramURL,
-  handleInstagramLink,
-  handleGithubURL,
-  handleGithubLink,
-  handleBitbucketURL,
-  handleBitbucketLink,
-  handleFacebookURL,
-  handleFacebookLink,
-  handleLinkedInURL,
-} from "./handleContactInput";
 import { EditContactButton } from "components/ContactEditButton/ContactEditButton";
 import { ContactDeleteButton } from "components/ContactDeleteButton/ContactDeleteButton";
 
 import userDummy from "images/user-dummy28.jpg";
+import { ContactInfoList } from "components/ContactInfoList/ContactInfoList";
 
 const Wrapper = styled.div`
   //тут работало
@@ -89,10 +75,10 @@ const ButtonContainer = styled.div`
   display: flex;
 `;
 
-const ContactinfoList = styled.ul`
-  list-style: none;
-  padding: 12px;
-`;
+// const ContactinfoList = styled.ul`
+//   list-style: none;
+//   padding: 12px;
+// `;
 
 export const ContactInfo = () => {
   const contact = useSelector((state) => state.contacts.selectedContact);
@@ -114,87 +100,7 @@ export const ContactInfo = () => {
               <ContactDeleteButton _id={contact._id} />
             </ButtonContainer>
           </AvatarThumb>
-          <ContactinfoList>
-            {contact.number && (
-              <ContactInfoItem
-                data={`callto:${contact.number}`}
-                icon={<FaPhoneSquare />}
-                title={contact.number}
-              />
-            )}
-
-            {contact.email && (
-              <ContactInfoItem
-                data={`mailto:${contact.email}`}
-                icon={<TfiEmail />}
-                title={contact.email}
-              />
-            )}
-            {contact.telegram && (
-              <ContactInfoItem
-                data={handleTelegramLink(contact.telegram)}
-                icon={<LiaTelegramPlane />}
-                title={handleTelegramURL(contact.telegram)}
-              />
-            )}
-            {contact.whatsapp && (
-              <ContactInfoItem
-                data={`https://wa.me/${contact.whatsapp}`}
-                icon={<BsWhatsapp />}
-                title={contact.whatsapp}
-              />
-            )}
-            {contact.viber && (
-              <ContactInfoItem
-                data={`viber://chat?number=%2B${contact.viber}`}
-                icon={<FaViber />}
-                title={contact.viber}
-              />
-            )}
-            {contact.instagram && (
-              <ContactInfoItem
-                data={handleInstagramLink(contact.instagram)}
-                icon={<SiInstagram />}
-                title={handleInstagramURL(contact.instagram)}
-              />
-            )}
-            {contact.facebook && (
-              <ContactInfoItem
-                data={handleFacebookLink(contact.facebook)}
-                icon={<BsFacebook />}
-                title={handleFacebookURL(contact.facebook)}
-              />
-            )}
-            {contact.linkedin && (
-              <ContactInfoItem
-                data={contact.linkedin}
-                icon={<FaLinkedin />}
-                title={handleLinkedInURL(contact.linkedin)}
-              />
-            )}
-            {contact.twitter && (
-              <ContactInfoItem
-                data={handleTwitterLink(contact.twitter)}
-                icon={<SlSocialTwitter />}
-                title={handleTwitterURL(contact.twitter)}
-              />
-            )}
-            {contact.github && (
-              <ContactInfoItem
-                data={handleGithubLink(contact.github)}
-                icon={<RxGithubLogo />}
-                title={handleGithubURL(contact.github)}
-              />
-            )}
-
-            {contact.bitbucket && (
-              <ContactInfoItem
-                data={handleBitbucketLink(contact.bitbucket)}
-                icon={<TbBrandBitbucket />}
-                title={handleBitbucketURL(contact.bitbucket)}
-              />
-            )}
-          </ContactinfoList>
+          <ContactInfoList contact={contact} />
         </>
       )}
     </Wrapper>
