@@ -36,6 +36,12 @@ export const AvatarThumb = styled.div`
   justify-content: center;
   width: 20vw;
   min-height: 38vh;
+  /* background: linear-gradient(
+    -128deg,
+    var(--dark) 0% 32%,
+    var(--yellow) 0% 100%
+  ); */
+
   clip-path: polygon(0 0, 100% 2%, 100% 100%, 8% 100%);
   background-color: var(--yellow);
   padding-left: 12px;
