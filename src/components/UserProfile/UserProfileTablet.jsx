@@ -38,19 +38,22 @@ import { useMediaQuery } from "react-responsive";
 
 const ProfileContainer = styled.div`
   height: 100vh;
-  width: 20vw;
+  /* width: 20vw; */
+  max-width: 70vw;
   position: fixed;
   overflow-y: scroll;
-  z-index: 1;
+  /* z-index: 1; */
   top: 0;
   left: 0;
-  bottom: 45vw;
+  /* bottom: 45vw; */
   background-color: var(--dark);
   color: #fff;
   overflow-x: hidden;
-  padding-top: 20px;
+  padding-top: 30px;
   padding-left: 16px;
-  border-right: 1px solid silver;
+  padding-bottom: 40px;
+  /* border-right: 1px solid silver; */
+  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.5);
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
@@ -59,8 +62,8 @@ const ProfileContainer = styled.div`
 `;
 
 const ContactPhotoThumb = styled.div`
-  width: 19vmin;
-  height: 19vmin;
+  width: 36vmin;
+  height: 36vmin;
   float: left;
   background: linear-gradient(
     -61deg,
@@ -142,7 +145,7 @@ const TopContainer = styled.div`
 
 const ButtonContainer = styled.div``;
 
-export const UserProfile = () => {
+export const UserProfileTablet = () => {
   const userInfo = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
 

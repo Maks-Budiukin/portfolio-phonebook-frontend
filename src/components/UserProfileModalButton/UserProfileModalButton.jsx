@@ -3,9 +3,12 @@ import { Portal } from "components/Portal/Portal";
 import { useState } from "react";
 import styled from "styled-components";
 import { BsPlusCircle } from "react-icons/bs";
-import { useMediaQuery } from "react-responsive";
+import { UserModal } from "components/UserModal/UserModal";
 
-const AddButton = styled.button`
+import { RxHamburgerMenu } from "react-icons/rx";
+import { IconContext } from "react-icons";
+
+const Burger = styled.button`
   outline: none;
   border: none;
   background: linear-gradient(
@@ -16,7 +19,6 @@ const AddButton = styled.button`
   color: var(--yellow);
   font-weight: bold;
   padding: 8px 16px;
-  margin-right: 26px;
   display: flex;
   align-items: center;
   transition: var(--trans);
@@ -27,31 +29,30 @@ const AddButton = styled.button`
   }
 `;
 
-export const AddContactButton = () => {
+export const UserProfileModalButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
-  const isTablet = useMediaQuery({ minWidth: 690, maxWidth: 1279 });
-  const isMobile = useMediaQuery({ maxWidth: 689 });
 
   const handleToggle = () => setIsModalOpen((pS) => !pS);
 
   return (
     <>
-      <AddButton
+      <Burger
         type="button"
         onClick={handleToggle}
       >
-        <BsPlusCircle style={{ marginRight: "4px", fontSize: "24" }} />
-        {isDesktop && "Add contact"}
-      </AddButton>
+        <IconContext.Provider
+          value={{
+            color: "var(--yellow)",
+            size: "36",
+            style: { paddingRight: "16px" },
+          }}
+        >
+          <RxHamburgerMenu />
+        </IconContext.Provider>
+      </Burger>
       {isModalOpen && (
         <Portal onClose={handleToggle}>
-          <ContactModal
-            onClose={handleToggle}
-            fn={"add"}
-            label={"Add contact"}
-          />
+          <UserModal onClose={handleToggle} />
         </Portal>
       )}
     </>

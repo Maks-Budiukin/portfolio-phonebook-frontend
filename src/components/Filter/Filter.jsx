@@ -8,7 +8,8 @@ const StyledFilter = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 24vw;
+  min-width: 24vw;
+  margin-left: 48px;
   label {
     position: absolute;
     top: 8px;

@@ -64,8 +64,8 @@ export const ContactsPage = () => {
       {isDesktop && <UserProfile />}
       {!isDesktop && <UserProfileBarTablet />}
       <AppSpace>
-        {/* <ContactsAppBar /> */}
-        <ContactsAppBarTablet />
+        {isDesktop && <ContactsAppBar />}
+        {!isDesktop && <ContactsAppBarTablet />}
 
         <ContactsWrapper>
           {isDesktop && <ContactList filteredContacts={filteredContacts} />}

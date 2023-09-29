@@ -37,6 +37,7 @@ import userDummy from "images/user-dummy28.jpg";
 
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IconContext } from "react-icons";
+import { UserProfileModalButton } from "components/UserProfileModalButton/UserProfileModalButton";
 
 const ProfileContainer = styled.div`
   height: 100vh;
@@ -72,16 +73,16 @@ export const UserProfileBarTablet = () => {
     <>
       <ProfileContainer>
         <BurgerButtonContainer>
-          <IconContext.Provider
+          {/* <IconContext.Provider
             value={{
               color: "var(--yellow)",
               size: "36",
-
               style: { paddingRight: "16px" },
             }}
           >
             <RxHamburgerMenu />
-          </IconContext.Provider>
+          </IconContext.Provider> */}
+          <UserProfileModalButton />
         </BurgerButtonContainer>
       </ProfileContainer>
     </>

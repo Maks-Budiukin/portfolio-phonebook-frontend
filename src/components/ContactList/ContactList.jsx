@@ -4,7 +4,7 @@ import { ContactListItem } from "components/ContactListItem/ContactListItem";
 const StyledList = styled.ul`
   padding: 0;
   padding-top: 30px;
-  margin-left: -24px;
+  padding-left: 72px;
   list-style: none;
   width: 50vw;
 
@@ -17,7 +17,7 @@ const StyledList = styled.ul`
     font-weight: bold;
   }
 
-  button {
+  /* button {
     background-color: #fff;
     padding: 5px 10px;
     border: 1px solid silver;
@@ -28,15 +28,15 @@ const StyledList = styled.ul`
       outline: none;
       border: 1px solid skyblue;
     }
-  }
+  } */
 
-  li span {
+  /* li span {
     color: black;
     display: inline-block;
     margin-left: auto;
     margin-right: 8px;
     font-weight: normal;
-  }
+  } */
 `;
 
 const Wrapper = styled.div`

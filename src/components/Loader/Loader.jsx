@@ -11,7 +11,7 @@ export const Loader = () => {
   return (
     <SpinnerContainer>
       <RotatingLines
-        strokeColor="skyblue"
+        strokeColor="var(--dark)"
         strokeWidth="5"
         animationDuration="0.75"
         width="28"

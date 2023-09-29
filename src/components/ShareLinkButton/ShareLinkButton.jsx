@@ -19,14 +19,15 @@ const ShareButton = styled.button`
   padding: 8px 16px;
   display: flex;
   align-items: center;
+  /* margin-left: auto;
+  margin-right: auto; */
   margin-left: auto;
-  margin-right: auto;
 
   transition: var(--trans);
 
   &:hover,
   &:focus {
-    transform: scale(1.15);
+    transform: scale(1.03);
   }
 `;
 

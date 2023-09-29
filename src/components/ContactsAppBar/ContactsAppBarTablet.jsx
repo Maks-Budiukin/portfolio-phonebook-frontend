@@ -32,7 +32,7 @@ const LoadingWrapper = styled.div`
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: var(--yellow);
 
   /* background: linear-gradient(
