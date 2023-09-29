@@ -19,7 +19,7 @@ const OuterLoadingWrapper = styled.div`
 
 const LoadingWrapper = styled.div`
   position: absolute;
-  left: 30px;
+  left: 34px;
   z-index: 2;
   background-color: #fff;
   width: 79vw;
