@@ -1,35 +1,6 @@
-import { ContactForm } from "components/ContactForm/ContactForm";
+import { MainForm } from "components/MainForm/MainForm";
 import { useEffect, useState } from "react";
-
-import styled from "styled-components";
-
-const ModalWindow = styled.div`
-  /* position: absolute; */
-  /* top: 50%;
-  left: 50%; */
-  /* border: 1px solid rgba(220, 227, 229, 0.8); */
-  box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
-  background-color: var(--dark);
-  clip-path: polygon(0 0, 100% 0, 98% 100%, 4% 100%);
-
-  padding: 68px 48px;
-
-  /* margin: 32px; */
-
-  /* clip-path: polygon(0 8%, 100% 0, 96% 100%, 10% 100%); */
-  /* clip-path: polygon(0 8%, 100% 0, 95% 100%, 6% 100%); */
-
-  &.block {
-    transform: scale(0.95);
-    transition-property: transform;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &.block-show {
-    transform: scale(1);
-  }
-`;
+import { ModalWindow } from "./ContactModal.styled";
 
 export const ContactModal = (props) => {
   const [isShowBox, setIsShowBox] = useState(false);
@@ -40,7 +11,7 @@ export const ContactModal = (props) => {
 
   return (
     <ModalWindow className={`modal block ${isShowBox ? " block-show" : ""}`}>
-      <ContactForm
+      <MainForm
         onSubmitClose={props.onClose}
         fn={props.fn}
         _id={props._id}

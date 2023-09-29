@@ -1,13 +1,6 @@
 import QRCode from "react-qr-code";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
-
-const QRWrapper = styled.div`
-  margin-top: 24px;
-  display: flex;
-  justify-content: center;
-  margin-left: -14px;
-`;
+import { QRWrapper } from "./UserQR.styled";
 
 export const UserQR = () => {
   const user = useSelector((state) => state.auth.user);

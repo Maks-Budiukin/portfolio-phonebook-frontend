@@ -1,29 +1,5 @@
 import { IconContext } from "react-icons";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-
-const InfoItem = styled.li`
-  display: flex;
-  align-items: center;
-`;
-
-const InfoDataLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #fff;
-  transition-property: color;
-  transition-duration: 250ms;
-
-  &:visited {
-    text-decoration: none;
-    color: "#fff";
-  }
-
-  &:hover {
-    color: var(--yellow);
-  }
-`;
+import { InfoDataLink, InfoItem } from "./UserProfileItem.styled";
 
 export const UserProfileItem = ({ data, icon, title }) => {
   return (
@@ -34,7 +10,6 @@ export const UserProfileItem = ({ data, icon, title }) => {
       >
         <IconContext.Provider
           value={{
-            // color: "yellow",
             size: "24px",
             className: "global-class-name",
             style: { padding: "4px" },

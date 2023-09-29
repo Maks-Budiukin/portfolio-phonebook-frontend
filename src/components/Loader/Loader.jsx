@@ -1,11 +1,5 @@
-import styled from "styled-components";
 import { RotatingLines } from "react-loader-spinner";
-
-const SpinnerContainer = styled.div`
-  position: absolute;
-  top: 20px;
-  right: 20px;
-`;
+import { SpinnerContainer } from "./Loader.styled";
 
 export const Loader = () => {
   return (

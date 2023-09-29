@@ -1,5 +1,4 @@
 import { ContactInfoItem } from "components/ContactInfoItem/ContactInfoItem";
-import { useSelector } from "react-redux";
 
 import { TfiEmail } from "react-icons/tfi";
 import { LiaTelegramPlane } from "react-icons/lia";
@@ -26,16 +25,9 @@ import {
   handleLinkedInURL,
 } from "./handleContactInput";
 
-import styled from "styled-components";
-
-const ContactinfoListWrapper = styled.ul`
-  list-style: none;
-  padding: 12px;
-`;
+import { ContactinfoListWrapper } from "./ContactInfoList.styled";
 
 export const ContactInfoList = ({ contact }) => {
-  // const contact = useSelector((state) => state.contacts.selectedContact);
-
   return (
     <ContactinfoListWrapper>
       {contact.number && (

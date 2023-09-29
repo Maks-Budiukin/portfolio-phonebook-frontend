@@ -4,7 +4,6 @@ import { fetchContactsThunk } from "redux/contacts/contacts.thunk";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import styled from "styled-components";
 import { ContactInfo } from "components/ContactInfo/ContactInfo";
 import { ContactsAppBar } from "components/ContactsAppBar/ContactsAppBar";
 import { Portal } from "components/Portal/Portal";
@@ -16,22 +15,7 @@ import { UserProfileBarTablet } from "components/UserProfile/UserProfileBarTable
 import { ContactListTablet } from "components/ContactList/ContactListTablet";
 import { ContactInfoTablet } from "components/ContactInfo/ContactInfoTablet";
 import { ContactListMobile } from "components/ContactList/ContactListMobile";
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-`;
-
-const AppSpace = styled.div`
-  position: relative;
-  padding-left: 5vw;
-`;
-
-const ContactsWrapper = styled.div`
-  display: flex;
-  width: 75vw;
-`;
+import { AppSpace, ContactsWrapper, Wrapper } from "./ContactsPage.styled";
 
 export const ContactsPage = () => {
   const contacts = useSelector((state) => state.contacts.items);
@@ -83,7 +67,8 @@ export const ContactsPage = () => {
         <Portal onClose={handleToggle}>
           <ContactModal
             onClose={handleToggle}
-            fn={"add"}
+            fn={"addContact"}
+            label={"Add contact"}
           />
         </Portal>
       )}

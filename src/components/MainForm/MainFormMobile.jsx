@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,103 +8,9 @@ import {
 } from "redux/contacts/contacts.thunk";
 import { updateUserThunk, uploadUserAvatar } from "redux/auth/auth.thunk";
 import { AvatarInput } from "components/AvatarInput/AvatarInput";
+import { InputWrapper, StyledForm } from "./MainFormMobile.styled";
 
-const StyledForm = styled.form`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-
-  gap: 4px;
-  width: 300px;
-
-  input {
-    display: flex;
-    width: 210px;
-    flex-direction: column;
-    border: 1px solid silver;
-    border-radius: 4px;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      border: 1px solid skyblue;
-    }
-  }
-  /* button {
-    background-color: #fff;
-    padding: 5px 10px;
-    border: 1px solid silver;
-    border-radius: 4px;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      border: 1px solid skyblue;
-    }
-  } */
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-  /* flex-direction: column; */
-  /* border: 1px solid silver; */
-  input {
-    display: flex;
-    width: 210px;
-    /* flex-direction: column; */
-    border: 1px solid silver;
-    border-radius: 4px;
-
-    &:hover,
-    &:focus {
-      outline: none;
-      border: 1px solid skyblue;
-    }
-  }
-`;
-
-// const AvatarWrapper = styled.div`
-//   #form-file-upload {
-//     height: 16rem;
-//     width: 28rem;
-//     max-width: 100%;
-//     text-align: center;
-//     position: relative;
-//   }
-
-//   #input-file-upload {
-//     display: none;
-//   }
-
-//   #label-file-upload {
-//     height: 100%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: center;
-//     border-width: 2px;
-//     border-radius: 1rem;
-//     border-style: dashed;
-//     border-color: #cbd5e1;
-//     background-color: #f8fafc;
-//   }
-
-//   .upload-button {
-//     cursor: pointer;
-//     padding: 0.25rem;
-//     font-size: 1rem;
-//     border: none;
-//     font-family: "Oswald", sans-serif;
-//     background-color: transparent;
-//   }
-
-//   .upload-button:hover {
-//     text-decoration-line: underline;
-//   }
-// `;
-
-export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
+export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
   const selectedContact = useSelector(
     (state) => state.contacts.selectedContact
   );
@@ -143,20 +47,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
   const [avatarFile, setAvatarFile] = useState(null);
 
   useEffect(() => {
-    if (fn === "edit") {
-      // selectedContact.name && setName(selectedContact.name);
-      // selectedContact.email && setEmail(selectedContact.email);
-      // selectedContact.number && setNumber(selectedContact.number);
-      // selectedContact.telegram && setTelegram(selectedContact.telegram);
-      // selectedContact.linkedin && setLinkedin(selectedContact.linkedin);
-      // selectedContact.instagram && setInstagram(selectedContact.instagram);
-      // selectedContact.github && setGithub(selectedContact.github);
-      // selectedContact.facebook && setFacebook(selectedContact.facebook);
-      // selectedContact.twitter && setTwitter(selectedContact.twitter);
-      // selectedContact.bitbucket && setBitbucket(selectedContact.bitbucket);
-      // selectedContact.whatsapp && setWhatsapp(selectedContact.whatsapp);
-      // selectedContact.viber && setViber(selectedContact.viber);
-      // selectedContact.avatar && setAvatar(selectedContact.avatar);
+    if (fn === "editContact") {
       setName(selectedContact.name || "");
       setEmail(selectedContact.email || "");
       setNumber(selectedContact.number || "");
@@ -171,7 +62,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
       setViber(selectedContact.viber || "");
       setAvatar(selectedContact.avatar || "");
     }
-    if (fn === "userEdit") {
+    if (fn === "editUser") {
       setName(user.name || "");
       setEmail(user.email || "");
       setNumber(user.number || "");
@@ -186,7 +77,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
       setViber(user.viber || "");
       setAvatar(user.avatar || "");
     }
-    if (fn === "add" && sharedContact) {
+    if (fn === "addContact" && sharedContact) {
       setName(sharedContact.name || "");
       setEmail(sharedContact.email || "");
       setNumber(sharedContact.number || "");
@@ -248,7 +139,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
 
   const action = async (fn) => {
     switch (fn) {
-      case "add":
+      case "addContact":
         dispatch(
           addContactsThunk({
             name,
@@ -267,7 +158,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
           })
         );
         break;
-      case "edit":
+      case "editContact":
         dispatch(
           editContactsThunk({
             _id,
@@ -290,7 +181,7 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
 
         break;
 
-      case "userEdit":
+      case "editUser":
         dispatch(
           updateUserThunk({
             _id,

@@ -22,7 +22,6 @@ export const ContactIconsSet = ({ contact }) => {
       value={{
         color: "var(--dark)",
         size: "1.5em",
-        className: "global-class-name",
         style: { padding: "4px" },
       }}
     >

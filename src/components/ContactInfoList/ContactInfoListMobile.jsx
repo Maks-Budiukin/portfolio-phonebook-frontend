@@ -1,5 +1,4 @@
 import { ContactInfoItem } from "components/ContactInfoItem/ContactInfoItem";
-import { useSelector } from "react-redux";
 
 import { TfiEmail } from "react-icons/tfi";
 import { LiaTelegramPlane } from "react-icons/lia";
@@ -26,30 +25,10 @@ import {
   handleLinkedInURL,
 } from "./handleContactInput";
 
-import styled from "styled-components";
 import { useEffect, useState } from "react";
-
-const ContactinfoListWrapper = styled.ul`
-  list-style: none;
-  padding: 12px;
-  width: 70vw;
-
-  &.block {
-    opacity: 0;
-    transform: translateY(-100%);
-    transition-property: transform opacity;
-    transition-duration: 400ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  &.block-show {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
+import { ContactinfoListWrapper } from "./ContactInfoListMobile.styled";
 
 export const ContactInfoListMobile = ({ contact }) => {
-  // const contact = useSelector((state) => state.contacts.selectedContact);
   const [isShowBox, setIsShowBox] = useState(false);
 
   useEffect(() => {
