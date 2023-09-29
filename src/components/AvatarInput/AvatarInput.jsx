@@ -5,8 +5,8 @@ import { Cropper } from "react-advanced-cropper";
 import "react-advanced-cropper/dist/style.css";
 
 const AvatarWrapper = styled.div`
-  margin-left: auto;
-  margin-top: auto;
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,6 +70,37 @@ const CropperModal = styled.div`
   width: 70vw;
   height: 90vh;
   background-color: #fff;
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+`;
+
+const DeleteButton = styled.button`
+  outline: none;
+  border: none;
+  background: linear-gradient(
+    91deg,
+    var(--yellow) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
+  color: var(--dark);
+
+  font-weight: bold;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  border: 4px solid var(--dark);
+  transition: var(--trans);
+  margin-left: -4px;
+
+  &:hover,
+  &:focus {
+    transform: scale(1.13);
+  }
 `;
 
 export const AvatarInput = ({ getAvatar }) => {
@@ -172,12 +203,14 @@ export const AvatarInput = ({ getAvatar }) => {
             ></div>
           )}
         </div>
-        <button
-          type="button"
-          onClick={() => setFile(null)}
-        >
-          Remove
-        </button>
+        <ButtonContainer>
+          <DeleteButton
+            type="button"
+            onClick={() => setFile(null)}
+          >
+            X
+          </DeleteButton>
+        </ButtonContainer>
       </AvatarWrapper>
       {cropperModalOpen && (
         <CropperModal>

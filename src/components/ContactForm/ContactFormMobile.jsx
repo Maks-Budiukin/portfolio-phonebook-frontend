@@ -13,14 +13,13 @@ import { AvatarInput } from "components/AvatarInput/AvatarInput";
 
 const StyledForm = styled.form`
   display: flex;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
 
-  gap: 48px;
-  /* width: 300px; */
+  gap: 4px;
+  width: 300px;
 
-  /* input {
+  input {
     display: flex;
     width: 210px;
     flex-direction: column;
@@ -32,7 +31,7 @@ const StyledForm = styled.form`
       outline: none;
       border: 1px solid skyblue;
     }
-  } */
+  }
   /* button {
     background-color: #fff;
     padding: 5px 10px;
@@ -47,40 +46,23 @@ const StyledForm = styled.form`
   } */
 `;
 
-const TextPartWrapper = styled.div``;
-
-const FunctionalPartWrapper = styled.div``;
-
 const InputWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 320px;
-  padding: 2px;
+  width: 300px;
   /* flex-direction: column; */
   /* border: 1px solid silver; */
-  label {
-    color: #fff;
-  }
-
   input {
     display: flex;
     width: 210px;
-    padding: 4px;
     /* flex-direction: column; */
-    border: 1px solid var(--dark);
+    border: 1px solid silver;
     border-radius: 4px;
-    color: var(--dark);
-    font-weight: bold;
-    background-color: var(--yellow);
-
-    transition-property: border;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
       outline: none;
-      border: 1px solid var(--yellow);
+      border: 1px solid skyblue;
     }
   }
 `;
@@ -123,68 +105,6 @@ const InputWrapper = styled.div`
 //     text-decoration-line: underline;
 //   }
 // `;
-const ButtonContainer = styled.div`
-  display: flex;
-`;
-
-const SubmitButton = styled.button`
-  outline: none;
-  border: none;
-  /* background: linear-gradient(
-    95deg,
-    var(--yellow) 0 97%,
-    #fff0 calc(97% + 1px) 100%
-  ); */
-  background-color: var(--yellow);
-  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
-
-  color: var(--dark);
-  font-weight: bold;
-  padding: 16px 16px;
-  display: flex;
-  align-items: center;
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.5); */
-  margin-bottom: 16px;
-  margin-right: -2px;
-
-  transition: var(--trans);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.04);
-  }
-`;
-
-const CancelButton = styled.button`
-  outline: none;
-  border: none;
-  /* background: linear-gradient(
-    -87deg,
-    var(--yellow) 0 97%,
-    #fff0 calc(97% + 1px) 100%
-  ); */
-  background-color: var(--yellow);
-  clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
-
-  color: var(--dark);
-  font-weight: bold;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  /* margin-left: auto;
-  margin-right: auto; */
-  margin-top: 16px;
-  margin-left: -2px;
-
-  transition: var(--trans);
-
-  &:hover,
-  &:focus {
-    transform: scale(1.04);
-  }
-`;
 
 export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
   const selectedContact = useSelector(
@@ -414,158 +334,129 @@ export const ContactForm = ({ _id, fn, onSubmitClose, label }) => {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <FunctionalPartWrapper>
-        <AvatarInput getAvatar={getAvatar} />
+      <AvatarInput getAvatar={getAvatar} />
 
-        <ButtonContainer>
-          <SubmitButton type="submit">{label}</SubmitButton>
+      <InputWrapper>
+        <label htmlFor={nameInpudId}>Name </label>
+        <input
+          type="text"
+          name="name"
+          id={nameInpudId}
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          value={name}
+          onChange={onInputChange}
+          required
+        />
+      </InputWrapper>
+      <label htmlFor={numberInpudId}>Number </label>
+      <input
+        type="tel"
+        name="number"
+        id={numberInpudId}
+        title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+        value={number}
+        onChange={onInputChange}
+        required
+      />
 
-          <CancelButton
-            type="button"
-            onClick={onSubmitClose}
-          >
-            Cancel
-          </CancelButton>
-        </ButtonContainer>
-      </FunctionalPartWrapper>
+      <label htmlFor={emailInpudId}>Email </label>
+      <input
+        type="email"
+        name="email"
+        id={emailInpudId}
+        title="Email"
+        value={email}
+        onChange={onInputChange}
+      />
+      <label htmlFor={telegramInpudId}>Telegram </label>
+      <input
+        type="text"
+        name="telegram"
+        id={telegramInpudId}
+        title="Telegram"
+        value={telegram}
+        onChange={onInputChange}
+      />
+      <label htmlFor={linkedinInpudId}>LinkedIn </label>
+      <input
+        type="text"
+        name="linkedin"
+        id={linkedinInpudId}
+        title="LinkedIn"
+        value={linkedin}
+        onChange={onInputChange}
+      />
+      <label htmlFor={instagramInpudId}>Instagram </label>
+      <input
+        type="text"
+        name="instagram"
+        id={instagramInpudId}
+        title="Instagram"
+        value={instagram}
+        onChange={onInputChange}
+      />
+      <label htmlFor={githubInpudId}>GitHub </label>
+      <input
+        type="text"
+        name="github"
+        id={githubInpudId}
+        title="Github"
+        value={github}
+        onChange={onInputChange}
+      />
+      <label htmlFor={facebookInpudId}>Facebook </label>
+      <input
+        type="text"
+        name="facebook"
+        id={facebookInpudId}
+        title="Facebook"
+        value={facebook}
+        onChange={onInputChange}
+      />
+      <label htmlFor={twitterInpudId}>Twitter </label>
+      <input
+        type="text"
+        name="twitter"
+        id={twitterInpudId}
+        title="Twitter"
+        value={twitter}
+        onChange={onInputChange}
+      />
+      <label htmlFor={bitbucketInpudId}>Bitbucket </label>
+      <input
+        type="text"
+        name="bitbucket"
+        id={bitbucketInpudId}
+        title="Bitbucket"
+        value={bitbucket}
+        onChange={onInputChange}
+      />
+      <label htmlFor={whatsappInpudId}>WhatsApp </label>
+      <input
+        type="text"
+        name="whatsapp"
+        id={whatsappInpudId}
+        title="WhatsApp"
+        value={whatsapp}
+        onChange={onInputChange}
+      />
+      <label htmlFor={viberInpudId}>Viber </label>
+      <input
+        type="text"
+        name="viber"
+        id={viberInpudId}
+        title="Viber"
+        value={viber}
+        onChange={onInputChange}
+      />
 
-      <TextPartWrapper>
-        <InputWrapper>
-          <label htmlFor={nameInpudId}>Name </label>
-          <input
-            type="text"
-            name="name"
-            id={nameInpudId}
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            value={name}
-            onChange={onInputChange}
-            required
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={numberInpudId}>Number </label>
-          <input
-            type="tel"
-            name="number"
-            id={numberInpudId}
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            value={number}
-            onChange={onInputChange}
-            required
-          />
-        </InputWrapper>
-
-        <InputWrapper>
-          <label htmlFor={emailInpudId}>Email </label>
-          <input
-            type="email"
-            name="email"
-            id={emailInpudId}
-            title="Email"
-            value={email}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={telegramInpudId}>Telegram </label>
-          <input
-            type="text"
-            name="telegram"
-            id={telegramInpudId}
-            title="Telegram"
-            value={telegram}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={linkedinInpudId}>LinkedIn </label>
-          <input
-            type="text"
-            name="linkedin"
-            id={linkedinInpudId}
-            title="LinkedIn"
-            value={linkedin}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={instagramInpudId}>Instagram </label>
-          <input
-            type="text"
-            name="instagram"
-            id={instagramInpudId}
-            title="Instagram"
-            value={instagram}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={githubInpudId}>GitHub </label>
-          <input
-            type="text"
-            name="github"
-            id={githubInpudId}
-            title="Github"
-            value={github}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={facebookInpudId}>Facebook </label>
-          <input
-            type="text"
-            name="facebook"
-            id={facebookInpudId}
-            title="Facebook"
-            value={facebook}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={twitterInpudId}>Twitter </label>
-          <input
-            type="text"
-            name="twitter"
-            id={twitterInpudId}
-            title="Twitter"
-            value={twitter}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={bitbucketInpudId}>Bitbucket </label>
-          <input
-            type="text"
-            name="bitbucket"
-            id={bitbucketInpudId}
-            title="Bitbucket"
-            value={bitbucket}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={whatsappInpudId}>WhatsApp </label>
-          <input
-            type="text"
-            name="whatsapp"
-            id={whatsappInpudId}
-            title="WhatsApp"
-            value={whatsapp}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <label htmlFor={viberInpudId}>Viber </label>
-          <input
-            type="text"
-            name="viber"
-            id={viberInpudId}
-            title="Viber"
-            value={viber}
-            onChange={onInputChange}
-          />
-        </InputWrapper>
-      </TextPartWrapper>
+      <button type="submit">{label}</button>
+      <button
+        type="button"
+        onClick={onSubmitClose}
+      >
+        Cancel
+      </button>
     </StyledForm>
   );
 };
