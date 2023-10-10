@@ -27,6 +27,7 @@ export const uploadContactAvatar = createAsyncThunk(
   "contacts/uploadAvatar",
   async (editData, thunkAPI) => {
     const { _id, avatar } = editData;
+    console.log("editDATA", editData);
     try {
       const formData = new FormData();
       formData.append("files", avatar);
@@ -84,7 +85,7 @@ export const editContactsThunk = createAsyncThunk(
     try {
       const response = await axios({
         method: "patch",
-        url: `/contacts/${_id._id}`,
+        url: `/contacts/${_id}`,
         data: data,
       });
 

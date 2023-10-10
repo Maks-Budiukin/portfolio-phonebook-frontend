@@ -168,7 +168,8 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
         );
         break;
       case "editContact":
-        dispatch(
+        console.log(selectedContact._id);
+        await dispatch(
           editContactsThunk({
             _id,
             name,
@@ -186,7 +187,7 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             avatar,
           })
         );
-        dispatch(uploadContactAvatar({ _id: _id._id, avatar: avatarFile }));
+        dispatch(uploadContactAvatar({ _id, avatar: avatarFile }));
 
         break;
 
@@ -228,8 +229,9 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
     //   : action(fn);
   };
 
-  const getAvatar = (file) => {
-    setAvatarFile(file);
+  const getAvatar = async (file) => {
+    await setAvatarFile(file);
+    console.log("AVATAR FILE", avatarFile);
   };
 
   return (

@@ -60,12 +60,27 @@ export const AvatarWrapper = styled.div`
 
 export const CropperModal = styled.div`
   position: absolute;
-  top: 20vh;
-  left: -20vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  /* top: 10vh;
+  left: 10vw; */
+  /* top: 20vh; */
+  /* left: -20vw; */
   z-index: 50;
-  width: 70vw;
+  /* width: 70vw;
+  height: 90vh; */
+  width: 90vw;
+  /* max-width: 80%; */
   height: 90vh;
-  background-color: #fff;
+  /* width: 80%; */
+
+  background-color: #000;
 `;
 
 export const ButtonContainer = styled.div`
@@ -97,4 +112,54 @@ export const DeleteButton = styled.button`
   &:focus {
     transform: scale(1.13);
   }
+`;
+
+export const CropButton = styled.button`
+  outline: none;
+  border: none;
+  background-color: var(--yellow);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+
+  color: var(--dark);
+  font-weight: bold;
+  padding: 16px 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-right: -2px;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
+  }
+`;
+
+export const CancelCropButton = styled.button`
+  outline: none;
+  border: none;
+  background-color: var(--yellow);
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 0% 100%);
+
+  color: var(--dark);
+  font-weight: bold;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: -2px;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
+  }
+`;
+
+export const CropperButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: -5vh;
 `;

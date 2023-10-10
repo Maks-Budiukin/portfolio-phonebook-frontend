@@ -4,20 +4,28 @@ import "react-advanced-cropper/dist/style.css";
 import {
   AvatarWrapper,
   ButtonContainer,
+  CancelCropButton,
+  CropButton,
+  CropperButtonContainer,
   CropperModal,
   DeleteButton,
 } from "./AvatarInput.styled";
+import { Portal } from "components/Portal/Portal";
 
 export const AvatarInput = ({ getAvatar, currentAvatar }) => {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
   const [file, setFile] = useState(null);
-  const [cropperModalOpen, setCropperModalOpen] = useState(null);
+  // const [cropperModalOpen, setCropperModalOpen] = useState(null);
   const cropperRef = useRef(null);
+  // const [isCropModalOpen, setIsCropModalOpen] = useState(false);
+  const [avatar, setAvatar] = useState(null);
 
-  const toggleCropperModal = () => {
-    setCropperModalOpen((prevstate) => !prevstate);
-  };
+  const inputFileRef = useRef(null);
+
+  // const toggleCropperModal = () => {
+  //   setCropperModalOpen((prevstate) => !prevstate);
+  // };
   // handle drag events
   const handleDrag = function (e) {
     e.preventDefault();
@@ -37,35 +45,48 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = URL.createObjectURL(e.dataTransfer.files[0]);
       setFile(file);
-      toggleCropperModal();
+      // toggleCropperModal();
     }
   };
 
   // triggers when file is selected with click
   const handleChange = function (e) {
+    console.log(e);
+    console.log(e.target.files);
     e.preventDefault();
+
     if (e.target.files && e.target.files[0]) {
       const file = URL.createObjectURL(e.target.files[0]);
       setFile(file);
       // setCropperModalOpen(true);
       // getAvatar(e.target.files[0]); - КЛЮЧЕВОЕ
-      toggleCropperModal();
+      // toggleCropperModal();
+      // setCropperModalOpen(true);
     }
+    // if (!e.target.files || !e.target.files[0]) {
+    //   setFile(null);
+    // }
   };
 
   const onChange = (cropper) => {};
 
+  // const handleCropToggle = () => setIsCropModalOpen((pS) => !pS);
+
   const onCrop = async () => {
-    setFile(cropperRef.current.getCanvas()?.toDataURL());
+    setAvatar(cropperRef.current.getCanvas()?.toDataURL());
     cropperRef.current.getCanvas()?.toBlob((blob) => {
       getAvatar(blob);
     });
-    setCropperModalOpen(false);
+    // setCropperModalOpen(false);
+    inputRef.current.value = null;
+    setFile(null);
   };
 
   const onCropCancel = () => {
-    setCropperModalOpen(false);
+    // setCropperModalOpen(false);
+    inputRef.current.value = null;
     setFile(null);
+
     // onInputChange(null);
   };
 
@@ -81,7 +102,7 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
             ref={inputRef}
             type="file"
             id="input-file-upload"
-            multiple={true}
+            multiple={false}
             onChange={handleChange}
           />
           <label
@@ -95,13 +116,13 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
                     backgroundSize: "cover",
                   }
                 : {
-                    backgroundImage: `url(${file})`,
+                    backgroundImage: `url(${avatar})`,
                     backgroundSize: "cover",
                   }
             }
           >
             <div>
-              {!file && !currentAvatar && (
+              {!avatar && !currentAvatar && (
                 <p>Drag and drop your file here or click to upload</p>
               )}
             </div>
@@ -120,36 +141,42 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
         <ButtonContainer>
           <DeleteButton
             type="button"
-            onClick={() => setFile(null)}
+            onClick={() => setAvatar(null)}
           >
             X
           </DeleteButton>
         </ButtonContainer>
       </AvatarWrapper>
-      {cropperModalOpen && (
-        <CropperModal>
-          <Cropper
-            ref={cropperRef}
-            src={file}
-            onChange={onChange}
-            className={"cropper"}
-            stencilProps={{
-              aspectRatio: 1 / 1,
-            }}
-          />
-          <button
-            type="button"
-            onClick={onCrop}
-          >
-            Crop
-          </button>
-          <button
-            type="button"
-            onClick={onCropCancel}
-          >
-            Cancel
-          </button>
-        </CropperModal>
+      {file && (
+        <>
+          <Portal onClose={() => setFile(null)}>
+            <CropperModal>
+              <Cropper
+                ref={cropperRef}
+                src={file}
+                onChange={onChange}
+                className={"cropper"}
+                stencilProps={{
+                  aspectRatio: 1 / 1,
+                }}
+              />
+              <CropperButtonContainer>
+                <CropButton
+                  type="button"
+                  onClick={onCrop}
+                >
+                  Looks good!
+                </CropButton>
+                <CancelCropButton
+                  type="button"
+                  onClick={onCropCancel}
+                >
+                  Cancel
+                </CancelCropButton>
+              </CropperButtonContainer>
+            </CropperModal>
+          </Portal>
+        </>
       )}
     </>
   );
