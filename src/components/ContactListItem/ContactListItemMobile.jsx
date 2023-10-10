@@ -2,17 +2,21 @@ import { ContactIconsSet } from "components/ContactIconsSet/ContactIconsSet";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedContactsThunk } from "redux/contacts/contacts.thunk";
 import userDummy from "images/user-dummy28.jpg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ContactInfoListMobile } from "components/ContactInfoList/ContactInfoListMobile";
 import {
   ContactItem,
   ContactName,
+  ContactNameInline,
+  ContactNumber,
   ContactPhotoThumb,
 } from "./ContactListItemMobile.styled";
+import { ContactIconsSetMobile } from "components/ContactIconsSet/ContactIconsSetMobile";
 
 export const ContactListItemMobile = ({ contact }) => {
   const dispatch = useDispatch();
   const [showContact, setShowContact] = useState(false);
+  const [isShowBox, setIsShowBox] = useState(false);
   const selectedContact = useSelector(
     (state) => state.contacts.selectedContact
   );
@@ -20,12 +24,17 @@ export const ContactListItemMobile = ({ contact }) => {
   const handleItemClick = (contact) => {
     dispatch(setSelectedContactsThunk(contact));
     setShowContact(true);
+    setIsShowBox(true);
   };
+
+  // useEffect(() => {
+  //   setTimeout(() => setIsShowBox(true));
+  // }, []);
 
   return (
     <ContactItem
       onClick={() => handleItemClick(contact)}
-      className={`block2 ${showContact ? " block2-show" : ""}`}
+      // className={`block ${isShowBox ? " block-show" : ""}`}
     >
       <ContactPhotoThumb className="rotate">
         <img
@@ -33,16 +42,29 @@ export const ContactListItemMobile = ({ contact }) => {
           alt="Contact avatar"
         ></img>
       </ContactPhotoThumb>
-      <ContactName>{contact.name}</ContactName>
-      {selectedContact._id !== contact._id && (
+      {/* <ContactName>{contact.name}</ContactName> */}
+      {/* {selectedContact._id !== contact._id && (
         <>
           <p>{contact.number}</p>
           <ContactIconsSet contact={contact} />
         </>
-      )}
-      {selectedContact._id === contact._id && showContact && (
-        <ContactInfoListMobile contact={contact} />
-      )}
+      )} */}
+
+      <ContactNumber>
+        <ContactNameInline>{contact.name}</ContactNameInline>
+        {/* {contact.number} */}
+        <ContactIconsSetMobile contact={contact} />
+      </ContactNumber>
+
+      <div
+        className={`block ${
+          selectedContact._id === contact._id ? "block-show" : ""
+        }`}
+      >
+        {selectedContact._id === contact._id && showContact && (
+          <ContactInfoListMobile contact={contact} />
+        )}
+      </div>
     </ContactItem>
   );
 };

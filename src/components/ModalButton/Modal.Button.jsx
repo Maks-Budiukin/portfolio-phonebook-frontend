@@ -4,12 +4,18 @@ import { useState } from "react";
 import { BsPlusCircle } from "react-icons/bs";
 import { GrEdit } from "react-icons/gr";
 import { useMediaQuery } from "react-responsive";
-import { AddButton, EditButton, UserEditButton } from "./ModalButton.styled";
+import {
+  AddButton,
+  EditButton,
+  EditButtonMobile,
+  UserEditButton,
+} from "./ModalButton.styled";
 
 export const ModalButton = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isMobile = useMediaQuery({ maxWidth: 689 });
 
   const handleToggle = () => setIsModalOpen((pS) => !pS);
 
@@ -24,13 +30,21 @@ export const ModalButton = (props) => {
           {isDesktop && "Add contact"}
         </AddButton>
       )}
-      {props.fn === "editContact" && (
+      {props.fn === "editContact" && !isMobile && (
         <EditButton
           type="button"
           onClick={handleToggle}
         >
           <GrEdit style={{ marginRight: "4px" }} />
         </EditButton>
+      )}
+      {props.fn === "editContact" && isMobile && (
+        <EditButtonMobile
+          type="button"
+          onClick={handleToggle}
+        >
+          Edit contact
+        </EditButtonMobile>
       )}
       {props.fn === "editUser" && (
         <UserEditButton

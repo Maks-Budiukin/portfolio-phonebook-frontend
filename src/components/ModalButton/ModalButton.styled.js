@@ -47,6 +47,28 @@ export const EditButton = styled.button`
   }
 `;
 
+export const EditButtonMobile = styled.button`
+  outline: none;
+  border: none;
+  background-color: var(--dark);
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+
+  color: var(--yellow);
+  font-weight: bold;
+  padding: 16px 16px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  margin-right: -2px;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
+  }
+`;
+
 export const UserEditButton = styled.button`
   outline: none;
   border: none;

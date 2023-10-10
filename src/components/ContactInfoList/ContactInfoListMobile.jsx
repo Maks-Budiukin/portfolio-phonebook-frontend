@@ -26,19 +26,32 @@ import {
 } from "./handleContactInput";
 
 import { useEffect, useState } from "react";
-import { ContactinfoListWrapper } from "./ContactInfoListMobile.styled";
+import {
+  ButtonContainer,
+  ContactinfoListWrapper,
+  DeleteButton,
+  EditButton,
+} from "./ContactInfoListMobile.styled";
+import { useDispatch } from "react-redux";
+import { deleteContactsThunk } from "redux/contacts/contacts.thunk";
+import { ModalButton } from "components/ModalButton/Modal.Button";
 
 export const ContactInfoListMobile = ({ contact }) => {
-  const [isShowBox, setIsShowBox] = useState(false);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setTimeout(() => setIsShowBox(true));
-  }, []);
+  const handleDelete = () => {
+    dispatch(deleteContactsThunk(contact._id));
+  };
+  // const [isShowBox, setIsShowBox] = useState(false);
+
+  // useEffect(() => {
+  //   contact && setTimeout(() => setIsShowBox(true));
+  // }, [contact]);
 
   return (
     <div style={{ overflow: "hidden" }}>
       <ContactinfoListWrapper
-        className={`block ${isShowBox ? " block-show" : ""}`}
+      // className={`block ${isShowBox ? " block-show" : ""}`}
       >
         {contact.number && (
           <ContactInfoItem
@@ -119,6 +132,20 @@ export const ContactInfoListMobile = ({ contact }) => {
             title={handleBitbucketURL(contact.bitbucket)}
           />
         )}
+        <ButtonContainer>
+          <ModalButton
+            fn={"editContact"}
+            label={"Edit contact"}
+            _id={contact._id}
+          />
+
+          <DeleteButton
+            type="button"
+            onClick={handleDelete}
+          >
+            Delete
+          </DeleteButton>
+        </ButtonContainer>
       </ContactinfoListWrapper>
     </div>
   );
