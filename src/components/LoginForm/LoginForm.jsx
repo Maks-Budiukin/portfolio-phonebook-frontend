@@ -13,20 +13,26 @@ const StyledForm = styled.form`
   gap: 4px;
   width: 300px;
 
+  border-top: 5px solid var(--dark);
+  /* border-bottom: 4px solid var(--dark); */
+  padding: 16px;
+
   input {
     display: flex;
     width: 210px;
     flex-direction: column;
-    border: 1px solid silver;
-    border-radius: 4px;
+    border: 2px solid var(--yellow);
+
+    transition-property: border;
+    transition-duration: 250ms;
 
     &:hover,
     &:focus {
       outline: none;
-      border: 1px solid skyblue;
+      border: 2px solid var(--dark);
     }
   }
-  button {
+  /* button {
     margin-left: auto;
     background-color: #fff;
     padding: 5px 10px;
@@ -38,6 +44,30 @@ const StyledForm = styled.form`
       outline: none;
       border: 1px solid skyblue;
     }
+  } */
+`;
+
+const LoginButton = styled.button`
+  outline: none;
+  border: none;
+  background-color: var(--dark);
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 8% 100%);
+
+  color: var(--yellow);
+  font-weight: bold;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
   }
 `;
 
@@ -93,7 +123,7 @@ const LoginForm = () => {
         required
       />
 
-      <button type="submit">Log In</button>
+      <LoginButton type="submit">Log In</LoginButton>
     </StyledForm>
   );
 };

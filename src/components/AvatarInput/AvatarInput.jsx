@@ -21,7 +21,7 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
   // const [isCropModalOpen, setIsCropModalOpen] = useState(false);
   const [avatar, setAvatar] = useState(null);
 
-  const inputFileRef = useRef(null);
+  // const inputFileRef = useRef(null);
 
   // const toggleCropperModal = () => {
   //   setCropperModalOpen((prevstate) => !prevstate);
