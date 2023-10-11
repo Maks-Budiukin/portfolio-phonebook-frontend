@@ -15,6 +15,7 @@ export const AddButton = styled.button`
   display: flex;
   align-items: center;
   transition: var(--trans);
+  cursor: pointer;
 
   &:hover,
   &:focus {
@@ -38,6 +39,7 @@ export const EditButton = styled.button`
   align-items: center;
   margin: 2px;
   border: 3px solid var(--dark);
+  cursor: pointer;
 
   transition: var(--trans);
 
@@ -60,6 +62,7 @@ export const EditButtonMobile = styled.button`
   align-items: center;
   margin-bottom: 16px;
   margin-right: -2px;
+  cursor: pointer;
 
   transition: var(--trans);
 
@@ -83,6 +86,8 @@ export const UserEditButton = styled.button`
   display: flex;
   align-items: center;
   margin: 4px;
+  cursor: pointer;
+
   transition: var(--trans);
 
   &:hover,

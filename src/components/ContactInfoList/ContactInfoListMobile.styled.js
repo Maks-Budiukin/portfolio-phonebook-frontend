@@ -44,6 +44,7 @@ export const DeleteButton = styled.button`
   align-items: center;
   margin-top: 16px;
   margin-left: -2px;
+  cursor: pointer;
 
   transition: var(--trans);
 

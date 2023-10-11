@@ -59,6 +59,7 @@ export const LogoutButton = styled.button`
   margin-left: auto;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   transition-property: scale;
   transition-duration: 250;

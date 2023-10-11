@@ -13,6 +13,8 @@ export const Burger = styled.button`
   padding: 8px 16px;
   display: flex;
   align-items: center;
+  cursor: pointer;
+
   transition: var(--trans);
 
   &:hover,

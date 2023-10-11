@@ -17,6 +17,7 @@ export const ShareButton = styled.button`
   /* margin-left: auto;
   margin-right: auto; */
   margin-left: auto;
+  cursor: pointer;
 
   transition: var(--trans);
 

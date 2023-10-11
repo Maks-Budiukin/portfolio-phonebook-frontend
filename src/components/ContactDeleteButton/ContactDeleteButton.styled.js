@@ -17,6 +17,7 @@ export const DeleteButton = styled.button`
   border: 4px solid var(--dark);
   transition: var(--trans);
   margin-left: -4px;
+  cursor: pointer;
 
   &:hover,
   &:focus {

@@ -105,6 +105,7 @@ export const SubmitButton = styled.button`
   align-items: center;
   margin-bottom: 16px;
   margin-right: -2px;
+  cursor: pointer;
 
   transition: var(--trans);
 
@@ -127,6 +128,7 @@ export const CancelButton = styled.button`
   align-items: center;
   margin-top: 16px;
   margin-left: -2px;
+  cursor: pointer;
 
   transition: var(--trans);
 
