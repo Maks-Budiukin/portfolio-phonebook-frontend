@@ -127,12 +127,12 @@ const CreateCtaContainer = styled.div`
 //================================== SHARE ==================
 
 const PromoContainerShare = styled.section`
+  position: relative;
   background-color: rgba(185, 185, 185, 0.146);
 
   display: flex;
   gap: 5vw;
   justify-content: center;
-  /* align-items: center; */
 
   width: 100%;
   min-height: 100vh;
@@ -169,14 +169,53 @@ const PromoContainerShare = styled.section`
   }
 `;
 
+const ShareWrapper = styled.div`
+  display: flex;
+  gap: 5vw;
+  justify-content: center;
+
+  /* width: 100%; */
+  /* height: 80vh; */
+`;
+
 const ShareCtaContainer = styled.div`
   background-color: var(--dark);
 `;
 
 const DevicesImage = styled.img`
-  margin-top: 15vh;
+  margin-top: 10vh;
 
   width: 50vw;
+`;
+
+const JoinButton = styled.button`
+  position: absolute;
+  left: auto;
+  right: auto;
+  bottom: 7vh;
+  outline: none;
+  border: none;
+  background-color: var(--yellow);
+  clip-path: polygon(0 0, 100% 5%, 100% 100%, 7% 100%);
+
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 24px;
+  padding: 24px 56px;
+  display: flex;
+  align-items: center;
+  /* margin-top: -20vh;
+  margin-bottom: 20vh; */
+  margin-left: auto;
+  margin-right: 6vw;
+  cursor: pointer;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
 `;
 
 //================================== SHARE ==================
@@ -263,7 +302,8 @@ export const HomePage = () => {
             alt="devices pic"
           ></DevicesImage>
         </div>
-        <button onClick={handleUpClick}>Join!</button>
+
+        <JoinButton onClick={handleUpClick}>Join now!</JoinButton>
       </PromoContainerShare>
     </LandingSection>
   );
