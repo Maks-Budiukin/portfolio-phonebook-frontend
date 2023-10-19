@@ -5,9 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addContactsThunk,
   editContactsThunk,
-  uploadContactAvatar,
 } from "redux/contacts/contacts.thunk";
-import { updateUserThunk, uploadUserAvatar } from "redux/auth/auth.thunk";
+import { updateUserThunk } from "redux/auth/auth.thunk";
 import { AvatarInput } from "components/AvatarInput/AvatarInput";
 import {
   ButtonContainer,
@@ -149,7 +148,7 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
   const action = async (fn) => {
     switch (fn) {
       case "addContact":
-        dispatch(
+        await dispatch(
           addContactsThunk({
             name,
             number,
@@ -166,9 +165,12 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             avatar: avatarFile,
           })
         );
+        // dispatch(
+        //   uploadContactAvatar({ _id: selectedContact._id, avatar: avatarFile })
+        // );
+
         break;
       case "editContact":
-        console.log(selectedContact._id);
         await dispatch(
           editContactsThunk({
             _id,
@@ -185,14 +187,15 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             whatsapp,
             viber,
             avatar,
+            avatarFile,
           })
         );
-        dispatch(uploadContactAvatar({ _id, avatar: avatarFile }));
+        // dispatch(uploadContactAvatar({ _id, avatar: avatarFile }));
 
         break;
 
       case "editUser":
-        dispatch(
+        await dispatch(
           updateUserThunk({
             _id,
             name,
@@ -207,9 +210,11 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             bitbucket,
             whatsapp,
             viber,
+            avatar,
+            avatarFile,
           })
         );
-        dispatch(uploadUserAvatar({ _id, avatar: avatarFile }));
+        // dispatch(uploadUserAvatar({ _id, avatar: avatarFile }));
 
         break;
       default:
@@ -234,11 +239,16 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
     console.log("AVATAR FILE", avatarFile);
   };
 
+  const setAvatarPreview = async (avatar) => {
+    setAvatar(avatar);
+  };
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FunctionalPartWrapper>
         <AvatarInput
           getAvatar={getAvatar}
+          setAvatarPreview={setAvatarPreview}
           currentAvatar={avatar}
         />
 

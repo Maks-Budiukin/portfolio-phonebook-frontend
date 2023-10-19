@@ -23,40 +23,11 @@ export const setSelectedContactsThunk = createAsyncThunk(
   }
 );
 
-export const uploadContactAvatar = createAsyncThunk(
-  "contacts/uploadAvatar",
-  async (editData, thunkAPI) => {
-    const { _id, avatar } = editData;
-    console.log("editDATA", editData);
-    try {
-      const formData = new FormData();
-      formData.append("files", avatar);
-      const response = await axios.patch(`/contacts/${_id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      // const { contacts } = thunkAPI.getState();
-
-      // const editedId = response.data._id;
-      // const updatedContact = response.data;
-
-      // const items = contacts.items.map((contact) =>
-      //   contact._id === editedId ? updatedContact : contact
-      // );
-
-      return response;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const addContactsThunk = createAsyncThunk(
   "contacts/addContact",
   async (data, thunkAPI) => {
     try {
+      console.log("DATA", data);
       const response = await axios({
         method: "post",
         url: `/contacts`,
@@ -67,8 +38,17 @@ export const addContactsThunk = createAsyncThunk(
         return response.data;
       }
 
-      const responseWithAvatar = await thunkAPI.dispatch(
-        uploadContactAvatar({ _id: response.data._id, avatar: data.avatar })
+      const formData = new FormData();
+      formData.append("files", data.avatar);
+
+      const responseWithAvatar = await axios.patch(
+        `/contacts/${response.data._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       return responseWithAvatar.data;
@@ -81,13 +61,25 @@ export const addContactsThunk = createAsyncThunk(
 export const editContactsThunk = createAsyncThunk(
   "contacts/editContact",
   async (editData, thunkAPI) => {
-    const { _id, ...data } = editData;
+    const { _id, avatarFile, ...data } = editData;
+
     try {
-      const response = await axios({
+      let response = await axios({
         method: "patch",
         url: `/contacts/${_id}`,
         data: data,
       });
+
+      if (avatarFile) {
+        const formData = new FormData();
+        formData.append("files", avatarFile);
+
+        response = await axios.patch(`/contacts/${_id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
 
       const editedId = response.data._id;
       const { contacts } = thunkAPI.getState();

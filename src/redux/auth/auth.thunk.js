@@ -66,33 +66,26 @@ export const logoutThunk = createAsyncThunk(
 export const updateUserThunk = createAsyncThunk(
   "users/update",
   async (editData, thunkAPI) => {
-    const { _id, ...data } = editData;
+    const { _id, avatarFile, ...data } = editData;
     try {
-      const response = await axios({
+      let response = await axios({
         method: "patch",
-        url: `/users/${_id._id}`,
+        url: `/users/${_id}`,
         data: data,
       });
+
+      if (avatarFile) {
+        const formData = new FormData();
+        formData.append("files", avatarFile);
+        response = await axios.patch(`/users/${_id}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
+
       return response.data;
     } catch (error) {}
-  }
-);
-
-export const uploadUserAvatar = createAsyncThunk(
-  "users/uploadAvatar",
-  async (editData, thunkAPI) => {
-    const { _id, avatar } = editData;
-    try {
-      const formData = new FormData();
-      formData.append("files", avatar);
-      axios.patch(`/users/${_id._id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
   }
 );
 

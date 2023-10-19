@@ -12,7 +12,7 @@ import {
 } from "./AvatarInput.styled";
 import { Portal } from "components/Portal/Portal";
 
-export const AvatarInput = ({ getAvatar, currentAvatar }) => {
+export const AvatarInput = ({ getAvatar, currentAvatar, setAvatarPreview }) => {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef(null);
   const [file, setFile] = useState(null);
@@ -90,6 +90,13 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
     // onInputChange(null);
   };
 
+  const onDeleteButtonClick = () => {
+    setAvatar(null);
+    setFile(null);
+    getAvatar(null);
+    setAvatarPreview(null);
+  };
+
   return (
     <>
       <AvatarWrapper>
@@ -110,7 +117,7 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
             htmlFor="input-file-upload"
             className={dragActive ? "drag-active" : ""}
             style={
-              currentAvatar
+              currentAvatar && !avatar
                 ? {
                     backgroundImage: `url(${currentAvatar})`,
                     backgroundSize: "cover",
@@ -141,7 +148,7 @@ export const AvatarInput = ({ getAvatar, currentAvatar }) => {
         <ButtonContainer>
           <DeleteButton
             type="button"
-            onClick={() => setAvatar(null)}
+            onClick={onDeleteButtonClick}
           >
             X
           </DeleteButton>

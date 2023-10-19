@@ -359,9 +359,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addContactsThunk,
   editContactsThunk,
-  uploadContactAvatar,
 } from "redux/contacts/contacts.thunk";
-import { updateUserThunk, uploadUserAvatar } from "redux/auth/auth.thunk";
+import { updateUserThunk } from "redux/auth/auth.thunk";
 import { AvatarInput } from "components/AvatarInput/AvatarInput";
 import {
   ButtonContainer,
@@ -503,7 +502,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
   const action = async (fn) => {
     switch (fn) {
       case "addContact":
-        dispatch(
+        await dispatch(
           addContactsThunk({
             name,
             number,
@@ -522,7 +521,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
         );
         break;
       case "editContact":
-        dispatch(
+        await dispatch(
           editContactsThunk({
             _id,
             name,
@@ -538,14 +537,13 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
             whatsapp,
             viber,
             avatar,
+            avatarFile,
           })
         );
-        dispatch(uploadContactAvatar({ _id: _id._id, avatar: avatarFile }));
-
         break;
 
       case "editUser":
-        dispatch(
+        await dispatch(
           updateUserThunk({
             _id,
             name,
@@ -560,10 +558,10 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
             bitbucket,
             whatsapp,
             viber,
+            avatar,
+            avatarFile,
           })
         );
-        dispatch(uploadUserAvatar({ _id, avatar: avatarFile }));
-
         break;
       default:
         return;
@@ -586,11 +584,16 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
     setAvatarFile(file);
   };
 
+  const setAvatarPreview = async (avatar) => {
+    setAvatar(avatar);
+  };
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       <FunctionalPartWrapper>
         <AvatarInput
           getAvatar={getAvatar}
+          setAvatarPreview={setAvatarPreview}
           currentAvatar={avatar}
         />
 
