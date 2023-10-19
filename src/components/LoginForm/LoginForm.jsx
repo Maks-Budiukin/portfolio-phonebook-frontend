@@ -75,7 +75,7 @@ const LoginForm = () => {
   const emailInpudId = nanoid();
   const passwordInpudId = nanoid();
 
-  const [email, setEmail] = useState("");
+  const [authEmail, setAuthEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -83,7 +83,7 @@ const LoginForm = () => {
   const onInputChange = (event) => {
     switch (event.target.name) {
       case "email":
-        setEmail(event.target.value);
+        setAuthEmail(event.target.value);
         break;
       case "password":
         setPassword(event.target.value);
@@ -96,9 +96,9 @@ const LoginForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(loginThunk({ email, password }));
+    dispatch(loginThunk({ authEmail, password }));
 
-    setEmail("");
+    setAuthEmail("");
     setPassword("");
   };
 
@@ -109,7 +109,7 @@ const LoginForm = () => {
         type="email"
         name="email"
         id={emailInpudId}
-        value={email}
+        value={authEmail}
         onChange={onInputChange}
         required
       />

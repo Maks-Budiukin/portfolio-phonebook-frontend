@@ -78,7 +78,7 @@ const RegisterForm = () => {
   const passwordInpudId = nanoid();
 
   // const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [authEmail, setAuthEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -89,7 +89,7 @@ const RegisterForm = () => {
       //   setName(event.target.value);
       //   break;
       case "email":
-        setEmail(event.target.value);
+        setAuthEmail(event.target.value);
         break;
       case "password":
         setPassword(event.target.value);
@@ -102,10 +102,10 @@ const RegisterForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(regThunk({ email, password }));
+    dispatch(regThunk({ authEmail, password }));
 
     // setName("");
-    setEmail("");
+    setAuthEmail("");
     setPassword("");
   };
 
@@ -130,7 +130,7 @@ const RegisterForm = () => {
         id={emailInpudId}
         // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         title="Email must have the following shape: email@email.com"
-        value={email}
+        value={authEmail}
         onChange={onInputChange}
         required
       />

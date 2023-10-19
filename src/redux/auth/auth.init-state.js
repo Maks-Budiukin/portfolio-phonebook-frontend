@@ -2,6 +2,7 @@ export const authInitState = {
   user: {
     _id: "",
     name: "",
+    authEmail: "",
     email: "",
     number: "",
     telegram: "",
