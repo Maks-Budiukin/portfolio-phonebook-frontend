@@ -139,12 +139,17 @@ export const ContactInfoListMobile = ({ contact }) => {
             _id={contact._id}
           />
 
-          <DeleteButton
+          {/* <DeleteButton
             type="button"
             onClick={handleDelete}
           >
             Delete
-          </DeleteButton>
+          </DeleteButton> */}
+          <ModalButton
+            fn={"deleteContact"}
+            label={"Delete contact"}
+            _id={contact._id}
+          />
         </ButtonContainer>
       </ContactinfoListWrapper>
     </div>

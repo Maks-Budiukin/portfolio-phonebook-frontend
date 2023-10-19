@@ -26,18 +26,19 @@ export const AddButton = styled.button`
 export const EditButton = styled.button`
   outline: none;
   border: none;
-  background: linear-gradient(
+  /* background: linear-gradient(
     -91deg,
     var(--yellow) 0 97%,
     #fff0 calc(97% + 1px) 100%
-  );
+  ); */
+  background-color: var(--yellow);
 
   color: var(--dark);
   font-weight: bold;
   padding: 4px 12px;
   display: flex;
   align-items: center;
-  margin: 2px;
+  margin: 1px;
   border: 3px solid var(--dark);
   cursor: pointer;
 
@@ -93,5 +94,55 @@ export const UserEditButton = styled.button`
   &:hover,
   &:focus {
     transform: scale(1.03);
+  }
+`;
+
+export const DeleteButton = styled.button`
+  /* outline: none; */
+  /* border: none; */
+  /* background: linear-gradient(
+    -91deg,
+    var(--dark) 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  ); */
+  background-color: var(--dark);
+
+  color: var(--yellow);
+  font-weight: bold;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  /* margin: 2px; */
+  border: 3px solid var(--dark);
+  cursor: pointer;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.13);
+  }
+`;
+
+export const DeleteButtonMobile = styled.button`
+  outline: none;
+  border: none;
+  background-color: var(--dark);
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0% 100%);
+
+  color: var(--yellow);
+  font-weight: bold;
+  padding: 16px 16px;
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  margin-left: -2px;
+  cursor: pointer;
+
+  transition: var(--trans);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.04);
   }
 `;

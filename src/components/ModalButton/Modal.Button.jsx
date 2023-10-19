@@ -9,7 +9,10 @@ import {
   EditButton,
   EditButtonMobile,
   UserEditButton,
+  DeleteButton,
+  DeleteButtonMobile,
 } from "./ModalButton.styled";
+import { RxCross1 } from "react-icons/rx";
 
 export const ModalButton = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,7 +38,7 @@ export const ModalButton = (props) => {
           type="button"
           onClick={handleToggle}
         >
-          <GrEdit style={{ marginRight: "4px" }} />
+          <GrEdit style={{ margin: "4px" }} />
         </EditButton>
       )}
       {props.fn === "editContact" && isMobile && (
@@ -46,6 +49,28 @@ export const ModalButton = (props) => {
           Edit contact
         </EditButtonMobile>
       )}
+
+      {props.fn === "deleteContact" && !isMobile && (
+        <DeleteButton
+          type="button"
+          onClick={handleToggle}
+        >
+          <RxCross1
+            size={16}
+            style={{ fontWeight: "bold" }}
+          />
+        </DeleteButton>
+      )}
+
+      {props.fn === "deleteContact" && isMobile && (
+        <DeleteButtonMobile
+          type="button"
+          onClick={handleToggle}
+        >
+          Delete contact
+        </DeleteButtonMobile>
+      )}
+
       {props.fn === "editUser" && (
         <UserEditButton
           type="button"

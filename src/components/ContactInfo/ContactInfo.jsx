@@ -33,7 +33,12 @@ export const ContactInfo = () => {
                 label={"Edit contact"}
                 _id={contact._id}
               />
-              <ContactDeleteButton _id={contact._id} />
+              {/* <ContactDeleteButton _id={contact._id} /> */}
+              <ModalButton
+                fn={"deleteContact"}
+                label={"Delete contact"}
+                _id={contact._id}
+              />
             </ButtonContainer>
           </AvatarThumb>
           <ContactInfoList contact={contact} />
