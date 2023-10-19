@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 
-import { ContactDeleteButton } from "components/ContactDeleteButton/ContactDeleteButton";
-
 import userDummy from "images/user-dummy28.jpg";
 import { ContactInfoList } from "components/ContactInfoList/ContactInfoList";
 import { ModalButton } from "components/ModalButton/Modal.Button";

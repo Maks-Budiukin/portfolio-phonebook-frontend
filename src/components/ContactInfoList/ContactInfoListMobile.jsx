@@ -25,34 +25,16 @@ import {
   handleLinkedInURL,
 } from "./handleContactInput";
 
-import { useEffect, useState } from "react";
 import {
   ButtonContainer,
   ContactinfoListWrapper,
-  DeleteButton,
-  EditButton,
 } from "./ContactInfoListMobile.styled";
-import { useDispatch } from "react-redux";
-import { deleteContactsThunk } from "redux/contacts/contacts.thunk";
 import { ModalButton } from "components/ModalButton/Modal.Button";
 
 export const ContactInfoListMobile = ({ contact }) => {
-  const dispatch = useDispatch();
-
-  const handleDelete = () => {
-    dispatch(deleteContactsThunk(contact._id));
-  };
-  // const [isShowBox, setIsShowBox] = useState(false);
-
-  // useEffect(() => {
-  //   contact && setTimeout(() => setIsShowBox(true));
-  // }, [contact]);
-
   return (
     <div style={{ overflow: "hidden" }}>
-      <ContactinfoListWrapper
-      // className={`block ${isShowBox ? " block-show" : ""}`}
-      >
+      <ContactinfoListWrapper>
         {contact.number && (
           <ContactInfoItem
             data={`callto:${contact.number}`}
@@ -139,12 +121,6 @@ export const ContactInfoListMobile = ({ contact }) => {
             _id={contact._id}
           />
 
-          {/* <DeleteButton
-            type="button"
-            onClick={handleDelete}
-          >
-            Delete
-          </DeleteButton> */}
           <ModalButton
             fn={"deleteContact"}
             label={"Delete contact"}

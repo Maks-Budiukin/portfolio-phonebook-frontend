@@ -221,6 +221,7 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
 
       case "deleteContact":
         await dispatch(deleteContactsThunk(_id));
+        break;
       default:
         return;
     }

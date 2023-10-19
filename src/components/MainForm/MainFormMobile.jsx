@@ -567,7 +567,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
 
       case "deleteContact":
         await dispatch(deleteContactsThunk(_id));
-
+        break;
       default:
         return;
     }
@@ -777,6 +777,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
           >
             <div>
               <img
+                alt="contact avatar"
                 src={selectedContact.avatar}
                 style={{ width: "200px" }}
               ></img>
