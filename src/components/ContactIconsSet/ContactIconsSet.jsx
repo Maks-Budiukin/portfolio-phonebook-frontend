@@ -6,7 +6,7 @@ import { LiaTelegramPlane } from "react-icons/lia";
 import { FaLinkedin, FaViber } from "react-icons/fa";
 import { SiInstagram } from "react-icons/si";
 import { RxGithubLogo } from "react-icons/rx";
-import { BsFacebook, BsWhatsapp } from "react-icons/bs";
+import { BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { TbBrandBitbucket } from "react-icons/tb";
 
@@ -31,7 +31,7 @@ export const ContactIconsSet = ({ contact }) => {
         {contact.linkedin && <FaLinkedin />}
         {contact.instagram && <SiInstagram />}
         {contact.github && <RxGithubLogo />}
-        {contact.facebook && <BsFacebook />}
+        {/* {contact.facebook && <BsFacebook />} */}
         {contact.twitter && <SlSocialTwitter />}
         {contact.whatsapp && <BsWhatsapp />}
         {contact.viber && <FaViber />}

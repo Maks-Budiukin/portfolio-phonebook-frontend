@@ -37,7 +37,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
   const linkedinInpudId = nanoid();
   const instagramInpudId = nanoid();
   const githubInpudId = nanoid();
-  const facebookInpudId = nanoid();
+  // const facebookInpudId = nanoid();
   const twitterInpudId = nanoid();
   const bitbucketInpudId = nanoid();
   const whatsappInpudId = nanoid();
@@ -50,7 +50,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
   const [linkedin, setLinkedin] = useState("");
   const [instagram, setInstagram] = useState("");
   const [github, setGithub] = useState("");
-  const [facebook, setFacebook] = useState("");
+  // const [facebook, setFacebook] = useState("");
   const [twitter, setTwitter] = useState("");
   const [bitbucket, setBitbucket] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -67,7 +67,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
       setLinkedin(selectedContact.linkedin || "");
       setInstagram(selectedContact.instagram || "");
       setGithub(selectedContact.github || "");
-      setFacebook(selectedContact.facebook || "");
+      // setFacebook(selectedContact.facebook || "");
       setTwitter(selectedContact.twitter || "");
       setBitbucket(selectedContact.bitbucket || "");
       setWhatsapp(selectedContact.whatsapp || "");
@@ -82,7 +82,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
       setLinkedin(user.linkedin || "");
       setInstagram(user.instagram || "");
       setGithub(user.github || "");
-      setFacebook(user.facebook || "");
+      // setFacebook(user.facebook || "");
       setTwitter(user.twitter || "");
       setBitbucket(user.bitbucket || "");
       setWhatsapp(user.whatsapp || "");
@@ -97,7 +97,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
       setLinkedin(sharedContact.linkedin || "");
       setInstagram(sharedContact.instagram || "");
       setGithub(sharedContact.github || "");
-      setFacebook(sharedContact.facebook || "");
+      // setFacebook(sharedContact.facebook || "");
       setTwitter(sharedContact.twitter || "");
       setBitbucket(sharedContact.bitbucket || "");
       setWhatsapp(sharedContact.whatsapp || "");
@@ -129,9 +129,9 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
       case "github":
         setGithub(event.target.value);
         break;
-      case "facebook":
-        setFacebook(event.target.value);
-        break;
+      // case "facebook":
+      //   setFacebook(event.target.value);
+      //   break;
       case "twitter":
         setTwitter(event.target.value);
         break;
@@ -161,7 +161,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
             linkedin,
             instagram,
             github,
-            facebook,
+            // facebook,
             twitter,
             bitbucket,
             whatsapp,
@@ -182,7 +182,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
             linkedin,
             instagram,
             github,
-            facebook,
+            // facebook,
             twitter,
             bitbucket,
             whatsapp,
@@ -205,7 +205,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
             linkedin,
             instagram,
             github,
-            facebook,
+            // facebook,
             twitter,
             bitbucket,
             whatsapp,
@@ -339,7 +339,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
                 onChange={onInputChange}
               />
             </InputWrapper>
-            <InputWrapper>
+            {/* <InputWrapper>
               <label htmlFor={facebookInpudId}>Facebook </label>
               <input
                 type="text"
@@ -349,7 +349,7 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
                 value={facebook}
                 onChange={onInputChange}
               />
-            </InputWrapper>
+            </InputWrapper> */}
             <InputWrapper>
               <label htmlFor={twitterInpudId}>Twitter </label>
               <input

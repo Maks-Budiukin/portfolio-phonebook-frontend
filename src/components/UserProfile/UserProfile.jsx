@@ -9,7 +9,7 @@ import { LiaTelegramPlane } from "react-icons/lia";
 import { FaLinkedin, FaViber, FaPhoneSquare } from "react-icons/fa";
 import { SiInstagram } from "react-icons/si";
 import { RxGithubLogo } from "react-icons/rx";
-import { BsFacebook, BsWhatsapp } from "react-icons/bs";
+import { BsWhatsapp } from "react-icons/bs";
 import { SlSocialTwitter } from "react-icons/sl";
 import { TbBrandBitbucket } from "react-icons/tb";
 
@@ -24,8 +24,8 @@ import {
   handleGithubLink,
   handleBitbucketURL,
   handleBitbucketLink,
-  handleFacebookURL,
-  handleFacebookLink,
+  // handleFacebookURL,
+  // handleFacebookLink,
   handleLinkedInURL,
 } from "../ContactInfo/handleContactInput";
 
@@ -118,13 +118,13 @@ export const UserProfile = () => {
               title={handleInstagramURL(userInfo.instagram)}
             />
           )}
-          {userInfo.facebook && (
+          {/* {userInfo.facebook && (
             <UserProfileItem
               data={handleFacebookLink(userInfo.facebook)}
               icon={<BsFacebook />}
               title={handleFacebookURL(userInfo.facebook)}
             />
-          )}
+          )} */}
           {userInfo.linkedin && (
             <UserProfileItem
               data={userInfo.linkedin}

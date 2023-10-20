@@ -13,7 +13,7 @@ export const authInitState = {
     twitter: "",
     whatsapp: "",
     viber: "",
-    facebook: "",
+    // facebook: "",
     shareLink: "",
     avatar: "",
   },

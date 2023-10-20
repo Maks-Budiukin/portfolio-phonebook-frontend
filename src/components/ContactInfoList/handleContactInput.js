@@ -116,33 +116,33 @@ export const handleBitbucketLink = (url) => {
   return url;
 };
 
-export const handleFacebookURL = (url) => {
-  const inIndex = url.indexOf("facebook.com/");
-  const idIndex = url.indexOf("?id=");
-  if (idIndex !== -1) {
-    return "Facebook";
-  }
+// export const handleFacebookURL = (url) => {
+//   const inIndex = url.indexOf("facebook.com/");
+//   const idIndex = url.indexOf("?id=");
+//   if (idIndex !== -1) {
+//     return "Facebook";
+//   }
 
-  if (inIndex !== -1) {
-    let username = `${url.substring(inIndex + 13)}`;
-    const slashIndex = username.indexOf("/");
-    if (slashIndex !== -1) {
-      username = username.substring(0, slashIndex);
-    }
-    return username;
-  }
+//   if (inIndex !== -1) {
+//     let username = `${url.substring(inIndex + 13)}`;
+//     const slashIndex = username.indexOf("/");
+//     if (slashIndex !== -1) {
+//       username = username.substring(0, slashIndex);
+//     }
+//     return username;
+//   }
 
-  return "Facebook"; // Возвращаем null, если не найдено "/in/"
-};
+//   return "Facebook"; // Возвращаем null, если не найдено "/in/"
+// };
 
-export const handleFacebookLink = (url) => {
-  const domainlIndex = url.indexOf("facebook.com/");
-  if (domainlIndex === -1) {
-    let userLink = `https://www.facebook.com/${url}`;
-    return userLink;
-  }
-  return url;
-};
+// export const handleFacebookLink = (url) => {
+//   const domainlIndex = url.indexOf("facebook.com/");
+//   if (domainlIndex === -1) {
+//     let userLink = `https://www.facebook.com/${url}`;
+//     return userLink;
+//   }
+//   return url;
+// };
 
 export const handleLinkedInURL = (url) => {
   const inIndex = url.indexOf("/in/");
