@@ -19,6 +19,9 @@ import {
   TextPartWrapper,
 } from "./MainForm.styled";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
   const selectedContact = useSelector(
     (state) => state.contacts.selectedContact
@@ -166,9 +169,7 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             avatar: avatarFile,
           })
         );
-        // dispatch(
-        //   uploadContactAvatar({ _id: selectedContact._id, avatar: avatarFile })
-        // );
+        toast.warning("Contact successfully created!");
 
         break;
       case "editContact":
@@ -191,7 +192,7 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             avatarFile,
           })
         );
-        // dispatch(uploadContactAvatar({ _id, avatar: avatarFile }));
+        toast.warning("Contact's info successfully updated!");
 
         break;
 
@@ -215,28 +216,23 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
             avatarFile,
           })
         );
-        // dispatch(uploadUserAvatar({ _id, avatar: avatarFile }));
+        toast.warning("Your info successfully updated!");
 
         break;
 
       case "deleteContact":
         await dispatch(deleteContactsThunk(_id));
+        toast.warning("Contact successfully deleted!");
         break;
       default:
         return;
     }
   };
 
-  // const normalizedName = name.toLowerCase();
-
   const handleSubmit = (event) => {
     event.preventDefault();
     action(fn);
     onSubmitClose();
-
-    // contacts.find((contact) => contact.name.toLowerCase() === normalizedName)
-    //   ? alert(`${name} is already in contacts `)
-    //   : action(fn);
   };
 
   const getAvatar = async (file) => {

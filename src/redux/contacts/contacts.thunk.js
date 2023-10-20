@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export const fetchContactsThunk = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkAPI) => {
@@ -11,6 +14,7 @@ export const fetchContactsThunk = createAsyncThunk(
       );
       return contacts;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -53,6 +57,7 @@ export const addContactsThunk = createAsyncThunk(
 
       return responseWithAvatar.data;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -91,6 +96,7 @@ export const editContactsThunk = createAsyncThunk(
 
       return { items, updatedContact };
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -108,6 +114,7 @@ export const deleteContactsThunk = createAsyncThunk(
       );
       return items;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -124,6 +131,7 @@ export const addSharedContactThunk = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

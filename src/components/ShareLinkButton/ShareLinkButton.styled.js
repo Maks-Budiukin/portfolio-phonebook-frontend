@@ -28,14 +28,52 @@ export const ShareButton = styled.button`
 `;
 
 export const ModalWindow = styled.div`
-  position: absolute;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   box-shadow: 0px 4px 16px rgba(17, 17, 17, 0.1);
-  border-radius: 8px;
-  max-width: 95%;
-  padding: 48px 18px 40px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background-color: var(--dark);
+  clip-path: polygon(0 0, 100% 0, 98% 100%, 4% 100%);
+
+  padding: 68px 48px 28px 48px;
+
+  &.block {
+    transform: scale(0.95);
+    transition-property: transform;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  &.block-show {
+    transform: scale(1);
+  }
+`;
+
+export const ShareLinkText = styled.p`
+  line-height: 1.3;
+  color: #fff;
+  font-size: 28px;
+  transition-property: color;
+  transition-duration: 250ms;
+  cursor: pointer;
+  &:hover {
+    color: var(--yellow);
+  }
+`;
+
+export const ShareLinkTextCopied = styled.p`
+  line-height: 1.3;
+  font-size: 28px;
+  color: var(--yellow);
+  cursor: pointer;
+`;
+
+export const QRThumb = styled.div`
+  padding: 26px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

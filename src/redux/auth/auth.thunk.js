@@ -1,6 +1,9 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // axios.defaults.baseURL = 'http://localhost:3000/api';
 axios.defaults.baseURL = "https://portfolio-phonebook-backend.vercel.app/api";
 
@@ -24,6 +27,7 @@ export const regThunk = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,6 +46,7 @@ export const loginThunk = createAsyncThunk(
       token.set(response.data.token);
       return response.data;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -58,6 +63,7 @@ export const logoutThunk = createAsyncThunk(
       token.unset();
       return response.data;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -85,7 +91,10 @@ export const updateUserThunk = createAsyncThunk(
       }
 
       return response.data;
-    } catch (error) {}
+    } catch (error) {
+      toast.warning(`${error.message}`);
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
 
@@ -100,6 +109,7 @@ export const refreshThunk = createAsyncThunk(
       const response = await axios.get("/users/current");
       return response.data;
     } catch (error) {
+      toast.warning(`${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

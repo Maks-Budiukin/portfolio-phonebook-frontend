@@ -17,6 +17,15 @@ body {
         --trans: all 0.4s ease 0s;
         
   scroll-behavior: smooth;
+
+  /*TOASTIFY*/
+
+  --toastify-toast-background: rgb(238, 238, 238);
+  --toastify-text-color-light: var(--dark);
+
+
+  --toastify-text-color-warning: var(--dark);
+  --toastify-color-progress-warning: var(--yellow);
 }
 
 code {
