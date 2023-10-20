@@ -2,7 +2,9 @@ import styled from "styled-components";
 
 export const StyledForm = styled.form`
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 48px;
 `;
@@ -91,4 +93,14 @@ export const CancelButton = styled.button`
   &:focus {
     transform: scale(1.04);
   }
+`;
+
+export const FormHeader = styled.p`
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  width: 70%;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
 `;

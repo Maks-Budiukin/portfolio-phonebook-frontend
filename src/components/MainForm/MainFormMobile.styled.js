@@ -137,3 +137,8 @@ export const CancelButton = styled.button`
     transform: scale(1.04);
   }
 `;
+
+export const FormHeaderMobile = styled.h1`
+  color: #fff;
+  text-align: center;
+`;

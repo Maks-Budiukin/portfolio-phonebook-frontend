@@ -12,6 +12,7 @@ import { AvatarInput } from "components/AvatarInput/AvatarInput";
 import {
   ButtonContainer,
   CancelButton,
+  FormHeader,
   FunctionalPartWrapper,
   InputWrapper,
   StyledForm,
@@ -248,6 +249,10 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
     <StyledForm onSubmit={handleSubmit}>
       {fn !== "deleteContact" && (
         <>
+          {fn === "editContact" && (
+            <FormHeader>{selectedContact.name}</FormHeader>
+          )}
+          {fn === "editUser" && <FormHeader>My info</FormHeader>}
           <FunctionalPartWrapper>
             <AvatarInput
               getAvatar={getAvatar}
