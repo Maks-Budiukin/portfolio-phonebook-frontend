@@ -12,7 +12,6 @@ import { AvatarInput } from "components/AvatarInput/AvatarInput";
 import {
   ButtonContainer,
   CancelButton,
-  FormHeader,
   FunctionalPartWrapper,
   InputWrapper,
   StyledForm,
@@ -22,7 +21,6 @@ import {
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useMediaQuery } from "react-responsive";
 
 export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
   const selectedContact = useSelector(
@@ -245,10 +243,6 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
   const setAvatarPreview = async (avatar) => {
     setAvatar(avatar);
   };
-
-  const isDesktop = useMediaQuery({ minWidth: 1280 });
-  const isTablet = useMediaQuery({ minWidth: 690, maxWidth: 1279 });
-  const isMobile = useMediaQuery({ maxWidth: 689 });
 
   return (
     <StyledForm onSubmit={handleSubmit}>
