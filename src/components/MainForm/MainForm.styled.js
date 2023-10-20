@@ -99,7 +99,7 @@ export const FormHeader = styled.p`
   padding: 0;
   margin: 0;
   color: #fff;
-  width: 70%;
+  flex-basis: 80%;
   font-size: 28px;
   font-weight: bold;
   text-align: center;

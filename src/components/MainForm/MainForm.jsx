@@ -22,6 +22,7 @@ import {
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useMediaQuery } from "react-responsive";
 
 export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
   const selectedContact = useSelector(
@@ -245,14 +246,18 @@ export const MainForm = ({ _id, fn, onSubmitClose, label }) => {
     setAvatar(avatar);
   };
 
+  const isDesktop = useMediaQuery({ minWidth: 1280 });
+  const isTablet = useMediaQuery({ minWidth: 690, maxWidth: 1279 });
+  const isMobile = useMediaQuery({ maxWidth: 689 });
+
   return (
     <StyledForm onSubmit={handleSubmit}>
       {fn !== "deleteContact" && (
         <>
-          {fn === "editContact" && (
+          {/* {fn === "editContact" && isDesktop && (
             <FormHeader>{selectedContact.name}</FormHeader>
           )}
-          {fn === "editUser" && <FormHeader>My info</FormHeader>}
+          {fn === "editUser" && isDesktop && <FormHeader>My info</FormHeader>} */}
           <FunctionalPartWrapper>
             <AvatarInput
               getAvatar={getAvatar}
