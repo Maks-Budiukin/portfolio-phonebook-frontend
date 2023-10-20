@@ -166,7 +166,8 @@ export const MainFormMobile = ({ _id, fn, onSubmitClose, label }) => {
             bitbucket,
             whatsapp,
             viber,
-            avatar: avatarFile,
+            avatar,
+            avatarFile,
           })
         );
         toast.warning("Contact successfully created!");
