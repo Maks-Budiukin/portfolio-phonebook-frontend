@@ -31,19 +31,19 @@ export const addContactsThunk = createAsyncThunk(
   "contacts/addContact",
   async (data, thunkAPI) => {
     try {
-      console.log("DATA", data);
+      console.log("DataTRATATA", data);
       const response = await axios({
         method: "post",
         url: `/contacts`,
-        data: { ...data, avatar: null },
+        data: data,
       });
 
-      if (!data.avatar) {
+      if (!data.avatarFile) {
         return response.data;
       }
 
       const formData = new FormData();
-      formData.append("files", data.avatar);
+      formData.append("files", data.avatarFile);
 
       const responseWithAvatar = await axios.patch(
         `/contacts/${response.data._id}`,
@@ -129,6 +129,7 @@ export const addSharedContactThunk = createAsyncThunk(
         url: `/users/share/${data.shareLink}/${data.id}`,
       });
 
+      console.log("RESPONSE DATA", response.data);
       return response.data;
     } catch (error) {
       toast.warning(`${error.message}`);
