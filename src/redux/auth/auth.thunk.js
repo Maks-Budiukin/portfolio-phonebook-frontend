@@ -25,6 +25,7 @@ export const regThunk = createAsyncThunk(
         url: "/users/register",
         data: credentials,
       });
+
       return response.data;
     } catch (error) {
       toast.warning(`${error.message}`);

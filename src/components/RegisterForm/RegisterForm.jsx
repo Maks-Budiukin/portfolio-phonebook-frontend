@@ -1,7 +1,7 @@
 import { nanoid } from "nanoid";
 
 import { useState } from "react";
-import { regThunk } from "redux/auth/auth.thunk";
+import { loginThunk, regThunk } from "redux/auth/auth.thunk";
 import { useDispatch } from "react-redux";
 import {
   RegisterButton,
@@ -35,10 +35,11 @@ const RegisterForm = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    dispatch(regThunk({ authEmail, password }));
+    await dispatch(regThunk({ authEmail, password }));
+    await dispatch(loginThunk({ authEmail, password }));
     setAuthEmail("");
     setPassword("");
   };
