@@ -2,6 +2,7 @@ import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import { contactsFilter } from "redux/filter/filter.slice";
 import { LuFilter } from "react-icons/lu";
+import { MdCancel } from "react-icons/md";
 import { StyledFilter } from "./Filter.styled";
 
 export const Filter = () => {
@@ -14,11 +15,22 @@ export const Filter = () => {
     dispatch(contactsFilter(event.target.value));
   };
 
+  const onInputCancel = () => {
+    dispatch(contactsFilter(""));
+  };
+
   return (
     <StyledFilter>
       <label htmlFor={filterInpudId}>
         {" "}
-        <LuFilter style={{ color: "var(--dark)" }} />{" "}
+        {filter.length > 0 ? (
+          <MdCancel
+            style={{ color: "var(--dark)", cursor: "pointer" }}
+            onClick={onInputCancel}
+          />
+        ) : (
+          <LuFilter style={{ color: "var(--dark)" }} />
+        )}
       </label>
       <input
         type="text"
